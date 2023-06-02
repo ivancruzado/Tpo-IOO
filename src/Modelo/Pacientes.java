@@ -1,5 +1,8 @@
 package Modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Pacientes {
 
     private int DNI;
@@ -9,17 +12,20 @@ public class Pacientes {
     private String sexo;
     private int Edad;
 
-    public Pacientes() {
 
-        Nombre = " ";
-        DNI = 0;
-        Domicilio = " ";
-        Mail = "";
-        sexo = "";
-        Edad = 0;
+    public Pacientes() {
+        this.DNI = 0;
+        this.Nombre = "";
+        this.Domicilio = "";
+        this.Mail = "";
+        this.sexo = "";
+        this.Edad = 0;
+
     }
 
-    //public String buscarPaciente(int DNI){
+
+
+    //public String buscarPacienteporDNI(int DNI){
 
     //}
 

@@ -1,6 +1,8 @@
 package GUI;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class AltaUsurious extends JFrame{
 
@@ -13,10 +15,12 @@ public class AltaUsurious extends JFrame{
     private JPanel AltaUsurious;
 
         public AltaUsurious() {
+            setBackground(Color.gray);
             setTitle("Vista de Usuario");
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            setSize(300, 200);
-            setLayout(new GridLayout(6, 2));
+            setSize(600, 500);
+            setLayout(new GridLayout(7, 2));
+            setVisible(true);
 
             JLabel lblDNI = new JLabel("DNI:");
             txtDNI = new JTextField();
@@ -30,6 +34,8 @@ public class AltaUsurious extends JFrame{
             txtEdad = new JTextField();
             JLabel lblPassword = new JLabel("Contraseña:");
             txtPassword = new JPasswordField();
+            JButton botonVolver = new JButton("Volver a Menu");
+            botonVolver.setBounds(300, 500, 150, 30);
 
             add(lblDNI);
             add(txtDNI);
@@ -43,6 +49,15 @@ public class AltaUsurious extends JFrame{
             add(txtEdad);
             add(lblPassword);
             add(txtPassword);
+            add(botonVolver);
+
+            botonVolver.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    AltaUsurious.this.dispose();
+                    Menu menu = new Menu();
+                    menu.setVisible(true);
+                }
+            });
         }
 
         private void createUIComponents() {

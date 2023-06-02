@@ -23,6 +23,8 @@ public class Peticiones {
 
     }
 
+        
+
     public int GetPracticaID(){
 
         return PracticaID;
