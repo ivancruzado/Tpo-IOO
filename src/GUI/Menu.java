@@ -1,5 +1,7 @@
 package GUI;
 
+import Controlador.ControllerPeticiones;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,7 +14,7 @@ public class Menu extends JFrame {
 
 
     public Menu(){
-        setSize(700,700);
+        setSize(700,600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Sistema de Laboratorio");
         setLocationRelativeTo(null);
@@ -37,12 +39,24 @@ public class Menu extends JFrame {
     private void botonesInicio(){
 
         JButton botonPacientes = new JButton("Alta Pacientes");
-        botonPacientes.setBounds(300, 300, 150, 30);
+        botonPacientes.setBounds(300, 400, 150, 30);
         panel1.add(botonPacientes);
 
         JButton botonUsuarios = new JButton("Alta Usuarios");
-        botonUsuarios.setBounds(300, 400, 150, 30);
+        botonUsuarios.setBounds(300, 300, 150, 30);
         panel1.add(botonUsuarios);
+
+        JButton botonBusquedaPaciente = new JButton("Busqueda por DNI");
+        botonBusquedaPaciente.setBounds(300, 500, 150, 30);
+        panel1.add(botonBusquedaPaciente);
+
+        JButton TablaPacientes = new JButton("Tabla de pacientes");
+        TablaPacientes.setBounds(300, 450, 150, 30);
+        panel1.add(TablaPacientes);
+
+        JButton Practicas = new JButton("Practicas");
+        Practicas.setBounds(300, 200, 150, 30);
+        panel1.add(Practicas);
 
         botonPacientes.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -63,8 +77,38 @@ public class Menu extends JFrame {
             }
         });
 
-        getContentPane().setLayout(null);
-        getContentPane().add(panel1);
+
+        botonBusquedaPaciente.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                ControllerPeticiones.getInstance().imprimirLista();
+                Menu.this.setVisible(false);
+                TablaPacienteEncontrado tablaPacienteEncontrado = new TablaPacienteEncontrado("Busqueda por DNI");
+                tablaPacienteEncontrado.setVisible(true);
+            }
+        });
+
+
+
+        TablaPacientes.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Menu.this.setVisible(false);
+                TablaPacientes tablaPacientes = new TablaPacientes("Tabla de pacientes");
+
+                tablaPacientes.setVisible(true);
+            }
+        });
+
+        Practicas.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Menu.this.setVisible(false);
+                PracticasPrincipal practicasPrincipal = new PracticasPrincipal();
+                practicasPrincipal.setVisible(true);
+            }
+        });
+
+
+
+
     }
 
 }

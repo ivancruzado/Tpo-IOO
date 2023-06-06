@@ -1,18 +1,19 @@
 package GUI;
 
 import Modelo.Pacientes;
+import Modelo.Practica;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
 
-public class CustomTableModel extends AbstractTableModel {
+public class CustomTableModel2 extends AbstractTableModel {
 
-    private String[] columnNames = {"DNI","Nombre","Edad","Domicilio","Sexo","Mail"};
-    private List<Pacientes> dtoArrayList;
+    private String[] columnNames = {"Practica ID", "Codigo de practica", "Nombre de practica", "Grupo", "Tiempo resultado","Deshabilitado"};
+    private List<Practica> dtoArrayList;
 
 
 
-    public CustomTableModel(List<Pacientes> list){
+    public CustomTableModel2(List<Practica> list){
         this.dtoArrayList = list;
     }
 
@@ -33,22 +34,22 @@ public class CustomTableModel extends AbstractTableModel {
     public Object getValueAt(int row, int col) {
         Object temp = null;
         if (col == 0) {
-            temp = dtoArrayList.get(row).getDNI();
+            temp = dtoArrayList.get(row).getPracticaID();
         }
         else if (col == 1) {
-            temp = dtoArrayList.get(row).getNombre();
+            temp = dtoArrayList.get(row).getCodigoPractica();
         }
         else if (col == 2) {
-            temp = dtoArrayList.get(row).getEdad();
+            temp = dtoArrayList.get(row).getNombrePractica();
         }
         else if (col == 3) {
-            temp = dtoArrayList.get(row).getDomicilio();
+            temp = dtoArrayList.get(row).getGrupo();
         }
         else if (col == 4) {
-            temp = dtoArrayList.get(row).getSexo();
+            temp = dtoArrayList.get(row).getTiempoResultado();
         }
         else if (col == 5) {
-            temp = dtoArrayList.get(row).getMail();
+            temp = dtoArrayList.get(row).isDeshabilitada();
         }
         return temp;
     }

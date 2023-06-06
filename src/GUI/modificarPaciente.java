@@ -1,27 +1,67 @@
 package GUI;
 
 import Controlador.ControllerPeticiones;
+import Modelo.Pacientes;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
-public class VentanaAltaPacientes extends JFrame {
+
+public class modificarPaciente extends JFrame {
     public JPanel panel;
-    public VentanaAltaPacientes(){
+    private JTextField dni;
+    private JTextField edad;
+    private JTextField domicilio;
+    private JTextField sexo;
+    private JTextField Mail;
+    private JTextField nombre;
+    private int index;
+    private ControllerPeticiones controller;
+
+    public modificarPaciente(String column1Value, String column2Value, String column3Value, String column4Value, String column5Value, String column6Value,int index){
         setSize(700,600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
         componentes();
+        controller = ControllerPeticiones.getInstance();
+        nombre = new JTextField(column2Value);
+        nombre.setBounds(160, 50, 250, 30);
+        panel.add(nombre);
+
+        dni = new JTextField(column1Value);
+        dni.setBounds(160,100,250,25);
+        panel.add(dni);
+
+        edad = new JTextField(column3Value);
+        edad.setBounds(160,150,250,30);
+        panel.add(edad);
+
+        domicilio = new JTextField(column4Value);
+        domicilio.setBounds(160,200,250,30);
+        panel.add(domicilio);
+
+        sexo = new JTextField(column5Value);
+        sexo.setBounds(160,250,250,30);
+        panel.add(sexo);
+
+        Mail = new JTextField(column6Value);
+        Mail.setBounds(160,300,250,30);
+        panel.add(Mail);
+        this.index = index;
+
+
 
     }
     private void componentes(){
         paneles();
         Etiquetas();
         botones();
+
     }
 
     private void paneles(){
@@ -31,6 +71,7 @@ public class VentanaAltaPacientes extends JFrame {
         this.getContentPane().add(panel);
     }
     private void Etiquetas(){
+
         JLabel etiqueta = new JLabel("Nombre",SwingConstants.CENTER);
         etiqueta.setForeground(Color.WHITE);
         etiqueta.setBounds(15,50,100,30);
@@ -56,38 +97,12 @@ public class VentanaAltaPacientes extends JFrame {
         etiqueta6.setBounds(15,300,100,30);
         panel.add(etiqueta6);
 
-
     }
 
 
     private void botones(){
-        JTextField nombre = new JTextField();
-        nombre.setBounds(160, 50, 250, 30);
-        panel.add(nombre);
 
-        JTextField dni = new JTextField();
-        dni.setBounds(160,100,250,25);
-        panel.add(dni);
-
-        JTextField edad = new JTextField();
-        edad.setBounds(160,150,250,30);
-        panel.add(edad);
-
-        JTextField domicilio = new JTextField();
-        domicilio.setBounds(160,200,250,30);
-        panel.add(domicilio);
-
-        JTextField sexo = new JTextField();
-        sexo.setBounds(160,250,250,30);
-        panel.add(sexo);
-
-        JTextField Mail = new JTextField();
-        Mail.setBounds(160,300,250,30);
-        panel.add(Mail);
-
-
-
-        JButton boton1 = new JButton("Agregar");
+        JButton boton1 = new JButton("modificar");
         boton1.setBounds(160, 350, 100, 30);
         boton1.setFont(new Font("Arial", Font.BOLD, 14));
         boton1.setForeground(Color.white);
@@ -95,9 +110,10 @@ public class VentanaAltaPacientes extends JFrame {
         boton1.setFocusPainted(false);
         panel.add(boton1);
 
-        JButton botonVolver = new JButton("Volver a Menu");
+        JButton botonVolver = new JButton("Volver atras");
         botonVolver.setBounds(300, 350, 150, 30);
         panel.add(botonVolver);
+
 
 
 
@@ -112,32 +128,20 @@ public class VentanaAltaPacientes extends JFrame {
 
                 int bb = Integer.parseInt(b);
                 int cc = Integer.parseInt(c);
-                ControllerPeticiones.getInstance().guardarPaciente(a,bb,cc,d,e2,f);
-
-
-                nombre.setText("");
-                dni.setText("");
-                edad.setText("");;
-                domicilio.setText("");
-                sexo.setText("");
-                Mail.setText("");
-
-                TablaPacientes myApp;
-                try {
-                    myApp = new TablaPacientes("Tabla Pacientes");
-                } catch (Exception ex) {
-                    throw new RuntimeException(ex);
-                }
-                //myApp.setVisible(true);
+                controller.modificarPaciente(bb,a,cc,f,d,e2);
+                JOptionPane.showMessageDialog(null,"Paciente modificado correctamente");
+                modificarPaciente.this.dispose();
+                TablaPacienteEncontrado tablaPacienteEncontrado = new TablaPacienteEncontrado("Tabla busqueda");
+                tablaPacienteEncontrado.setVisible(true);
             }
         };
         boton1.addActionListener(oyente);
 
         botonVolver.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                VentanaAltaPacientes.this.dispose();
-                Menu menu = new Menu();
-                menu.setVisible(true);
+                modificarPaciente.this.dispose();
+                TablaPacienteEncontrado tablaPacienteEncontrado = new TablaPacienteEncontrado("Tabla busqueda");
+                tablaPacienteEncontrado.setVisible(true);
             }
         });
 
@@ -149,3 +153,5 @@ public class VentanaAltaPacientes extends JFrame {
 
 
 }
+
+

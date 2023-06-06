@@ -13,22 +13,14 @@ public class Pacientes {
     private int Edad;
 
 
-    public Pacientes() {
-        this.DNI = 0;
-        this.Nombre = "";
-        this.Domicilio = "";
-        this.Mail = "";
-        this.sexo = "";
-        this.Edad = 0;
-
+    public Pacientes(int dni, String nombre, String domicilio, String mail, String sexo, int edad) {
+        this.DNI = dni;
+        this.Nombre = nombre;
+        this.Domicilio = domicilio;
+        this.Mail = mail;
+        this.sexo = sexo;
+        this.Edad = edad;
     }
-
-
-
-    //public String buscarPacienteporDNI(int DNI){
-
-    //}
-
 
 
     public int getDNI() {
