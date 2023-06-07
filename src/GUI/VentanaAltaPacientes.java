@@ -114,7 +114,6 @@ public class VentanaAltaPacientes extends JFrame {
                 int cc = Integer.parseInt(c);
                 ControllerPeticiones.getInstance().guardarPaciente(a,bb,cc,d,e2,f);
 
-
                 nombre.setText("");
                 dni.setText("");
                 edad.setText("");;
@@ -122,13 +121,6 @@ public class VentanaAltaPacientes extends JFrame {
                 sexo.setText("");
                 Mail.setText("");
 
-                TablaPacientes myApp;
-                try {
-                    myApp = new TablaPacientes("Tabla Pacientes");
-                } catch (Exception ex) {
-                    throw new RuntimeException(ex);
-                }
-                //myApp.setVisible(true);
             }
         };
         boton1.addActionListener(oyente);
@@ -136,8 +128,8 @@ public class VentanaAltaPacientes extends JFrame {
         botonVolver.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 VentanaAltaPacientes.this.dispose();
-                Menu menu = new Menu();
-                menu.setVisible(true);
+                PacientesPrincipal pacientesPrincipal = new PacientesPrincipal();
+                pacientesPrincipal.setVisible(true);
             }
         });
 

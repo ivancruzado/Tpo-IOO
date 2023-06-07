@@ -38,36 +38,22 @@ public class Menu extends JFrame {
 
     private void botonesInicio(){
 
-        JButton botonPacientes = new JButton("Alta Pacientes");
-        botonPacientes.setBounds(300, 400, 150, 30);
-        panel1.add(botonPacientes);
-
         JButton botonUsuarios = new JButton("Alta Usuarios");
-        botonUsuarios.setBounds(300, 300, 150, 30);
+        botonUsuarios.setBounds(60, 300, 150, 30);
         panel1.add(botonUsuarios);
 
-        JButton botonBusquedaPaciente = new JButton("Busqueda por DNI");
-        botonBusquedaPaciente.setBounds(300, 500, 150, 30);
-        panel1.add(botonBusquedaPaciente);
+        JButton botonPacientes = new JButton("Pacientes");
+        botonPacientes.setBounds(60, 400, 150, 30);
+        panel1.add(botonPacientes);
 
-        JButton TablaPacientes = new JButton("Tabla de pacientes");
-        TablaPacientes.setBounds(300, 450, 150, 30);
-        panel1.add(TablaPacientes);
 
         JButton Practicas = new JButton("Practicas");
-        Practicas.setBounds(300, 200, 150, 30);
+        Practicas.setBounds(60, 200, 150, 30);
         panel1.add(Practicas);
 
-        botonPacientes.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Menu.this.setVisible(false);
-                VentanaAltaPacientes ventanaAltaPacientes = new VentanaAltaPacientes();
-                ventanaAltaPacientes.setVisible(true);
-            }
-        });
-
-        getContentPane().setLayout(null);
-        getContentPane().add(panel1);
+        JButton sucursales = new JButton("Sucursales");
+        sucursales.setBounds(60, 100, 150, 30);
+        panel1.add(sucursales);
 
         botonUsuarios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -76,25 +62,14 @@ public class Menu extends JFrame {
                 altaUsurious.setVisible(true);
             }
         });
+        getContentPane().setLayout(null);
+        getContentPane().add(panel1);
 
-
-        botonBusquedaPaciente.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                ControllerPeticiones.getInstance().imprimirLista();
-                Menu.this.setVisible(false);
-                TablaPacienteEncontrado tablaPacienteEncontrado = new TablaPacienteEncontrado("Busqueda por DNI");
-                tablaPacienteEncontrado.setVisible(true);
-            }
-        });
-
-
-
-        TablaPacientes.addActionListener(new ActionListener() {
+        botonPacientes.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Menu.this.setVisible(false);
-                TablaPacientes tablaPacientes = new TablaPacientes("Tabla de pacientes");
-
-                tablaPacientes.setVisible(true);
+                PacientesPrincipal pacientesPrincipal = new PacientesPrincipal();
+                pacientesPrincipal.setVisible(true);
             }
         });
 
@@ -103,6 +78,13 @@ public class Menu extends JFrame {
                 Menu.this.setVisible(false);
                 PracticasPrincipal practicasPrincipal = new PracticasPrincipal();
                 practicasPrincipal.setVisible(true);
+            }
+        });
+        sucursales.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Menu.this.setVisible(false);
+                SucursalesPrincipal sucursalesPrincipal = new SucursalesPrincipal();
+                sucursalesPrincipal.setVisible(true);
             }
         });
 

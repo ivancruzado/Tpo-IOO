@@ -14,6 +14,7 @@ public class Main {
     {
         Menu menu = new Menu();
         ControllerPeticiones controller = ControllerPeticiones.getInstance();
+        ControllerSucursales controller2 = ControllerSucursales.getInstance();
         controller.guardarPaciente("Ambar Martin",18553 ,34 , "Direccion 1", "F", "am@gmail.com");
         controller.guardarPaciente("Juan Cruz", 17551, 23, "Dirección 2", "M", "jc@gmail.com");
         controller.guardarPaciente("Leandro Pessi", 18523, 38, "Dirección 3", "M", "lp@gmail.com");
@@ -22,6 +23,9 @@ public class Main {
         controller.altaPractica(12,1521,"Analisis de orina","analisis",30,false);
         controller.altaPractica(24,1523,"Radiografia","Radios",30,false);
         controller.altaPractica(25,1524,"Electro","||",30,false);
+        controller2.altaSucursal(1,24,"direccion 1", "ivan");
+        controller2.altaSucursal(2,25,"direccion 2", "Juan");
+        controller2.altaSucursal(3,26,"direccion 3", "Antonio");
 
     }
 }

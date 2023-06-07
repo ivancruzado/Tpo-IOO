@@ -142,10 +142,6 @@ public class VentanaAltaPracticas extends JFrame {
             }
         });
 
-
-
-
-
     }
 
 
