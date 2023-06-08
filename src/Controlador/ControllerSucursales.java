@@ -11,7 +11,7 @@ public class ControllerSucursales {
 
     private ControllerSucursales(){}
 
-    public static ControllerSucursales getInstance(){
+    public synchronized static ControllerSucursales getInstance(){
         if(SINGLETON == null){
             SINGLETON = new ControllerSucursales();
         }

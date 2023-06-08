@@ -1,6 +1,7 @@
 package GUI;
 
 import Controlador.ControllerPeticiones;
+import DTO.PracticasDTO;
 
 import javax.swing.*;
 import java.awt.*;
@@ -119,7 +120,7 @@ public class VentanaAltaPracticas extends JFrame {
                 boolean ff = Boolean.parseBoolean(f);
 
 
-                controller.altaPractica(aa,bb,c,d,ee,ff);
+                controller.altaPractica(new PracticasDTO(aa,bb,c,d,ee,ff));
 
 
                 PracticaID.setText("");

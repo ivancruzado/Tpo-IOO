@@ -1,8 +1,6 @@
-package Modelo;
+package DTO;
 
-import java.util.Date;
-
-public class Practica {
+public class PracticasDTO {
 
     int practicaID;
     int codigoPractica;
@@ -11,7 +9,7 @@ public class Practica {
     int tiempoResultado;
     boolean deshabilitada;
 
-    public Practica(int practicaID, int codigoPractica, String nombrePractica, String grupo, int tiempoResultado,boolean deshabilitada) {
+    public PracticasDTO(int practicaID, int codigoPractica, String nombrePractica, String grupo, int tiempoResultado,boolean deshabilitada) {
         this.practicaID = practicaID;
         this.codigoPractica = codigoPractica;
         this.nombrePractica = nombrePractica;
@@ -68,5 +66,5 @@ public class Practica {
         this.deshabilitada = deshabilitada;
     }
 
-
 }
+

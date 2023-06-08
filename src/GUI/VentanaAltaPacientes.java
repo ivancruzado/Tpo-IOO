@@ -1,6 +1,7 @@
 package GUI;
 
 import Controlador.ControllerPeticiones;
+import DTO.PacientesDTO;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,12 +10,14 @@ import java.awt.event.ActionListener;
 
 public class VentanaAltaPacientes extends JFrame {
     public JPanel panel;
+    public ControllerPeticiones controller;
     public VentanaAltaPacientes(){
         setSize(700,600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
+        controller = ControllerPeticiones.getInstance();
         componentes();
 
     }
@@ -112,7 +115,8 @@ public class VentanaAltaPacientes extends JFrame {
 
                 int bb = Integer.parseInt(b);
                 int cc = Integer.parseInt(c);
-                ControllerPeticiones.getInstance().guardarPaciente(a,bb,cc,d,e2,f);
+
+                controller.altaPaciente(new PacientesDTO(bb,a,d,f,e2,cc));
 
                 nombre.setText("");
                 dni.setText("");

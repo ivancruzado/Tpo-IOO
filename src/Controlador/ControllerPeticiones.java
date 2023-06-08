@@ -1,5 +1,7 @@
 package Controlador;
 
+import DTO.PacientesDTO;
+import DTO.PracticasDTO;
 import Modelo.Pacientes;
 import Modelo.Practica;
 import Modelo.Sucursales;
@@ -9,17 +11,17 @@ import java.util.List;
 
 public class ControllerPeticiones {
 
-    private static ControllerPeticiones SINGLETON = null;         //variable para saber si se creo o no el objeto singleton
-    private static List<Pacientes> lista = new ArrayList<>();
-    private static List<Practica> lista2 = new ArrayList<>();
+    private static ControllerPeticiones SINGLETON;         //variable para saber si se creo o no el objeto singleton
+    private static List<Pacientes> lista;
+    private static List<Practica> lista2;
 
-    private ControllerPeticiones() {
-    }
+    private ControllerPeticiones() {}
 
-    public static ControllerPeticiones getInstance() {
+    public static synchronized ControllerPeticiones getInstance() {
         if (SINGLETON == null) {
             SINGLETON = new ControllerPeticiones();             //1 sola instancia
-
+            initClientes();
+            initPracticas();
         }
         return SINGLETON;
     }
@@ -31,17 +33,32 @@ public class ControllerPeticiones {
         return lista2;
     }
 
-    public void guardarPaciente(String n, int d, int e, String dom, String s, String m) {
+    private static void initClientes(){
+        lista = new ArrayList<>();
+        lista.add(new Pacientes(17812612,"ivan","direcion 1","ic@gmail.com","M",44));
+        lista.add(new Pacientes(1855321,"Ambar Martin" ,"Direccion 1", "am@gmail.com", "F", 47));
+        lista.add(new Pacientes(23231123, "Leandro Pessi", "Direccion 3", "lp@gmail.com", "M", 23));
 
-        Pacientes nuevos = new Pacientes(d, n, dom, m, s, e);
-        nuevos.setDNI(d);
-        nuevos.setEdad(e);
-        nuevos.setNombre(n);
-        nuevos.setDomicilio(dom);
-        nuevos.setSexo(s);
-        nuevos.setMail(m);
+    }
 
-        lista.add(nuevos);
+    private static void initPracticas(){
+        lista2 = new ArrayList<>();
+        lista2.add(new Practica(11,1520,"Analisis de sangre","analisis",30,false));
+        lista2.add(new Practica(12,1521,"Analisis de orina","analisis",30,false));
+        lista2.add(new Practica(24,1523,"Radiografia","Radios",45,false));
+
+    }
+
+    public void altaPaciente(PacientesDTO dto){
+        Pacientes paciente = toModel(dto);
+        lista.add(paciente);
+    }
+
+
+    public static Pacientes toModel(PacientesDTO dto) {
+
+        Pacientes cliente = new Pacientes(dto.getDni(), dto.getNombre(),dto.getDomicilio(), dto.getMail(), dto.getSexo(), dto.getEdad() );
+        return cliente;
     }
 
 
@@ -55,7 +72,7 @@ public class ControllerPeticiones {
 
     public void bajaPaciente(int index) {
 
-        lista.remove(index);               //corregir si tiene peticiones activas no puede eliminarse
+        lista.remove(index);                  //corregir si tiene peticiones activas no puede eliminarse
         /*for (int i = 0; i < lista.size(); i++) {
             int dni2 = lista.get(i).getDNI();
             if(lista.get(i).getDNI() == DNI){
@@ -109,19 +126,6 @@ public class ControllerPeticiones {
 
     }
 
-
-
-    public void altaPractica(int id, int codigo, String nom, String grupo, int tiempo, boolean deshabilitada) {
-
-        Practica nuevos = new Practica(id,codigo,nom,grupo,tiempo,deshabilitada);
-        nuevos.setPracticaID(id);
-        nuevos.setCodigoPractica(codigo);
-        nuevos.setNombrePractica(nom);
-        nuevos.setGrupo(grupo);
-        nuevos.setTiempoResultado(tiempo);
-        nuevos.setDeshabilitada(deshabilitada);
-        lista2.add(nuevos);
-    }
     public void bajaPractica(int index) {
         lista2.remove(index);
     }
@@ -135,18 +139,21 @@ public class ControllerPeticiones {
         lista2.get(buscarindexPracticas(id)).setDeshabilitada(des);
     }
 
+    public void altaPractica(PracticasDTO dto){
+        Practica practica = toModel2(dto);
+        lista2.add(practica);
+    }
 
 
-
+    public static Practica toModel2(PracticasDTO dto) {
+        Practica practica = new Practica(dto.getPracticaID(),dto.getCodigoPractica(),dto.getNombrePractica(),dto.getGrupo(),dto.getTiempoResultado(),dto.isDeshabilitada() );
+        return practica;
+    }
 
 
     //public static DTOPacientes toDto(Pacientes pacientes){
 
     //}
-
-
-
-
 
 
 }
