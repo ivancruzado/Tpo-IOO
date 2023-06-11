@@ -2,6 +2,7 @@ package Modelo;
 
 import Controlador.ControllerPeticiones;
 import Controlador.ControllerSucursales;
+import DTO.SucursalesDTO;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class Sucursales {
         ResponsableTec = responsableTec;
     }
     private ControllerSucursales controller = ControllerSucursales.getInstance();
-    private List<Sucursales> listaSucursales = controller.getListaSucursales();
+    private List<SucursalesDTO> listaSucursales = controller.getAll();
 
     public int getIdSucursal() {
         return idSucursal;
@@ -51,6 +52,7 @@ public class Sucursales {
     public void setResponsableTec(String responsableTec) {
         ResponsableTec = responsableTec;
     }
+
 
     public Boolean sucursalExiste(int idSucursal){
         boolean encontrado = false;

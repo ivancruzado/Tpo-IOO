@@ -1,6 +1,7 @@
 package GUI;
 
-import Modelo.Pacientes;
+import DTO.PacientesDTO;
+
 
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
@@ -8,11 +9,11 @@ import java.util.List;
 public class CustomTableModel extends AbstractTableModel {
 
     private String[] columnNames = {"DNI","Nombre","Edad","Domicilio","Sexo","Mail"};
-    private List<Pacientes> dtoArrayList;
+    private List<PacientesDTO> dtoArrayList;
 
 
 
-    public CustomTableModel(List<Pacientes> list){
+    public CustomTableModel(List<PacientesDTO> list){
         this.dtoArrayList = list;
     }
 
@@ -33,7 +34,7 @@ public class CustomTableModel extends AbstractTableModel {
     public Object getValueAt(int row, int col) {
         Object temp = null;
         if (col == 0) {
-            temp = dtoArrayList.get(row).getDNI();
+            temp = dtoArrayList.get(row).getDni();
         }
         else if (col == 1) {
             temp = dtoArrayList.get(row).getNombre();
@@ -57,6 +58,6 @@ public class CustomTableModel extends AbstractTableModel {
         return columnNames[col];
     }
     public Class getColumnClass(int col) {
-        return String.class;
+        return Integer.class;
     }
 }

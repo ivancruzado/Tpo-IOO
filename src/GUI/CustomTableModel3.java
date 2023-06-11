@@ -1,7 +1,7 @@
 package GUI;
 
-import Modelo.Practica;
-import Modelo.Sucursales;
+import DTO.SucursalesDTO;
+
 
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
@@ -9,11 +9,11 @@ import java.util.List;
 public class CustomTableModel3 extends AbstractTableModel {
 
     private String[] columnNames = {"Id Sucursal", "Numero", "Direccion", "Responsable Tecnico"};
-    private List<Sucursales> dtoArrayList;
+    private List<SucursalesDTO> dtoArrayList;
 
 
 
-    public CustomTableModel3(List<Sucursales> list){
+    public CustomTableModel3(List<SucursalesDTO> list){
         this.dtoArrayList = list;
     }
 
@@ -52,6 +52,6 @@ public class CustomTableModel3 extends AbstractTableModel {
         return columnNames[col];
     }
     public Class getColumnClass(int col) {
-        return String.class;
+        return Integer.class;
     }
 }

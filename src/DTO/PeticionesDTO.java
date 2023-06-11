@@ -1,9 +1,13 @@
-package Modelo;
+package DTO;
+
+import Modelo.Pacientes;
+import Modelo.Practica;
+import Modelo.ResultadoPractica;
 
 import java.util.Date;
 import java.util.List;
 
-public class Peticiones {
+public class PeticionesDTO {
     private int idPeticion;
     private int SucursalID;
     private Pacientes Paciente;
@@ -11,9 +15,8 @@ public class Peticiones {
     private Date FechaDeCarga;
     private Practica PracticasAsociadas;
     private Date FechaEntrega;
-    private List<ResultadoPractica> ListadeResultados;
 
-    public Peticiones(int idPeticion, int sucursalID, Pacientes paciente, String obraSocial, Date fechaDeCarga, Practica practicasAsociadas, Date fechaEntrega) {
+    public PeticionesDTO(int idPeticion, int sucursalID, Pacientes paciente, String obraSocial, Date fechaDeCarga, Practica practicasAsociadas, Date fechaEntrega) {
         this.idPeticion = idPeticion;
         SucursalID = sucursalID;
         Paciente = paciente;

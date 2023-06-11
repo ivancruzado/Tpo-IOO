@@ -23,9 +23,7 @@ public class TablaPracticas extends JFrame {
         setBounds(30,20,750,650);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         controller = ControllerPeticiones.getInstance();
-        tableModel2 = new CustomTableModel2(controller.getLista2());
-
-
+        tableModel2 = new CustomTableModel2(controller.getAll2());
 
         table = new JTable(tableModel2);
         setLocationRelativeTo(null);
@@ -97,7 +95,9 @@ public class TablaPracticas extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 int seleccion = table.getSelectedRow();
                 if(seleccion != -1){
-                    controller.bajaPractica(seleccion);
+                    String columna1 = table.getValueAt(seleccion,0).toString();
+                    int id1int = Integer.parseInt(columna1);
+                    controller.bajaPractica(id1int);
                     JOptionPane.showMessageDialog(null,"Practica eliminada correctamente");
                     TablaPracticas tablaPracticas = new TablaPracticas("tabla practicas");
                     TablaPracticas.this.setVisible(false);
@@ -110,12 +110,9 @@ public class TablaPracticas extends JFrame {
             }
         });
 
-
-
         botonBuscar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String b = id.getText();
-                int bb = Integer.parseInt(b);
+
                 sorter2.setRowFilter(RowFilter.regexFilter(id.getText(),0));
             }
         });

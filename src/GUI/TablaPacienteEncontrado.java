@@ -23,7 +23,7 @@ public class TablaPacienteEncontrado extends JFrame {
         setBounds(30,20,750,650);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         controller = ControllerPeticiones.getInstance();
-        tableModel = new CustomTableModel(controller.getLista());
+        tableModel = new CustomTableModel(controller.getAll());
 
 
         table = new JTable(tableModel);
@@ -59,9 +59,6 @@ public class TablaPacienteEncontrado extends JFrame {
         panel.add(scrollPane);
         add(panel,BorderLayout.CENTER);
 
-
-
-
         volverAtras.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 TablaPacienteEncontrado.this.dispose();
@@ -70,11 +67,21 @@ public class TablaPacienteEncontrado extends JFrame {
             }
         });
 
+        botonBuscar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                sorter.setRowFilter(RowFilter.regexFilter(dni.getText(),0));
+            }
+        });
+
         EliminarPaciente.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int seleccion = table.getSelectedRow();
                 if(seleccion != -1){
-                    controller.bajaPaciente(seleccion);
+                    //controller.bajaPaciente(seleccion);
+                    String selecciondni = table.getValueAt(seleccion,0).toString();
+                    int seleccionIntDni = Integer.parseInt(selecciondni);
+                    controller.bajaPaciente(seleccionIntDni);
+
                     JOptionPane.showMessageDialog(null,"Paciente eliminado correctamente");
                     TablaPacienteEncontrado tablaPacienteEncontrado = new TablaPacienteEncontrado("tabla pacientes");
                     TablaPacienteEncontrado.this.setVisible(false);
@@ -112,11 +119,7 @@ public class TablaPacienteEncontrado extends JFrame {
         });
 
 
-        botonBuscar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                sorter.setRowFilter(RowFilter.regexFilter(dni.getText(),0));
-            }
-        });
+
 
 
     }

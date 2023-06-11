@@ -24,9 +24,7 @@ public class TablaSucursales extends JFrame {
         setBounds(30,20,750,650);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         controller = ControllerSucursales.getInstance();
-        tableModel3 = new CustomTableModel3(controller.getListaSucursales());
-
-
+        tableModel3 = new CustomTableModel3(controller.getAll());
 
         table = new JTable(tableModel3);
         setLocationRelativeTo(null);
@@ -93,8 +91,11 @@ public class TablaSucursales extends JFrame {
         eliminarSucursal.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int seleccion = table.getSelectedRow();
+
                 if(seleccion != -1){
-                    controller.bajaSucursal(seleccion);
+                    String columna1 = table.getValueAt(seleccion,0).toString();
+                    int columna1int = Integer.parseInt(columna1);
+                    controller.bajaSucursal(columna1int);
                     JOptionPane.showMessageDialog(null,"Practica eliminada correctamente");
                     TablaSucursales tablaSucursales = new TablaSucursales("tabla Sucursales");
                     TablaSucursales.this.setVisible(false);

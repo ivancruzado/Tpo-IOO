@@ -2,6 +2,7 @@ package GUI;
 
 import Controlador.ControllerPeticiones;
 import Controlador.ControllerSucursales;
+import DTO.SucursalesDTO;
 
 import javax.swing.*;
 import java.awt.*;
@@ -94,7 +95,7 @@ public class VentanaAltaSucursal extends JFrame {
                 int aa = Integer.parseInt(a);
                 int bb = Integer.parseInt(b);
 
-                controller.altaSucursal(aa,bb,c,d);
+                controller.altaSucursal(new SucursalesDTO(aa,bb,c,d));
 
 
                 idSucursal.setText("");

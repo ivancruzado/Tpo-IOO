@@ -1,8 +1,11 @@
 package Controlador;
 
 import DTO.PacientesDTO;
+import DTO.PeticionesDTO;
 import DTO.PracticasDTO;
+import DTO.SucursalesDTO;
 import Modelo.Pacientes;
+import Modelo.Peticiones;
 import Modelo.Practica;
 import Modelo.Sucursales;
 
@@ -14,6 +17,7 @@ public class ControllerPeticiones {
     private static ControllerPeticiones SINGLETON;         //variable para saber si se creo o no el objeto singleton
     private static List<Pacientes> lista;
     private static List<Practica> lista2;
+    private static List<Peticiones> lista3;
 
     private ControllerPeticiones() {}
 
@@ -29,14 +33,36 @@ public class ControllerPeticiones {
     public static List<Pacientes> getLista() {
         return lista;
     }
-    public List<Practica> getLista2() {
-        return lista2;
+
+    public List<PacientesDTO> getAll() {
+        List<PacientesDTO> listaPacientesDTO = new ArrayList<>();
+        for (Pacientes paciente : lista) {
+            listaPacientesDTO.add(toDTO(paciente));
+        }
+        return listaPacientesDTO;
     }
+
+    public List<PracticasDTO> getAll2() {
+        List<PracticasDTO> listaPracticasDTO = new ArrayList<>();
+        for (Practica practica : lista2) {
+            listaPracticasDTO.add(toDTO2(practica));
+        }
+        return listaPracticasDTO;
+    }
+
+    public List<PeticionesDTO> getAll3() {
+        List<PeticionesDTO> listaPeticionesDTO = new ArrayList<>();
+        for (Peticiones peticion : lista3) {
+            listaPeticionesDTO.add(toDTO3(peticion));
+        }
+        return listaPeticionesDTO;
+    }
+
 
     private static void initClientes(){
         lista = new ArrayList<>();
-        lista.add(new Pacientes(17812612,"ivan","direcion 1","ic@gmail.com","M",44));
-        lista.add(new Pacientes(1855321,"Ambar Martin" ,"Direccion 1", "am@gmail.com", "F", 47));
+        lista.add(new Pacientes(17812612,"Ivan","Direcion 1","ic@gmail.com","M",44));
+        lista.add(new Pacientes(1755321,"Ambar Martin" ,"Direccion 2", "am@gmail.com", "F", 47));
         lista.add(new Pacientes(23231123, "Leandro Pessi", "Direccion 3", "lp@gmail.com", "M", 23));
 
     }
@@ -61,26 +87,19 @@ public class ControllerPeticiones {
         return cliente;
     }
 
-
-    public List<Pacientes> imprimirLista() {
-        //for (int i = 0; i < lista.size(); i++) {
-        //    System.out.println("Nombre: " + lista.get(i).getNombre() + " dni: " + lista.get(i).getDNI() + " edad: " + lista.get(i).getEdad() +
-        //            " Domicilio: " + lista.get(i).getDomicilio() + " Sexo: " + lista.get(i).getSexo() + " Mail: " + lista.get(i).getMail());
-        //}
-        return lista;
+    public static PacientesDTO toDTO(Pacientes pacientes){
+        PacientesDTO dto = new PacientesDTO(pacientes.getDNI(),pacientes.getNombre(),pacientes.getDomicilio(), pacientes.getMail(), pacientes.getSexo(), pacientes.getEdad());
+        return dto;
     }
 
-    public void bajaPaciente(int index) {
+    public void bajaPaciente(int DNI) {               //corregir si tiene peticiones activas no puede eliminarse
+        List<PacientesDTO> listaPacientes =getAll();
+        for (int i = 0; i < listaPacientes.size(); i++) {
+            if(listaPacientes.get(i).getDni() == DNI){
+                toDTO(lista.remove(i));
 
-        lista.remove(index);                  //corregir si tiene peticiones activas no puede eliminarse
-        /*for (int i = 0; i < lista.size(); i++) {
-            int dni2 = lista.get(i).getDNI();
-            if(lista.get(i).getDNI() == DNI){
-                encontrado = true;
-                lista.remove(i);
             }
         }
-        return encontrado;*/
     }
 
     public Pacientes buscarPacientePorDNI(int dni) {
@@ -116,7 +135,6 @@ public class ControllerPeticiones {
     }
 
     public void modificarPaciente(int dni, String nombre, int edad, String mail, String dom,String sexo){
-
         lista.get(buscarindexPacientes(dni)).setDNI(dni);
         lista.get(buscarindexPacientes(dni)).setNombre(nombre);
         lista.get(buscarindexPacientes(dni)).setEdad(edad);
@@ -126,8 +144,13 @@ public class ControllerPeticiones {
 
     }
 
-    public void bajaPractica(int index) {
-        lista2.remove(index);
+    public void bajaPractica(int id) {
+        List<PracticasDTO> listaPracticas =getAll2();
+        for (int i = 0; i < listaPracticas.size(); i++) {
+            if(listaPracticas.get(i).getPracticaID() == id){
+                toDTO2(lista2.remove(i));
+            }
+        }
     }
 
     public void modificarPractica(int id, int codigo, String nom, String grupo, int tiempo,boolean des){
@@ -150,10 +173,43 @@ public class ControllerPeticiones {
         return practica;
     }
 
+    public static PracticasDTO toDTO2(Practica practicas){
+        PracticasDTO dto = new PracticasDTO(practicas.getPracticaID(), practicas.getCodigoPractica(), practicas.getNombrePractica(),
+                practicas.getGrupo(), practicas.getTiempoResultado(), practicas.isDeshabilitada());
+        return dto;
+    }
 
-    //public static DTOPacientes toDto(Pacientes pacientes){
 
-    //}
+
+    public void altaPeticiones(PeticionesDTO dto){
+        Peticiones peticiones = toModel3(dto);
+        lista3.add(peticiones);
+    }
+
+    public void bajaPeticiones(int idPeticion) {
+        List<PeticionesDTO> listaPeticiones =getAll3();
+        for (int i = 0; i < listaPeticiones.size(); i++) {
+            if(listaPeticiones.get(i).getIdPeticion() == idPeticion){
+                toDTO3(lista3.remove(i));
+            }
+        }
+    }
+
+    public void modificarPeticiones(){
+
+    }
+
+    public static Peticiones toModel3(PeticionesDTO dto) {
+        Peticiones peticion = new Peticiones(dto.getIdPeticion(), dto.getSucursalID(), dto.getPaciente(), dto.getObraSocial(), dto.getFechaDeCarga(),dto.getPracticasAsociadas(),
+                dto.getFechaEntrega());
+        return peticion;
+    }
+
+    public static PeticionesDTO toDTO3(Peticiones peticion){
+        PeticionesDTO dto = new PeticionesDTO(peticion.getIdPeticion(), peticion.getSucursalID(), peticion.getPaciente(), peticion.getObraSocial(), peticion.getFechaDeCarga(),
+                peticion.getPracticasAsociadas(),peticion.getFechaEntrega());
+        return dto;
+    }
 
 
 }
