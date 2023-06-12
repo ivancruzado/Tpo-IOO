@@ -55,6 +55,10 @@ public class Menu extends JFrame {
         sucursales.setBounds(60, 100, 150, 30);
         panel1.add(sucursales);
 
+        JButton peticiones = new JButton("Peticiones");
+        peticiones.setBounds(60, 500, 150, 30);
+        panel1.add(peticiones);
+
         botonUsuarios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Menu.this.setVisible(false);
@@ -85,6 +89,14 @@ public class Menu extends JFrame {
                 Menu.this.setVisible(false);
                 SucursalesPrincipal sucursalesPrincipal = new SucursalesPrincipal();
                 sucursalesPrincipal.setVisible(true);
+            }
+        });
+
+        peticiones.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Menu.this.setVisible(false);
+                PeticionesPrincipal peticionesPrincipal = new PeticionesPrincipal();
+                peticionesPrincipal.setVisible(true);
             }
         });
 

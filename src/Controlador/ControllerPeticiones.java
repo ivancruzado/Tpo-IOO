@@ -3,11 +3,9 @@ package Controlador;
 import DTO.PacientesDTO;
 import DTO.PeticionesDTO;
 import DTO.PracticasDTO;
-import DTO.SucursalesDTO;
 import Modelo.Pacientes;
 import Modelo.Peticiones;
 import Modelo.Practica;
-import Modelo.Sucursales;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -201,13 +199,15 @@ public class ControllerPeticiones {
 
     public static Peticiones toModel3(PeticionesDTO dto) {
         Peticiones peticion = new Peticiones(dto.getIdPeticion(), dto.getSucursalID(), dto.getPaciente(), dto.getObraSocial(), dto.getFechaDeCarga(),dto.getPracticasAsociadas(),
-                dto.getFechaEntrega());
+                dto.getFechaEntrega(),dto.getListaResultadosPractica());
         return peticion;
     }
 
+
+
     public static PeticionesDTO toDTO3(Peticiones peticion){
         PeticionesDTO dto = new PeticionesDTO(peticion.getIdPeticion(), peticion.getSucursalID(), peticion.getPaciente(), peticion.getObraSocial(), peticion.getFechaDeCarga(),
-                peticion.getPracticasAsociadas(),peticion.getFechaEntrega());
+                peticion.getPracticasAsociadas(),peticion.getFechaEntrega(),peticion.getListaResultadosPractica());
         return dto;
     }
 

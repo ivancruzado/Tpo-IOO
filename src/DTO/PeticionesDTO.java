@@ -15,8 +15,9 @@ public class PeticionesDTO {
     private Date FechaDeCarga;
     private Practica PracticasAsociadas;
     private Date FechaEntrega;
+    private List<ResultadoPractica> listaResultadosPractica;
 
-    public PeticionesDTO(int idPeticion, int sucursalID, Pacientes paciente, String obraSocial, Date fechaDeCarga, Practica practicasAsociadas, Date fechaEntrega) {
+    public PeticionesDTO(int idPeticion, int sucursalID, Pacientes paciente, String obraSocial, Date fechaDeCarga, Practica practicasAsociadas, Date fechaEntrega,List<ResultadoPractica> listaResultadosPractica) {
         this.idPeticion = idPeticion;
         SucursalID = sucursalID;
         Paciente = paciente;
@@ -24,6 +25,7 @@ public class PeticionesDTO {
         FechaDeCarga = fechaDeCarga;
         PracticasAsociadas = practicasAsociadas;
         FechaEntrega = fechaEntrega;
+        this.listaResultadosPractica = listaResultadosPractica;
     }
 
     public int getIdPeticion() {
@@ -82,4 +84,11 @@ public class PeticionesDTO {
         FechaEntrega = fechaEntrega;
     }
 
+    public List<ResultadoPractica> getListaResultadosPractica() {
+        return listaResultadosPractica;
+    }
+
+    public void setListaResultadosPractica(List<ResultadoPractica> listaResultadosPractica) {
+        this.listaResultadosPractica = listaResultadosPractica;
+    }
 }

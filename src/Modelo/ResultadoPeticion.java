@@ -35,11 +35,12 @@ public class ResultadoPeticion {
         this.idPeticion = idPeticion;
     }
 
-    public boolean estaFinalizado(){
+    public boolean estaFinalizado() {
         boolean finalizado = false;
-        if (estado.equals("finalizado")){
+        if (estado.equals("finalizado")) {
             finalizado = true;
         }
         return finalizado;
     }
 }
+

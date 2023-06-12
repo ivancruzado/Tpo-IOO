@@ -1,5 +1,8 @@
 package Modelo;
 
+import Controlador.ControllerPeticiones;
+import DTO.PacientesDTO;
+
 import java.util.Date;
 import java.util.List;
 
@@ -11,9 +14,9 @@ public class Peticiones {
     private Date FechaDeCarga;
     private Practica PracticasAsociadas;
     private Date FechaEntrega;
-    private List<ResultadoPractica> ListadeResultados;
+    private List<ResultadoPractica> listaResultadosPractica;
 
-    public Peticiones(int idPeticion, int sucursalID, Pacientes paciente, String obraSocial, Date fechaDeCarga, Practica practicasAsociadas, Date fechaEntrega) {
+    public Peticiones(int idPeticion, int sucursalID, Pacientes paciente, String obraSocial, Date fechaDeCarga, Practica practicasAsociadas, Date fechaEntrega,List<ResultadoPractica> listaResultadosPractica) {
         this.idPeticion = idPeticion;
         SucursalID = sucursalID;
         Paciente = paciente;
@@ -21,7 +24,29 @@ public class Peticiones {
         FechaDeCarga = fechaDeCarga;
         PracticasAsociadas = practicasAsociadas;
         FechaEntrega = fechaEntrega;
+        this.listaResultadosPractica = listaResultadosPractica;
     }
+
+    public void altaResultadoPractica(){
+        ResultadoPractica resultadoPractica = new ResultadoPractica(idPeticion,PracticasAsociadas.getPracticaID());
+    }
+
+    /*public Peticiones getPeticiones(Pacientes paciente){
+        int index = 0;
+        List<PacientesDTO>listaP = ControllerPeticiones.getInstance().getAll();
+        for (int i = 0; i < listaP.size(); i++) {
+            if (listaP.get(i).equals(paciente)) {
+                index = i;
+            }
+        }
+        Peticiones peticiones = new Peticiones()
+        Pacientes pacientes = new Pacientes(lista.get(index).getDNI(),lista.get(index).getNombre(),lista.get(index).getDomicilio(),
+                lista.get(index).getMail(),lista.get(index).getSexo(),lista.get(index).getEdad());
+        return pacientes;
+    }
+
+     */
+
 
     public int getIdPeticion() {
         return idPeticion;
@@ -79,4 +104,11 @@ public class Peticiones {
         FechaEntrega = fechaEntrega;
     }
 
+    public List<ResultadoPractica> getListaResultadosPractica() {
+        return listaResultadosPractica;
+    }
+
+    public void setListaResultadosPractica(List<ResultadoPractica> listaResultadosPractica) {
+        this.listaResultadosPractica = listaResultadosPractica;
+    }
 }

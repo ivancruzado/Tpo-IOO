@@ -1,10 +1,9 @@
 package Controlador;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import DTO.PacientesDTO;
 import DTO.SucursalesDTO;
-import Modelo.Pacientes;
 import Modelo.Sucursales;
 
 public class ControllerSucursales {
@@ -70,6 +69,15 @@ public class ControllerSucursales {
             listaSucursalesDTO.add(toDTO(sucursal));
         }
         return listaSucursalesDTO;
+    }
+
+    public int[] getIdSucursal(){
+        int[]idSucursales = new int[listaSucursales.size()];
+        for (int i = 0; i < listaSucursales.size(); i++) {
+
+            idSucursales[i] = listaSucursales.get(i).getIdSucursal();
+        }
+        return idSucursales;
     }
 
     public static Sucursales toModel(SucursalesDTO dto) {
