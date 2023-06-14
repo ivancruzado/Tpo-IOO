@@ -1,5 +1,8 @@
 package GUI;
 
+import Controlador.ControllerPeticiones;
+import Controlador.ControllerSucursales;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -59,9 +62,11 @@ public class PeticionesPrincipal extends JFrame {
 
         verPeticiones.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //SucursalesPrincipal.this.setVisible(false);
-                //TablaSucursales tablaSucursales = new TablaSucursales("tabla sucursales");
-                //tablaSucursales.setVisible(true);
+                ControllerPeticiones.getInstance();
+                ControllerSucursales.getInstance();
+                PeticionesPrincipal.this.setVisible(false);
+                TablaPeticiones tablaPeticiones = new TablaPeticiones("tabla peticiones");
+                tablaPeticiones.setVisible(true);
             }
         });
 

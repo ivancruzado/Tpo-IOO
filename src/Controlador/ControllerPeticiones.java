@@ -3,12 +3,14 @@ package Controlador;
 import DTO.PacientesDTO;
 import DTO.PeticionesDTO;
 import DTO.PracticasDTO;
+import DTO.SucursalesDTO;
 import Modelo.Pacientes;
 import Modelo.Peticiones;
 import Modelo.Practica;
 
-import java.util.ArrayList;
-import java.util.List;
+
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class ControllerPeticiones {
 
@@ -24,13 +26,11 @@ public class ControllerPeticiones {
             SINGLETON = new ControllerPeticiones();             //1 sola instancia
             initClientes();
             initPracticas();
+            initPeticiones();
         }
         return SINGLETON;
     }
 
-    public static List<Pacientes> getLista() {
-        return lista;
-    }
 
     public List<PacientesDTO> getAll() {
         List<PacientesDTO> listaPacientesDTO = new ArrayList<>();
@@ -73,6 +73,24 @@ public class ControllerPeticiones {
 
     }
 
+    private static void initPeticiones(){
+        lista3 = new ArrayList<>();
+        //SucursalesDTO sucursalesDTO = ControllerSucursales.getAll().get(0);
+        //int id = sucursalesDTO.getIdSucursal();
+        Date fechaCarga = new Date(123,5,15);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String fechaGregoriana = dateFormat.format(fechaCarga);
+        Date fechaEntrega = new Date(123,5,30);
+        SimpleDateFormat dateFormat2 = new SimpleDateFormat("dd/MM/yyyy");
+        String fechaGregoriana2 = dateFormat2.format(fechaEntrega);
+        lista3.add(new Peticiones(123,1,lista.get(0),"Osde", fechaGregoriana,lista2.get(0),fechaGregoriana2,"finalizado" ));
+        lista3.add(new Peticiones(124,2,lista.get(1),"Ioma", fechaGregoriana,lista2.get(1),fechaGregoriana2,"en curso"));
+        lista3.add(new Peticiones(125,3,lista.get(2),"Pami", fechaGregoriana,lista2.get(2),fechaGregoriana2,"iniciado" ));
+        lista3.add(new Peticiones(126,2,lista.get(1),"Pami", fechaGregoriana,lista2.get(2),fechaGregoriana2,"finalizado" ));
+    }
+
+
+
     public void altaPaciente(PacientesDTO dto){
         Pacientes paciente = toModel(dto);
         lista.add(paciente);
@@ -90,7 +108,7 @@ public class ControllerPeticiones {
         return dto;
     }
 
-    public void bajaPaciente(int DNI) {               //corregir si tiene peticiones activas no puede eliminarse
+    public void bajaPaciente(int DNI) {
         List<PacientesDTO> listaPacientes =getAll();
         for (int i = 0; i < listaPacientes.size(); i++) {
             if(listaPacientes.get(i).getDni() == DNI){
@@ -100,20 +118,32 @@ public class ControllerPeticiones {
         }
     }
 
-    public Pacientes buscarPacientePorDNI(int dni) {
+    public Boolean buscarEstado(int DNI){
+        List<PeticionesDTO> listaPeticiones =getAll3();
+        for (int i = 0; i < listaPeticiones.size(); i++) {
+            if(listaPeticiones.get(i).getPaciente().getDNI() == (DNI)){
+                if (listaPeticiones.get(i).getEstado().equalsIgnoreCase("finalizado") ){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public PacientesDTO buscarPacientePorDNI(int dni) {
         int index = 0;
         for (int i = 0; i < lista.size(); i++) {
             if (lista.get(i).getDNI() == dni) {
                 index = i;
             }
         }
-        Pacientes pacientes = new Pacientes(lista.get(index).getDNI(),lista.get(index).getNombre(),lista.get(index).getDomicilio(),
+        PacientesDTO pacientes = new PacientesDTO(lista.get(index).getDNI(),lista.get(index).getNombre(),lista.get(index).getDomicilio(),
                 lista.get(index).getMail(),lista.get(index).getSexo(),lista.get(index).getEdad());
         return pacientes;
     }
 
     public int buscarindexPacientes(int dni) {
-        int index = 0;
+        int index = -1;
         for (int i = 0; i < lista.size(); i++) {
             if (lista.get(i).getDNI() == dni) {
                 index = i;
@@ -123,10 +153,21 @@ public class ControllerPeticiones {
     }
 
     public int buscarindexPracticas(int id) {
-        int index = 0;
+        int index = -1;
         for (int i = 0; i < lista2.size(); i++) {
             if (lista2.get(i).getPracticaID() == id) {
                 index = i;
+            }
+        }
+        return index;
+    }
+
+    public int buscarindexPeticiones(int id) {
+        int index = -1;
+        for (int i = 0; i < lista3.size(); i++) {
+            if (lista3.get(i).getIdPeticion() == id) {
+                index = i;
+                return index;
             }
         }
         return index;
@@ -165,6 +206,18 @@ public class ControllerPeticiones {
         lista2.add(practica);
     }
 
+    public PracticasDTO buscarPracticaPorNombre(String nombre) {
+        int index = 0;
+        for (int i = 0; i < lista.size(); i++) {
+            if (lista2.get(i).getNombrePractica().equalsIgnoreCase(nombre) ) {
+                index = i;
+            }
+        }
+        PracticasDTO practica= new PracticasDTO(lista2.get(index).getPracticaID(),lista2.get(index).getCodigoPractica(),lista2.get(index).getNombrePractica(),
+                lista2.get(index).getGrupo(),lista2.get(index).getTiempoResultado(),lista2.get(index).isDeshabilitada());
+        return practica;
+    }
+
 
     public static Practica toModel2(PracticasDTO dto) {
         Practica practica = new Practica(dto.getPracticaID(),dto.getCodigoPractica(),dto.getNombrePractica(),dto.getGrupo(),dto.getTiempoResultado(),dto.isDeshabilitada() );
@@ -193,13 +246,33 @@ public class ControllerPeticiones {
         }
     }
 
-    public void modificarPeticiones(){
+    public void moverPeticionesActivas(int sucursalBaja,int sucursalAlta){
+        List<Peticiones> listaPeticiones = lista3;
 
+        for (Peticiones listaPeticion : listaPeticiones) {
+            if (listaPeticion.getSucursalID() == (sucursalBaja)) {
+                if (!listaPeticion.getEstado().equals("finalizado")) {
+                    listaPeticion.setSucursalID(sucursalAlta);
+                    System.out.println(listaPeticion.getSucursalID());
+                }
+            }
+        }
+    }
+
+    public void modificarPeticiones(int id, int SucursalID, String obraSocial, String fechaCarga,String fechaEntrega,String estado){
+        Peticiones peticion = lista3.get(buscarindexPeticiones(id));
+        peticion.setSucursalID(SucursalID);
+        //peticion.setPaciente(paciente);
+        peticion.setObraSocial(obraSocial);
+        peticion.setFechaDeCarga(fechaCarga);
+        //peticion.setPracticasAsociadas(practicaAsociada);
+        peticion.setFechaEntrega(fechaEntrega);
+        peticion.setEstado(estado);
     }
 
     public static Peticiones toModel3(PeticionesDTO dto) {
         Peticiones peticion = new Peticiones(dto.getIdPeticion(), dto.getSucursalID(), dto.getPaciente(), dto.getObraSocial(), dto.getFechaDeCarga(),dto.getPracticasAsociadas(),
-                dto.getFechaEntrega(),dto.getListaResultadosPractica());
+                dto.getFechaEntrega(), dto.getEstado());
         return peticion;
     }
 
@@ -207,10 +280,9 @@ public class ControllerPeticiones {
 
     public static PeticionesDTO toDTO3(Peticiones peticion){
         PeticionesDTO dto = new PeticionesDTO(peticion.getIdPeticion(), peticion.getSucursalID(), peticion.getPaciente(), peticion.getObraSocial(), peticion.getFechaDeCarga(),
-                peticion.getPracticasAsociadas(),peticion.getFechaEntrega(),peticion.getListaResultadosPractica());
+                peticion.getPracticasAsociadas(),peticion.getFechaEntrega(),peticion.getEstado());
         return dto;
     }
-
 
 }
 

@@ -2,19 +2,23 @@ package GUI;
 import Controlador.ControllerPeticiones;
 import Controlador.ControllerSucursales;
 import DTO.PacientesDTO;
-import DTO.SucursalesDTO;
+import DTO.PeticionesDTO;
+import DTO.PracticasDTO;
+
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
+
 import java.util.List;
+
 
 public class VentanaAltaPeticiones extends JFrame {
     public JPanel panel;
     private ControllerPeticiones controller;
     private ControllerSucursales controller2;
+
 
     public VentanaAltaPeticiones(){
         setSize(700,600);
@@ -66,8 +70,12 @@ public class VentanaAltaPeticiones extends JFrame {
         panel.add(etiqueta6);
         JLabel etiqueta7 = new JLabel("Fecha Entrega",SwingConstants.CENTER);
         etiqueta7.setForeground(Color.WHITE);
-        etiqueta7.setBounds(15,350,100,30);
+        etiqueta7.setBounds(15,360,100,30);
         panel.add(etiqueta7);
+        JLabel etiqueta8 = new JLabel("Estado",SwingConstants.CENTER);
+        etiqueta8.setForeground(Color.WHITE);
+        etiqueta8.setBounds(15,400,100,30);
+        panel.add(etiqueta8);
     }
 
 
@@ -76,6 +84,10 @@ public class VentanaAltaPeticiones extends JFrame {
         JTextField idPeticion = new JTextField();
         idPeticion.setBounds(160, 50, 250, 30);
         panel.add(idPeticion);
+        /*JTextField idSucursal = new JTextField();
+        idSucursal.setBounds(160, 100, 250, 30);
+        panel.add(idSucursal);
+         */
         int[] idSucursales = controller2.getIdSucursal();
         Integer[] idSucursalArray = new Integer[idSucursales.length];
         for (int i = 0; i < idSucursales.length; i++) {
@@ -88,17 +100,44 @@ public class VentanaAltaPeticiones extends JFrame {
         List<PacientesDTO> paciente = controller.getAll();
         Integer[] pacientesArray = new Integer[paciente.size()];
         for (int i = 0; i < pacientesArray.length; i++) {
-            idSucursalArray[i] = idSucursales[i];
             pacientesArray[i] = paciente.get(i).getDni();
         }
         JComboBox<Integer> pacientesComboBox = new JComboBox<>(pacientesArray);
         pacientesComboBox.setBounds(160,150,250,30);
         panel.add(pacientesComboBox);
 
+        JTextField obraSocial = new JTextField();
+        obraSocial.setBounds(160, 200, 250, 30);
+        panel.add(obraSocial);
+
+        JTextField FechaAlta = new JTextField();
+        FechaAlta.setBounds(160, 250, 250, 30);
+        panel.add(FechaAlta);
+
+        List<PracticasDTO> practicas = controller.getAll2();
+        String[] practicasArray = new String[paciente.size()+1];
+        practicasArray[0] = " ";
+        for (int i = 1; i < practicasArray.length; i++) {
+
+            practicasArray[i] = practicas.get(i-1).getNombrePractica();
+        }
+        JComboBox<String> practicasComboBox = new JComboBox<>(practicasArray);
+        practicasComboBox.setBounds(160,300,250,30);
+        panel.add(practicasComboBox);
+
+
+
+        JTextField FechaEntrega = new JTextField();
+        FechaEntrega.setBounds(160, 360, 250, 30);
+        panel.add(FechaEntrega);
+
+        JTextField estado = new JTextField("Iniciado");
+        estado.setBounds(160, 400, 250, 30);
+        panel.add(estado);
 
 
         JButton boton1 = new JButton("Agregar");
-        boton1.setBounds(160, 400, 100, 30);
+        boton1.setBounds(160, 450, 100, 30);
         boton1.setFont(new Font("Arial", Font.BOLD, 14));
         boton1.setForeground(Color.white);
         boton1.setBackground(new Color(220, 118, 51));
@@ -106,26 +145,43 @@ public class VentanaAltaPeticiones extends JFrame {
         panel.add(boton1);
 
         JButton boton2Volver = new JButton("Volver a Menu");
-        boton2Volver.setBounds(300, 400, 150, 30);
+        boton2Volver.setBounds(300, 450, 150, 30);
         panel.add(boton2Volver);
+
+        practicasComboBox.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JComboBox<String> practicasComboBox2 = new JComboBox<>(practicasArray);
+                practicasComboBox2.setBounds(450,300,200,30);
+                panel.add(practicasComboBox2);
+
+            }
+        });
 
         ActionListener oyente = new ActionListener(){
             public void actionPerformed(ActionEvent e) {
                 String a = idPeticion.getText();
-
-                //String c = direccion.getText();
-                //String d = responsableTec.getText();
+                int b = idSucursalComboBox.getSelectedIndex();
+                int bb = idSucursalArray[b];
+                int c = pacientesComboBox.getSelectedIndex();
+                int dni = pacientesArray[c];
+                PacientesDTO pacienteDTO = controller.buscarPacientePorDNI(dni);
+                String d = obraSocial.getText();
+                String ee = FechaAlta.getText();
+                int f = practicasComboBox.getSelectedIndex();
+                String practica = practicasArray[f];
+                PracticasDTO practicaDTO = controller.buscarPracticaPorNombre(practica);
+                String g = FechaEntrega.getText();
+                String h = estado.getText();
 
                 int aa = Integer.parseInt(a);
 
+                controller.altaPeticiones(new PeticionesDTO(aa,bb,ControllerPeticiones.toModel(pacienteDTO),d,ee,ControllerPeticiones.toModel2(practicaDTO),g,h));
 
-                /*controller.altaSucursal(new SucursalesDTO(aa,bb,c,d));
-
-
-                idSucursal.setText("");
-                numero.setText("");
-                direccion.setText("");;
-                responsableTec.setText("");*/
+                idPeticion.setText("");
+                obraSocial.setText("");
+                FechaAlta.setText("");
+                FechaEntrega.setText("");
+                estado.setText("");
             }
         };
         boton1.addActionListener(oyente);

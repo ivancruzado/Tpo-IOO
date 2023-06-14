@@ -2,7 +2,7 @@ package Modelo;
 
 import Controlador.ControllerPeticiones;
 import DTO.PacientesDTO;
-
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -11,12 +11,13 @@ public class Peticiones {
     private int SucursalID;
     private Pacientes Paciente;
     private String ObraSocial;
-    private Date FechaDeCarga;
+    private String FechaDeCarga;
     private Practica PracticasAsociadas;
-    private Date FechaEntrega;
+    private String FechaEntrega;
+    private String estado;
     private List<ResultadoPractica> listaResultadosPractica;
 
-    public Peticiones(int idPeticion, int sucursalID, Pacientes paciente, String obraSocial, Date fechaDeCarga, Practica practicasAsociadas, Date fechaEntrega,List<ResultadoPractica> listaResultadosPractica) {
+    public Peticiones(int idPeticion, int sucursalID, Pacientes paciente, String obraSocial, String fechaDeCarga, Practica practicasAsociadas, String fechaEntrega,String estado) {
         this.idPeticion = idPeticion;
         SucursalID = sucursalID;
         Paciente = paciente;
@@ -24,7 +25,7 @@ public class Peticiones {
         FechaDeCarga = fechaDeCarga;
         PracticasAsociadas = practicasAsociadas;
         FechaEntrega = fechaEntrega;
-        this.listaResultadosPractica = listaResultadosPractica;
+        this.estado = estado;
     }
 
     public void altaResultadoPractica(){
@@ -80,11 +81,11 @@ public class Peticiones {
         ObraSocial = obraSocial;
     }
 
-    public Date getFechaDeCarga() {
+    public String getFechaDeCarga() {
         return FechaDeCarga;
     }
 
-    public void setFechaDeCarga(Date fechaDeCarga) {
+    public void setFechaDeCarga(String fechaDeCarga) {
         FechaDeCarga = fechaDeCarga;
     }
 
@@ -96,11 +97,11 @@ public class Peticiones {
         PracticasAsociadas = practicasAsociadas;
     }
 
-    public Date getFechaEntrega() {
+    public String getFechaEntrega() {
         return FechaEntrega;
     }
 
-    public void setFechaEntrega(Date fechaEntrega) {
+    public void setFechaEntrega(String fechaEntrega) {
         FechaEntrega = fechaEntrega;
     }
 
@@ -110,5 +111,13 @@ public class Peticiones {
 
     public void setListaResultadosPractica(List<ResultadoPractica> listaResultadosPractica) {
         this.listaResultadosPractica = listaResultadosPractica;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }

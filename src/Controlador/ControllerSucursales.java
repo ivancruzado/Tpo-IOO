@@ -3,11 +3,12 @@ package Controlador;
 import java.util.ArrayList;
 import java.util.List;
 
+import DTO.PeticionesDTO;
 import DTO.SucursalesDTO;
 import Modelo.Sucursales;
 
 public class ControllerSucursales {
-    private static ControllerSucursales SINGLETON = null;
+    private static ControllerSucursales SINGLETON;
 
     private static List<Sucursales> listaSucursales = new ArrayList<>();
 
@@ -44,6 +45,18 @@ public class ControllerSucursales {
         }
     }
 
+    public Boolean buscarEstado(int id){
+        List<PeticionesDTO> listaPeticiones = ControllerPeticiones.getInstance().getAll3();
+        for (int i = 0; i < listaPeticiones.size(); i++) {
+            if(listaPeticiones.get(i).getSucursalID() == (id)){
+                if (listaPeticiones.get(i).getEstado().equalsIgnoreCase("finalizado") ){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 
     public int buscarindexSucursal(int idSucursal){
         int index = 0;
@@ -63,7 +76,7 @@ public class ControllerSucursales {
         listaSucursales.get(buscarindexSucursal(idSucursal)).setResponsableTec(responsableTec);
 
     }
-    public List<SucursalesDTO> getAll() {
+    public static List<SucursalesDTO> getAll() {
         List<SucursalesDTO> listaSucursalesDTO = new ArrayList<>();
         for (Sucursales sucursal : listaSucursales) {
             listaSucursalesDTO.add(toDTO(sucursal));

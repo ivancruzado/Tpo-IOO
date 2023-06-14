@@ -15,6 +15,7 @@ public class TablaSucursales extends JFrame {
     private CustomTableModel3 tableModel3;
     private JTable table;
     private ControllerSucursales controller;
+    private ControllerPeticiones controller2;
 
     TableRowSorter<CustomTableModel3> sorter3;
 
@@ -24,6 +25,7 @@ public class TablaSucursales extends JFrame {
         setBounds(30,20,750,650);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         controller = ControllerSucursales.getInstance();
+        controller2 = ControllerPeticiones.getInstance();
         tableModel3 = new CustomTableModel3(controller.getAll());
 
         table = new JTable(tableModel3);
@@ -95,14 +97,22 @@ public class TablaSucursales extends JFrame {
                 if(seleccion != -1){
                     String columna1 = table.getValueAt(seleccion,0).toString();
                     int columna1int = Integer.parseInt(columna1);
-                    controller.bajaSucursal(columna1int);
-                    JOptionPane.showMessageDialog(null,"Practica eliminada correctamente");
+                    if(controller.buscarEstado(columna1int) == true) {
+                        JOptionPane.showMessageDialog(null,"Error. La sucursal tiene peticiones finalizadas");
+                    }
+                    else {
+                        controller2.moverPeticionesActivas(columna1int,1);
+                        controller.bajaSucursal(columna1int);
+
+                        JOptionPane.showMessageDialog(null,"Sucursal eliminada correctamente");
+                    }
+
                     TablaSucursales tablaSucursales = new TablaSucursales("tabla Sucursales");
                     TablaSucursales.this.setVisible(false);
                     tablaSucursales.setVisible(true);
                 }
                 else{
-                    JOptionPane.showMessageDialog(null,"No se pudo eliminar, seleccione la practica a eliminar");
+                    JOptionPane.showMessageDialog(null,"No se pudo eliminar, seleccione la sucursal a eliminar");
                 }
 
             }

@@ -77,12 +77,17 @@ public class TablaPacienteEncontrado extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 int seleccion = table.getSelectedRow();
                 if(seleccion != -1){
-                    //controller.bajaPaciente(seleccion);
                     String selecciondni = table.getValueAt(seleccion,0).toString();
                     int seleccionIntDni = Integer.parseInt(selecciondni);
-                    controller.bajaPaciente(seleccionIntDni);
 
-                    JOptionPane.showMessageDialog(null,"Paciente eliminado correctamente");
+                    if(controller.buscarEstado(seleccionIntDni) == true) {
+                        JOptionPane.showMessageDialog(null,"Error. El paciente tiene peticiones finalizadas");
+                    }
+                    else {
+                        controller.bajaPaciente(seleccionIntDni);
+                        JOptionPane.showMessageDialog(null,"Paciente eliminado correctamente");
+                    }
+
                     TablaPacienteEncontrado tablaPacienteEncontrado = new TablaPacienteEncontrado("tabla pacientes");
                     TablaPacienteEncontrado.this.setVisible(false);
                     tablaPacienteEncontrado.setVisible(true);

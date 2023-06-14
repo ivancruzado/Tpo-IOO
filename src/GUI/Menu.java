@@ -1,6 +1,7 @@
 package GUI;
 
 import Controlador.ControllerPeticiones;
+import Controlador.ControllerSucursales;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,6 +12,8 @@ public class Menu extends JFrame {
 
     //public JPanel Menu;
     public JPanel panel1;
+    private ControllerPeticiones controller;
+    private ControllerSucursales controller2;
 
 
     public Menu(){
@@ -25,6 +28,7 @@ public class Menu extends JFrame {
     private void componentes(){
         paneles();
         botonesInicio();
+
     }
 
     private void paneles(){
@@ -58,6 +62,8 @@ public class Menu extends JFrame {
         JButton peticiones = new JButton("Peticiones");
         peticiones.setBounds(60, 500, 150, 30);
         panel1.add(peticiones);
+
+
 
         botonUsuarios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
