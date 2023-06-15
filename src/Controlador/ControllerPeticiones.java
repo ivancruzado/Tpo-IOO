@@ -86,7 +86,7 @@ public class ControllerPeticiones {
         lista3.add(new Peticiones(123,1,lista.get(0),"Osde", fechaGregoriana,lista2.get(0),fechaGregoriana2,"finalizado" ));
         lista3.add(new Peticiones(124,2,lista.get(1),"Ioma", fechaGregoriana,lista2.get(1),fechaGregoriana2,"en curso"));
         lista3.add(new Peticiones(125,3,lista.get(2),"Pami", fechaGregoriana,lista2.get(2),fechaGregoriana2,"iniciado" ));
-        lista3.add(new Peticiones(126,2,lista.get(1),"Pami", fechaGregoriana,lista2.get(2),fechaGregoriana2,"finalizado" ));
+        lista3.add(new Peticiones(126,2,lista.get(1),"Ioma", fechaGregoriana,lista2.get(2),fechaGregoriana2,"finalizado" ));
     }
 
 
@@ -174,12 +174,15 @@ public class ControllerPeticiones {
     }
 
     public void modificarPaciente(int dni, String nombre, int edad, String mail, String dom,String sexo){
-        lista.get(buscarindexPacientes(dni)).setDNI(dni);
-        lista.get(buscarindexPacientes(dni)).setNombre(nombre);
-        lista.get(buscarindexPacientes(dni)).setEdad(edad);
-        lista.get(buscarindexPacientes(dni)).setMail(mail);
-        lista.get(buscarindexPacientes(dni)).setDomicilio(dom);
-        lista.get(buscarindexPacientes(dni)).setSexo(sexo);
+        int index = buscarindexPacientes(dni);
+        PacientesDTO pacientesDTO = toDTO(lista.get(index));
+        pacientesDTO.setNombre(nombre);
+        pacientesDTO.setEdad(edad);
+        pacientesDTO.setMail(mail);
+        pacientesDTO.setDomicilio(dom);
+        pacientesDTO.setSexo(sexo);
+        Pacientes pacientes = toModel(pacientesDTO);
+        lista.set(index,pacientes);
 
     }
 
@@ -193,12 +196,15 @@ public class ControllerPeticiones {
     }
 
     public void modificarPractica(int id, int codigo, String nom, String grupo, int tiempo,boolean des){
-        lista2.get(buscarindexPracticas(id)).setPracticaID(id);
-        lista2.get(buscarindexPracticas(id)).setNombrePractica(nom);
-        lista2.get(buscarindexPracticas(id)).setCodigoPractica(codigo);
-        lista2.get(buscarindexPracticas(id)).setGrupo(grupo);
-        lista2.get(buscarindexPracticas(id)).setTiempoResultado(tiempo);
-        lista2.get(buscarindexPracticas(id)).setDeshabilitada(des);
+        int index = buscarindexPracticas(id);
+        PracticasDTO practicasDTO = toDTO2(lista2.get(index));
+        practicasDTO.setCodigoPractica(codigo);
+        practicasDTO.setNombrePractica(nom);
+        practicasDTO.setGrupo(grupo);
+        practicasDTO.setTiempoResultado(tiempo);
+        practicasDTO.setDeshabilitada(des);
+        Practica practica = toModel2(practicasDTO);
+        lista2.set(index,practica);
     }
 
     public void altaPractica(PracticasDTO dto){
@@ -260,14 +266,15 @@ public class ControllerPeticiones {
     }
 
     public void modificarPeticiones(int id, int SucursalID, String obraSocial, String fechaCarga,String fechaEntrega,String estado){
-        Peticiones peticion = lista3.get(buscarindexPeticiones(id));
-        peticion.setSucursalID(SucursalID);
-        //peticion.setPaciente(paciente);
-        peticion.setObraSocial(obraSocial);
-        peticion.setFechaDeCarga(fechaCarga);
-        //peticion.setPracticasAsociadas(practicaAsociada);
-        peticion.setFechaEntrega(fechaEntrega);
-        peticion.setEstado(estado);
+        int index = buscarindexPeticiones(id);
+        PeticionesDTO peticionesDTO = toDTO3(lista3.get(index));
+        peticionesDTO.setSucursalID(SucursalID);
+        peticionesDTO.setObraSocial(obraSocial);
+        peticionesDTO.setFechaDeCarga(fechaCarga);
+        peticionesDTO.setFechaEntrega(fechaEntrega);
+        peticionesDTO.setEstado(estado);
+        Peticiones peticiones = toModel3(peticionesDTO);
+        lista3.set(index,peticiones);
     }
 
     public static Peticiones toModel3(PeticionesDTO dto) {

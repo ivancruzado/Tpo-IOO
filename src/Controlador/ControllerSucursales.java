@@ -5,6 +5,7 @@ import java.util.List;
 
 import DTO.PeticionesDTO;
 import DTO.SucursalesDTO;
+import Modelo.Peticiones;
 import Modelo.Sucursales;
 
 public class ControllerSucursales {
@@ -70,10 +71,13 @@ public class ControllerSucursales {
 
     public void modificarSucursal(int idSucursal, int numero, String direccion, String responsableTec){
 
-        listaSucursales.get(buscarindexSucursal(idSucursal)).setIdSucursal(idSucursal);
-        listaSucursales.get(buscarindexSucursal(idSucursal)).setNumero(numero);
-        listaSucursales.get(buscarindexSucursal(idSucursal)).setDireccion(direccion);
-        listaSucursales.get(buscarindexSucursal(idSucursal)).setResponsableTec(responsableTec);
+        int index = buscarindexSucursal(idSucursal);
+        SucursalesDTO sucursalesDTO = toDTO(listaSucursales.get(index));
+        sucursalesDTO.setNumero(numero);
+        sucursalesDTO.setDireccion(direccion);
+        sucursalesDTO.setResponsableTec(responsableTec);
+        Sucursales sucursales = toModel(sucursalesDTO);
+        listaSucursales.set(index,sucursales);
 
     }
     public static List<SucursalesDTO> getAll() {

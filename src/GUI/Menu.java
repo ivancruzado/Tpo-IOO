@@ -17,7 +17,7 @@ public class Menu extends JFrame {
 
 
     public Menu(){
-        setSize(700,600);
+        setSize(600,500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Sistema de Laboratorio");
         setLocationRelativeTo(null);
@@ -44,23 +44,23 @@ public class Menu extends JFrame {
 
         JButton botonUsuarios = new JButton("Alta Usuarios");
         botonUsuarios.setBounds(60, 300, 150, 30);
-        panel1.add(botonUsuarios);
+        //panel1.add(botonUsuarios);
 
         JButton botonPacientes = new JButton("Pacientes");
-        botonPacientes.setBounds(60, 400, 150, 30);
+        botonPacientes.setBounds(100, 250, 150, 30);
         panel1.add(botonPacientes);
 
 
         JButton Practicas = new JButton("Practicas");
-        Practicas.setBounds(60, 200, 150, 30);
+        Practicas.setBounds(300, 250, 150, 30);
         panel1.add(Practicas);
 
         JButton sucursales = new JButton("Sucursales");
-        sucursales.setBounds(60, 100, 150, 30);
+        sucursales.setBounds(100, 100, 150, 30);
         panel1.add(sucursales);
 
         JButton peticiones = new JButton("Peticiones");
-        peticiones.setBounds(60, 500, 150, 30);
+        peticiones.setBounds(300, 100, 150, 30);
         panel1.add(peticiones);
 
 

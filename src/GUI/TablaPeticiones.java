@@ -101,14 +101,14 @@ public class TablaPeticiones extends JFrame {
                     String columna1 = table.getValueAt(seleccion, 0).toString();
                     int columna1int = Integer.parseInt(columna1);
                     controller.bajaPeticiones(columna1int);
-                    JOptionPane.showMessageDialog(null, "Practica eliminada correctamente");
+                    JOptionPane.showMessageDialog(null, "Peticion eliminada correctamente");
 
                     TablaPeticiones tablaPeticiones = new TablaPeticiones("tabla Peticiones");
                     TablaPeticiones.this.setVisible(false);
                     tablaPeticiones.setVisible(true);
                 }
                 else{
-                    JOptionPane.showMessageDialog(null,"No se pudo eliminar, seleccione la practica a eliminar");
+                    JOptionPane.showMessageDialog(null,"No se pudo eliminar, seleccione la peticion a eliminar");
                 }
 
             }

@@ -10,7 +10,6 @@ public class Main {
     {
         ControllerSucursales.getInstance();
         new Menu();
-
     }
 }
 
