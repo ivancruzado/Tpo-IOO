@@ -7,8 +7,9 @@ public class Usuario {
     private String Mail;
     private int Edad;
     private String password;
+    private String rol;
 
-    public Usuario(String DNI, String nombre, String domicilio, String mail, int edad, String password) {
+    public Usuario(String DNI, String nombre, String domicilio, String mail, int edad, String password, String rol) {
 
         this.DNI = DNI;
         Nombre = nombre;
@@ -16,12 +17,15 @@ public class Usuario {
         Mail = mail;
         Edad = edad;
         this.password = password;
+        this.rol = rol;
     }
 
     public String getDNI() {
         return DNI;
     }
-
+    public String getRol() {
+        return rol;
+    }
     public void setDNI(String DNI) {
         this.DNI = DNI;
     }

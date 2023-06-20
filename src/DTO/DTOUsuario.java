@@ -8,7 +8,9 @@ public class DTOUsuario {
         private int Edad;
         private String password;
 
-        public DTOUsuario(String DNI, String Nombre, String Domicilio, String mail, int Edad, String password) {
+        private String rol;
+
+        public DTOUsuario(String DNI, String Nombre, String Domicilio, String mail, int Edad, String password, String rol) {
 
             this.DNI = DNI;
             this.Nombre = Nombre;
@@ -16,6 +18,7 @@ public class DTOUsuario {
             this.Mail = mail;
             this.Edad = Edad;
             this.password = password;
+            this.rol = rol;
         }
 
         public String getDNI() {
@@ -24,6 +27,11 @@ public class DTOUsuario {
 
         public void setDNI(String DNI) {
             this.DNI = DNI;
+        }
+
+
+        public String getRol() {
+            return rol;
         }
 
         public String getNombre() {
@@ -64,6 +72,10 @@ public class DTOUsuario {
 
         public void setPassword(String password) {
             this.password = password;
+        }
+
+        public void setRol(String rol) {
+            this.rol = rol;
         }
     }
 

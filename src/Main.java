@@ -11,7 +11,6 @@ public class Main {
     {
         ControllerSucursales.getInstance();
 
-       // Menu menu = new Menu();
         Login login = new Login();
 
     }

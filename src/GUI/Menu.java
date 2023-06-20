@@ -41,7 +41,7 @@ public class Menu extends JFrame {
         panel1 = new JPanel();
         panel1.setBackground(Color.gray);
         panel1.setLayout(null);
-       // panel1.setBounds(0, 0, 700, 700);
+        // panel1.setBounds(0, 0, 700, 700);
 
     }
     private  void submenu(){
@@ -172,6 +172,15 @@ public class Menu extends JFrame {
                 listarPeticiones.setVisible(true);
             }
         });
+
+        altaUsuarios.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Menu.this.setVisible(false);
+                AltaUsuario altaUsuarios = new AltaUsuario();
+                altaUsuarios.setVisible(true);
+            }
+        });
+        ;
 
 
 

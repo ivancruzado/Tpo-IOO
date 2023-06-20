@@ -78,7 +78,8 @@ public class Login extends JFrame {
 
 
                 if (username.equals("admin") && password.equals("password")) {
-                    JOptionPane.showMessageDialog(panel1, "Inicio de sesión exitoso");
+                    Menu menu = new Menu();
+
                 } else {
                     JOptionPane.showMessageDialog(panel1, "Credenciales inválidas");
                 }

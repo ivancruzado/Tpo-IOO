@@ -4,17 +4,25 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AltaUsurious extends JFrame{
+public class AltaUsuario extends JFrame{
 
-        private JTextField txtDNI;
-        private JTextField txtNombre;
-        private JTextField txtDomicilio;
-        private JTextField txtMail;
-        private JTextField txtEdad;
-        private JPasswordField txtPassword;
+    private JTextField DNI;
+
+    private JTextField Nombre;
+
+    private JTextField Domicilio;
+
+    private JTextField Mail;
+
+    private JTextField Edad;
+
+    private JPasswordField Password;
+
+    private JPasswordField Password2;
+
     private JPanel AltaUsurious;
 
-        public AltaUsurious() {
+        public AltaUsuario() {
             setBackground(Color.gray);
             setTitle("Vista de Usuario");
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -23,37 +31,37 @@ public class AltaUsurious extends JFrame{
             setVisible(true);
 
             JLabel lblDNI = new JLabel("DNI:");
-            txtDNI = new JTextField();
+            DNI = new JTextField();
             JLabel lblNombre = new JLabel("Nombre:");
-            txtNombre = new JTextField();
+            Nombre = new JTextField();
             JLabel lblDomicilio = new JLabel("Domicilio:");
-            txtDomicilio = new JTextField();
+            Domicilio = new JTextField();
             JLabel lblMail = new JLabel("Mail:");
-            txtMail = new JTextField();
+            Mail = new JTextField();
             JLabel lblEdad = new JLabel("Edad:");
-            txtEdad = new JTextField();
+            Edad = new JTextField();
             JLabel lblPassword = new JLabel("Contraseña:");
-            txtPassword = new JPasswordField();
+            Password = new JPasswordField();
             JButton botonVolver = new JButton("Volver a Menu");
             botonVolver.setBounds(300, 500, 150, 30);
 
             add(lblDNI);
-            add(txtDNI);
+            add(DNI);
             add(lblNombre);
-            add(txtNombre);
+            add(Nombre);
             add(lblDomicilio);
-            add(txtDomicilio);
+            add(Domicilio);
             add(lblMail);
-            add(txtMail);
+            add(Mail);
             add(lblEdad);
-            add(txtEdad);
+            add(Edad);
             add(lblPassword);
-            add(txtPassword);
+            add(Password);
             add(botonVolver);
 
             botonVolver.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    AltaUsurious.this.dispose();
+                    AltaUsuario.this.dispose();
                     Menu menu = new Menu();
                     menu.setVisible(true);
                 }
