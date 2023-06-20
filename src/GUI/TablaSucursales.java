@@ -84,8 +84,8 @@ public class TablaSucursales extends JFrame {
         volverAtras.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 TablaSucursales.this.dispose();
-                SucursalesPrincipal sucursalesPrincipal = new SucursalesPrincipal();
-                sucursalesPrincipal.setVisible(true);
+                Menu menu = new Menu();
+                menu.setVisible(true);
             }
         });
 

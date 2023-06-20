@@ -189,8 +189,8 @@ public class VentanaAltaPeticiones extends JFrame {
         boton2Volver.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 VentanaAltaPeticiones.this.dispose();
-                PeticionesPrincipal peticionesPrincipal = new PeticionesPrincipal();
-                peticionesPrincipal.setVisible(true);
+                Menu menu = new Menu();
+                menu.setVisible(true);
             }
         });
 

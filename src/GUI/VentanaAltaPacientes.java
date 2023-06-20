@@ -15,10 +15,11 @@ public class VentanaAltaPacientes extends JFrame {
         setSize(700,600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setVisible(true);
         setResizable(false);
         controller = ControllerPeticiones.getInstance();
         componentes();
+        setVisible(true);
+
 
     }
     private void componentes(){
@@ -132,8 +133,9 @@ public class VentanaAltaPacientes extends JFrame {
         botonVolver.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 VentanaAltaPacientes.this.dispose();
-                PacientesPrincipal pacientesPrincipal = new PacientesPrincipal();
-                pacientesPrincipal.setVisible(true);
+                Menu menu = new Menu();
+                menu.setVisible(true);
+
             }
         });
 

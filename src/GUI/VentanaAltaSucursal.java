@@ -109,8 +109,8 @@ public class VentanaAltaSucursal extends JFrame {
         botonVolver.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 VentanaAltaSucursal.this.dispose();
-                SucursalesPrincipal sucursalesPrincipal = new SucursalesPrincipal();
-                sucursalesPrincipal.setVisible(true);
+                Menu menu = new Menu();
+                menu.setVisible(true);
             }
         });
 

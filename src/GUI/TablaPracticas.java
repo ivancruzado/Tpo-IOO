@@ -86,8 +86,8 @@ public class TablaPracticas extends JFrame {
         volverAtras.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 TablaPracticas.this.dispose();
-                PracticasPrincipal practicasPrincipal = new PracticasPrincipal();
-                practicasPrincipal.setVisible(true);
+                Menu menu = new Menu();
+                menu.setVisible(true);
             }
         });
 
