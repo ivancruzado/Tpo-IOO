@@ -1,6 +1,6 @@
 package DTO;
 
-public class DTOUsuario {
+public class UsuarioDTO {
         private String DNI;
         private String Nombre;
         private String Domicilio;
@@ -10,7 +10,7 @@ public class DTOUsuario {
 
         private String rol;
 
-        public DTOUsuario(String DNI, String Nombre, String Domicilio, String mail, int Edad, String password, String rol) {
+        public UsuarioDTO(String DNI, String Nombre, String Domicilio, String mail, int Edad, String password, String rol) {
 
             this.DNI = DNI;
             this.Nombre = Nombre;

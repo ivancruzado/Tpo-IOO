@@ -1,4 +1,9 @@
 package Modelo;
+enum rol{
+    Administrador,
+    Recepcion,
+    Laboratorista;
+}
 
 public class Usuario {
     private String DNI;
@@ -7,7 +12,9 @@ public class Usuario {
     private String Mail;
     private int Edad;
     private String password;
-    private String rol;
+
+    // es un enum con tres valores: Administrador, Recepcion, Laboratorista
+
 
     public Usuario(String DNI, String nombre, String domicilio, String mail, int edad, String password, String rol) {
 
@@ -17,15 +24,12 @@ public class Usuario {
         Mail = mail;
         Edad = edad;
         this.password = password;
-        this.rol = rol;
     }
 
     public String getDNI() {
         return DNI;
     }
-    public String getRol() {
-        return rol;
-    }
+
     public void setDNI(String DNI) {
         this.DNI = DNI;
     }

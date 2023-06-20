@@ -54,7 +54,6 @@ public class Login extends JFrame {
         exitButton.setBounds(280, 150, 160, 30);
 
 
-        panel1.setVisible(true);
 
 
         panel1.add(usernameLabel);
@@ -67,6 +66,8 @@ public class Login extends JFrame {
 
         // panel1.setBounds(0, 0, 700, 500);
         add(panel1);
+        panel1.setVisible(true);
+
         exitButton.addActionListener(e -> {
             System.exit(0); // Sale de la aplicación
         });
