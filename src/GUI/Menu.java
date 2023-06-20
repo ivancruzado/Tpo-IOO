@@ -180,7 +180,16 @@ public class Menu extends JFrame {
                 altaUsuarios.setVisible(true);
             }
         });
+
+        listarUsuarios.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Menu.this.setVisible(false);
+                TablaUsuarios listarUsuarios = new TablaUsuarios("tabla usuarios");
+                listarUsuarios.setVisible(true);
+            }
+        });
         ;
+
 
 
 

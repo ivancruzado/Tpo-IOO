@@ -16,7 +16,7 @@ public class Usuario {
     // es un enum con tres valores: Administrador, Recepcion, Laboratorista
 
 
-    public Usuario(String DNI, String nombre, String domicilio, String mail, int edad, String password, String rol) {
+    public Usuario(String DNI, String nombre, String domicilio, String mail, Integer edad, String password, String rol) {
 
         this.DNI = DNI;
         Nombre = nombre;

@@ -1,9 +1,12 @@
 package GUI;
 import javax.swing.*;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import DTO.UsuarioDTO;
+import Modelo.Usuario;
+import Controlador.ControllerUsuarios;
+
 
 
 public class AltaUsuario extends JFrame{
@@ -30,10 +33,13 @@ public class AltaUsuario extends JFrame{
     public AltaUsuario() {
 
 
+
+
         setBackground(Color.gray);
         setTitle("Vista de Usuario");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(500, 500);
+        setSize(750, 650);
+        setLocationRelativeTo(null);
         setLayout(null);
         setVisible(true);
 
@@ -117,7 +123,23 @@ public class AltaUsuario extends JFrame{
         add(Guardar);
 
         add(botonVolver);
+        Guardar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Verifica que password y password2 sean iguales
+                if (Password.getText().equals(Password2.getText())) {
+                    // se genera el objeto usuario y se le pasan los datos
+                    Usuario usuario = new Usuario(DNI.getText(), Nombre.getText(), Domicilio.getText(), Mail.getText(), 30, Password.getText(), ROLES.getSelectedItem().toString());
 
+                    JOptionPane.showMessageDialog(null, "Usuario creado con éxito");
+
+
+                } else {
+                    // Muestra un mensaje de error
+                    JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
+                }
+            }
+        });
         botonVolver.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 AltaUsuario.this.dispose();
@@ -131,4 +153,10 @@ public class AltaUsuario extends JFrame{
         private void createUIComponents() {
                 // TODO: place custom component creation code here
         }
+
+
+
+
+
+
 }

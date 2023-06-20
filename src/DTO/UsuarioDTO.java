@@ -5,7 +5,7 @@ public class UsuarioDTO {
         private String Nombre;
         private String Domicilio;
         private String Mail;
-        private int Edad;
+        private Integer Edad;
         private String password;
 
         private String rol;
@@ -61,7 +61,9 @@ public class UsuarioDTO {
         public int getEdad() {
             return Edad;
         }
-
+        public String getEdadString() {
+            return String.valueOf(Edad);
+        }
         public void setEdad(int edad) {
             Edad = edad;
         }
