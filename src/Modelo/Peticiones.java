@@ -120,4 +120,10 @@ public class Peticiones {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+
+
+
+
+
 }
