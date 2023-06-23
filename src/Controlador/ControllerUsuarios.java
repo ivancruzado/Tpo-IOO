@@ -1,8 +1,10 @@
 package Controlador;
 
 import DTO.PacientesDTO;
+import DTO.PeticionesDTO;
 import DTO.UsuarioDTO;
 import Modelo.Pacientes;
+import Modelo.Peticiones;
 import Modelo.Sucursales;
 import Modelo.Usuario;
 
@@ -30,6 +32,13 @@ public class ControllerUsuarios {
         listaUsuarios = new ArrayList<>();
         listaUsuarios.add(new Usuario("30895613", "Jorge", "segovia", "jorge@gmail.com", 20, "1234567", "administador"));
         listaUsuarios.add(new Usuario("33895613", "jose", "perez", "jose@gmail.com", 30, "1234567", "administador"));
+    }
+
+    public static List<Usuario> getAll() {
+        return listaUsuarios;
+    }
+
+
     }
 
 }
