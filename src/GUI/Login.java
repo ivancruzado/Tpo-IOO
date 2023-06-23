@@ -1,5 +1,7 @@
 package GUI;
 
+import Controlador.ControllerUsuarios;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -76,13 +78,14 @@ public class Login extends JFrame {
                 String username = user.getText();
                 String password = new String(pass.getPassword());
 
+                String res = ControllerUsuarios.autenticar(username, password);
 
-
-                if (username.equals("admin") && password.equals("password")) {
-                    Menu menu = new Menu();
+                if (res == "null") {
+                    JOptionPane.showMessageDialog(panel1, "Credenciales inválidas");
 
                 } else {
-                    JOptionPane.showMessageDialog(panel1, "Credenciales inválidas");
+                    Menu menu = new Menu();
+
                 }
             }
         });

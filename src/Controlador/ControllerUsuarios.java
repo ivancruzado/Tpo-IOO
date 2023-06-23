@@ -26,14 +26,28 @@ public class ControllerUsuarios {
     private static void initUsuarios() {
 
         listaUsuarios = new ArrayList<>();
-        listaUsuarios.add(new Usuario("30895613", "Jorge" ,"chassaing 4873","jorge@gmail.com" ,20,"1234567","administador"));
+        listaUsuarios.add(new Usuario("30895613", "jorge" ,"chassaing 4873","jorge@gmail.com" ,20,"1234567","administador"));
         listaUsuarios.add(new Usuario("33895613", "jose"  ,"jose larrea 343"  ,"jose@gmail.com"  ,30,"1234567","administador"));
-        listaUsuarios.add(new Usuario("34538563", "Gaston","ascuenaga 39" ,"gaston@gmail.com",33,"123456" ,"administrador"));
+        listaUsuarios.add(new Usuario("34538563", "gaston","ascuenaga 39" ,"gaston@gmail.com",33,"123456" ,"administrador"));
+        System.out.println("CARGA INICIAL");
     }
 
-    public void altaUsuarios(UsuarioDTO dto){
-        Usuario usuario = toModel(dto);
-        listaUsuarios.add(usuario);
+    public static String autenticar(String user, String password){
+        for (Usuario usuario : listaUsuarios) {
+            System.out.println(usuario.getNombre());
+            //&& (usuario.getPassword().equals(password)
+            System.out.println(usuario.getPassword());
+            if ((usuario.getNombre().equals(user)) ){
+                System.out.println("Usuario autenticado");
+                return usuario.getNombre();
+            }
+        }
+        return "null";
+    }
+
+    public static void altaUsuarios(UsuarioDTO dto){
+        listaUsuarios.add(toModel(dto));
+
     }
 
 

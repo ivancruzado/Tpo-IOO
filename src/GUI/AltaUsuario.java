@@ -4,7 +4,9 @@ import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import Modelo.Usuario;
+
+import DTO.SucursalesDTO;
+import DTO.UsuarioDTO;
 import Controlador.ControllerUsuarios;
 
 
@@ -128,10 +130,18 @@ public class AltaUsuario extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 // Verifica que password y password2 sean iguales
                 if (Password.getText().equals(Password2.getText())) {
-                    // se genera el objeto usuario y se le pasan los datos
-                    Usuario usuario = new Usuario(DNI.getText(), Nombre.getText(), Domicilio.getText(), Mail.getText(), 30, Password.getText(), ROLES.getSelectedItem().toString());
+                    // se genera el objeto usuario DTO y se le pasan los datos
+                    UsuarioDTO usuariodto = new UsuarioDTO(DNI.getText(), Nombre.getText(), Domicilio.getText(), Mail.getText(),Integer.parseInt(Edad.getText()), Password.getText(), ROLES.getSelectedItem().toString());
+                    ControllerUsuarios.altaUsuarios(usuariodto);
+
 
                     JOptionPane.showMessageDialog(null, "Usuario creado con éxito");
+                    AltaUsuario.this.dispose();
+
+              //      Menu menu = new Menu();
+                //    menu.setVisible(true);
+                    TablaUsuarios listarUsuarios = new TablaUsuarios("tabla usuarios");
+                    listarUsuarios.setVisible(true);
 
 
                 } else {
@@ -140,6 +150,9 @@ public class AltaUsuario extends JFrame{
                 }
             }
         });
+
+
+
         botonVolver.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 AltaUsuario.this.dispose();
