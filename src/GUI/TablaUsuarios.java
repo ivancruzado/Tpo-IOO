@@ -1,6 +1,7 @@
 package GUI;
 
 
+import Controlador.ControllerPeticiones;
 import Controlador.ControllerUsuarios;
 
 import javax.swing.*;
@@ -11,23 +12,25 @@ import java.awt.event.ActionListener;
 
 public class TablaUsuarios extends JFrame {
 
-    private CustomTableModel3 tableModel3;
+    private CustomTableUser tableModelUser;
     private JTable table;
     private ControllerUsuarios controller3;
 
-    TableRowSorter<CustomTableModel3> sorter3;
+    TableRowSorter<CustomTableUser> sorter3;
 
     public TablaUsuarios(String title) {
         super(title);
 
         setBounds(30, 20, 750, 650);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        controller3 = ControllerUsuarios.getInstance();
+        tableModelUser = new CustomTableUser(controller3.getall());
 
 
-        table = new JTable(tableModel3);
+        table = new JTable(tableModelUser);
         setLocationRelativeTo(null);
         table.setAutoCreateRowSorter(true);
-        sorter3 = new TableRowSorter<>(tableModel3);
+        sorter3 = new TableRowSorter<>(tableModelUser);
         table.setRowSorter(sorter3);
 
 
@@ -39,8 +42,8 @@ public class TablaUsuarios extends JFrame {
         JLabel etiqueta = new JLabel("Id:");
         JButton botonBuscar = new JButton("Buscar");
         JButton volverAtras = new JButton("Volver atras");
-        JButton eliminarSucursal = new JButton("Eliminar Sucursal");
-        JButton modificarSucursal = new JButton("Edit Sucursal");
+        JButton EliminarUsuario = new JButton("Eliminar Usuario");
+        JButton modificarUsuario = new JButton("Edit Usuario");
 
 
         JPanel buttonPanel = new JPanel();
@@ -48,8 +51,8 @@ public class TablaUsuarios extends JFrame {
         buttonPanel.add(etiqueta);
         buttonPanel.add(id);
         buttonPanel.add(botonBuscar);
-        buttonPanel.add(eliminarSucursal);
-        buttonPanel.add(modificarSucursal);
+        buttonPanel.add(EliminarUsuario);
+        buttonPanel.add(modificarUsuario);
         buttonPanel.add(volverAtras);
 
         panel.add(buttonPanel);
@@ -57,7 +60,7 @@ public class TablaUsuarios extends JFrame {
         panel.add(scrollPane);
         add(panel, BorderLayout.CENTER);
 
-        modificarSucursal.addActionListener(new ActionListener() {
+        modificarUsuario.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int seleccion = table.getSelectedRow();
                 if (seleccion != -1) {
@@ -66,10 +69,10 @@ public class TablaUsuarios extends JFrame {
                     String columna3 = table.getValueAt(seleccion, 2).toString();
                     String columna4 = table.getValueAt(seleccion, 3).toString();
 
-                    modificarSucursal modificarSucursal1 = new modificarSucursal(columna1, columna2, columna3, columna4);
+                  //  modificarUsuario modificarUsuario1 = new modificarUsuario(columna1, columna2, columna3, columna4);
                     //TablaSucursales.this.dispose();
                     TablaUsuarios.this.setVisible(false);
-                    modificarSucursal1.setVisible(true);
+              //      modificarUsuario1.setVisible(true);
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Seleccione una practica para modificarla");

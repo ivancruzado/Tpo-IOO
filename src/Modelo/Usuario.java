@@ -13,17 +13,22 @@ public class Usuario {
     private int Edad;
     private String password;
 
+    private String rol;
+
+
     // es un enum con tres valores: Administrador, Recepcion, Laboratorista
 
 
     public Usuario(String DNI, String nombre, String domicilio, String mail, Integer edad, String password, String rol) {
 
-        this.DNI = DNI;
+        DNI = DNI;
         Nombre = nombre;
         Domicilio = domicilio;
         Mail = mail;
         Edad = edad;
-        this.password = password;
+        password = password;
+        rol = rol;
+
     }
 
     public String getDNI() {
@@ -68,6 +73,10 @@ public class Usuario {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getRol() {
+        return rol;
     }
 
     public void setPassword(String password) {
