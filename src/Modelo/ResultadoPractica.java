@@ -1,5 +1,8 @@
 package Modelo;
 
+import jdk.dynalink.beans.StaticClass;
+
+import java.security.interfaces.RSAKey;
 import java.util.List;
 
 public class ResultadoPractica {
@@ -7,6 +10,19 @@ public class ResultadoPractica {
     private int ResultadoPracticaID;
     private int practicaID;
     private static List<ItemPractica> practicaItem;
+
+    private List <ItemPractica> getPracticaItem ;
+
+    ResultadoPractica Rs = new ResultadoPractica(100,2 );
+
+
+    public void AgregarPracticaItem (){
+        practicaItem.add(new ItemPractica(Rs,"Analisis de Sangre",400,true));
+
+
+    }
+
+
 
     public ResultadoPractica(int resultadoPracticaID, int practicaID) {
         ResultadoPracticaID = resultadoPracticaID;
@@ -24,6 +40,8 @@ public class ResultadoPractica {
                 practicaItem.get(index).getReservado());
         return itemPractica;
     }
+
+
 
     public Boolean esReservado(ItemPractica itemPractica){
         boolean reservado = itemPractica.getReservado();
@@ -45,4 +63,9 @@ public class ResultadoPractica {
     public void setPracticaID(int practicaID) {
         this.practicaID = practicaID;
     }
+
+
+
+
+
 }
