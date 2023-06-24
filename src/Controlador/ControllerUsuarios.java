@@ -34,10 +34,12 @@ public class ControllerUsuarios {
 
     public static String autenticar(String user, String password){
         for (Usuario usuario : listaUsuarios) {
-            System.out.println(usuario.getNombre());
+            System.out.println(usuario.getPassword());
             //&& (usuario.getPassword().equals(password)
             System.out.println(usuario.getPassword());
-            if ((usuario.getNombre().equals(user)) ){
+            if ((usuario.getNombre().equals(user)  ))
+            //&& (usuario.getPassword().equals(password)
+            {
                 System.out.println("Usuario autenticado");
                 return usuario.getNombre();
             }

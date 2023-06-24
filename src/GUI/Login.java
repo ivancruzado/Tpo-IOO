@@ -76,7 +76,7 @@ public class Login extends JFrame {
         loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String username = user.getText();
-                String password = new String(pass.getPassword());
+                String password = new String(pass.getText());
 
                 String res = ControllerUsuarios.autenticar(username, password);
 

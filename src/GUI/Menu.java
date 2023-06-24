@@ -54,6 +54,8 @@ public class Menu extends JFrame {
 
         JMenu Archivo = new JMenu("Archivo");
         menuBar.add(Archivo);
+        JMenuItem cerrarSesion = new JMenuItem("Cerrar Sesion");
+        Archivo.add(cerrarSesion);
         JMenuItem salir = new JMenuItem("Salir");
         Archivo.add(salir);
 
@@ -110,6 +112,7 @@ public class Menu extends JFrame {
         menuInformes.add(informePracticas);
         JMenuItem informePeticiones = new JMenuItem("Informe Peticiones");
         menuInformes.add(informePeticiones);
+
 
         // apartado de salir
 
@@ -189,6 +192,14 @@ public class Menu extends JFrame {
             }
         });
         ;
+        cerrarSesion.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Menu.this.setVisible(false);
+                Login login = new Login();
+                login.setVisible(true);
+
+            }
+        });
 
 
 

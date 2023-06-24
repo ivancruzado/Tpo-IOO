@@ -131,7 +131,10 @@ public class AltaUsuario extends JFrame{
                 // Verifica que password y password2 sean iguales
                 if (Password.getText().equals(Password2.getText())) {
                     // se genera el objeto usuario DTO y se le pasan los datos
-                    UsuarioDTO usuariodto = new UsuarioDTO(DNI.getText(), Nombre.getText(), Domicilio.getText(), Mail.getText(),Integer.parseInt(Edad.getText()), Password.getText(), ROLES.getSelectedItem().toString());
+                    char[] passwordChars = Password.getPassword();
+                    String pword = new String(passwordChars);
+
+                    UsuarioDTO usuariodto = new UsuarioDTO(DNI.getText(), Nombre.getText(), Domicilio.getText(), Mail.getText(),Integer.parseInt(Edad.getText()), pword, ROLES.getSelectedItem().toString());
                     ControllerUsuarios.altaUsuarios(usuariodto);
 
 

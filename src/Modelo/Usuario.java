@@ -72,7 +72,7 @@ public class Usuario {
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public String getRol() {
