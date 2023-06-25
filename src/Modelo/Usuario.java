@@ -1,7 +1,7 @@
 package Modelo;
 enum rol{
     Administrador,
-    Recepcion,
+    Recepcionista,
     Laboratorista;
 }
 
@@ -16,7 +16,7 @@ public class Usuario {
     private String rol;
 
 
-    // es un enum con tres valores: Administrador, Recepcion, Laboratorista
+    // es un enum con tres valores: Administrador, Recepcionista, Laboratorista
 
 
     public Usuario(String DNI, String nombre, String domicilio, String mail, Integer edad, String password, String rol) {

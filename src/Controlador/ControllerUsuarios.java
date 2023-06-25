@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ControllerUsuarios {
     private static ControllerUsuarios SINGLETON = null;
-
+    private static String rol="Recepcionista";
     private static List<Usuario> listaUsuarios = new ArrayList<>();
 
 
@@ -26,11 +26,11 @@ public class ControllerUsuarios {
     private static void initUsuarios() {
 
         listaUsuarios = new ArrayList<>();
-        listaUsuarios.add(new Usuario("30895613", "jorge" ,"chassaing 4873","jorge@gmail.com" ,20,"1234567","administador"));
-        listaUsuarios.add(new Usuario("33895613", "jose"  ,"jose larrea 343"  ,"jose@gmail.com"  ,30,"1234567","administador"));
-        listaUsuarios.add(new Usuario("34538563", "gaston","ascuenaga 39" ,"gaston@gmail.com",33,"123456" ,"administrador"));
-        System.out.println("CARGA INICIAL");
+        listaUsuarios.add(new Usuario("30895613", "jorge" ,"chassaing 4873","jorge@gmail.com" ,20,"1234567","Administrador"));
+        listaUsuarios.add(new Usuario("33895613", "jose"  ,"jose larrea 343"  ,"jose@gmail.com"  ,30,"1234567","Laboratorista"));
+        listaUsuarios.add(new Usuario("34538563", "gaston","ascuenaga 39" ,"gaston@gmail.com",33,"123456" ,"Empleado"));
     }
+
 
     public static String autenticar(String user, String password){
         for (Usuario usuario : listaUsuarios) {
@@ -38,10 +38,12 @@ public class ControllerUsuarios {
             //&& (usuario.getPassword().equals(password)
             System.out.println(usuario.getPassword());
             if ((usuario.getNombre().equals(user)  ))
-            //&& (usuario.getPassword().equals(password)
             {
-                System.out.println("Usuario autenticado");
-                return usuario.getNombre();
+
+                ControllerUsuarios.rol = usuario.getRol();
+                System.out.println("rol: "+ ControllerUsuarios.getRol());
+
+                   return usuario.getNombre();
             }
         }
         return "null";
@@ -52,6 +54,14 @@ public class ControllerUsuarios {
 
     }
 
+    public static void bajaUsuarios(String dni){
+        List<UsuarioDTO> lista = getall();
+        for (int i = 0; i < lista.size(); i++) {
+            if(lista.get(i).getDNI().equals(dni)){
+                toDTO(listaUsuarios.remove(i));
+            }
+        }
+    }
 
 
 
@@ -74,5 +84,8 @@ public class ControllerUsuarios {
         return listaUsuariosDTO;
     }
 
+    public static String getRol() {
+        return ControllerUsuarios.rol;
+    }
 }
 

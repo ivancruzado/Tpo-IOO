@@ -2,6 +2,7 @@ package GUI;
 
 import Controlador.ControllerPeticiones;
 import Controlador.ControllerSucursales;
+import Controlador.ControllerUsuarios;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,12 +16,18 @@ public class Menu extends JFrame {
     public JPanel panel1;
     private ControllerPeticiones controller;
     private ControllerSucursales controller2;
+    private ControllerUsuarios controller3;
+
+    private String rol="Administrador";
+
+
 
 
     public Menu(){
         setSize(600,500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Sistema de Laboratorio");
+        System.out.println(ControllerUsuarios.getRol());
         setLocationRelativeTo(null);
 
         componentes();
@@ -69,8 +76,6 @@ public class Menu extends JFrame {
 
 
 
-
-
         // apartado de pacientes
         JMenu menuPacientes = new JMenu("Pacientes");
         menuBar.add(menuPacientes);
@@ -78,6 +83,7 @@ public class Menu extends JFrame {
         menuPacientes.add(altaPacientes);
         JMenuItem listarPacientes = new JMenuItem("Listar Pacientes");
         menuPacientes.add(listarPacientes);
+
         // apartado de practicas
 
         JMenu menuPracticas = new JMenu("Practicas");
@@ -94,14 +100,19 @@ public class Menu extends JFrame {
         JMenuItem listarSucursales = new JMenuItem("Listar Sucursales");
         menuSucursales.add(listarSucursales);
         // apartado de peticiones
+
         JMenu menuPeticiones = new JMenu("Peticiones");
         menuBar.add(menuPeticiones);
         JMenuItem altaPeticiones = new JMenuItem("Alta Peticiones");
         menuPeticiones.add(altaPeticiones);
         JMenuItem listarPeticiones = new JMenuItem("Listar Peticiones");
         menuPeticiones.add(listarPeticiones);
+        menuPeticiones.add(new JSeparator());
 
-
+        JMenuItem altaResultados = new JMenuItem("Cargar Resultados");
+        menuPeticiones.add(altaResultados);
+        JMenuItem listarResultados = new JMenuItem("Listar Resultados");
+        menuPeticiones.add(listarResultados);
 
         // apartado de informes
         JMenu menuInformes = new JMenu("Informes");
@@ -114,11 +125,34 @@ public class Menu extends JFrame {
         menuInformes.add(informePeticiones);
 
 
-        // apartado de salir
+        if (this.rol == "recepcionista"){
+            menuInformes.setVisible(false);
+            altaPacientes.setVisible(false);
+            altaUsuarios.setVisible(false);
+            altaPracticas.setVisible(false);
+            altaSucursales.setVisible(false);
+
+
+        } else if (this.rol == "laboratorista") {
+            menuInformes.setVisible(false);
+            listarPeticiones.setVisible(false);
+            altaPeticiones.setVisible(false);
+            listarResultados.setVisible(true);
+            menuPacientes.setVisible(false);
+            menuUsuarios.setVisible(false);
+            menuSucursales.setVisible(false);
+            menuPracticas.setVisible(false);
+
+
+
+
+        }
+
 
         salir.addActionListener(e -> {
             System.exit(0); // Sale de la aplicación cuando se selecciona
         });
+
         altaPacientes.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Menu.this.setVisible(false);
@@ -206,79 +240,8 @@ public class Menu extends JFrame {
 
     }
 
-/*
-    private  void botonesInicio(){
 
 
-        JButton botonUsuarios = new JButton("Alta Usuarios");
-        botonUsuarios.setBounds(60, 300, 150, 30);
-        panel1.add(botonUsuarios);
-
-        JButton botonPacientes = new JButton("Pacientes");
-        botonPacientes.setBounds(100, 250, 150, 30);
-        panel1.add(botonPacientes);
-
-
-        JButton Practicas = new JButton("Practicas");
-        Practicas.setBounds(300, 250, 150, 30);
-        panel1.add(Practicas);
-
-        JButton sucursales = new JButton("Sucursales");
-        sucursales.setBounds(100, 100, 150, 30);
-        panel1.add(sucursales);
-
-        JButton peticiones = new JButton("Peticiones");
-        peticiones.setBounds(300, 100, 150, 30);
-        panel1.add(peticiones);
-
-
-
-        botonUsuarios.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Menu.this.setVisible(false);
-                AltaUsurious altaUsurious = new AltaUsurious();
-                altaUsurious.setVisible(true);
-            }
-        });
-        getContentPane().setLayout(null);
-        getContentPane().add(panel1);
-
-        botonPacientes.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Menu.this.setVisible(false);
-                PacientesPrincipal pacientesPrincipal = new PacientesPrincipal();
-                pacientesPrincipal.setVisible(true);
-            }
-        });
-
-        Practicas.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Menu.this.setVisible(false);
-                PracticasPrincipal practicasPrincipal = new PracticasPrincipal();
-                practicasPrincipal.setVisible(true);
-            }
-        });
-        sucursales.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Menu.this.setVisible(false);
-                SucursalesPrincipal sucursalesPrincipal = new SucursalesPrincipal();
-                sucursalesPrincipal.setVisible(true);
-            }
-        });
-
-        peticiones.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Menu.this.setVisible(false);
-                PeticionesPrincipal peticionesPrincipal = new PeticionesPrincipal();
-                peticionesPrincipal.setVisible(true);
-            }
-        });
-
-
-
-
-    }
-*/
 
 }
 

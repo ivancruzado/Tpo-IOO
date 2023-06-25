@@ -62,8 +62,8 @@ public class TablaPacienteEncontrado extends JFrame {
         volverAtras.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 TablaPacienteEncontrado.this.dispose();
-                PacientesPrincipal pacientesPrincipal = new PacientesPrincipal();
-                pacientesPrincipal.setVisible(true);
+       //         PacientesPrincipal pacientesPrincipal = new PacientesPrincipal();
+         //       pacientesPrincipal.setVisible(true);
             }
         });
 
