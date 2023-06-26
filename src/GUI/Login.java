@@ -78,7 +78,6 @@ public class Login extends JFrame {
                 String username = user.getText();
                 String password = new String(pass.getPassword());
                 String rol = ControllerUsuarios.autenticar(username, password);
-            //    System.out.println(rol);
 
                 if (rol == "null") {
                     JOptionPane.showMessageDialog(panel1, "Credenciales inválidas");
@@ -87,7 +86,7 @@ public class Login extends JFrame {
 
 
 
-                    Menu menu = new Menu(rol);
+                    Menu menu = new Menu();
                     dispose();
 
                 }

@@ -31,13 +31,17 @@ public class ControllerUsuarios {
         listaUsuarios.add(new Usuario("34538563", "gaston","ascuenaga 39" ,"gaston@gmail.com",33,"123456" ,"Recepcionista"));
     }
 
+    public static String getROL(){
+        return ControllerUsuarios.rol;
+    }
+
 
     public static String autenticar(String user, String password){
         for (Usuario usuario : listaUsuarios) {
 
             if (usuario.getNombre().equals(user) && usuario.getPassword().equals(password))
             {
-
+                   ControllerUsuarios.rol = usuario.getRol();
                    return usuario.getRol();
             }
         }

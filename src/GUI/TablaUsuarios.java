@@ -83,7 +83,7 @@ public class TablaUsuarios extends JFrame {
         volverAtras.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 TablaUsuarios.this.dispose();
-                Menu menu = new Menu("Recepcionista");
+                Menu menu = new Menu();
                 menu.setVisible(true);
             }
         });

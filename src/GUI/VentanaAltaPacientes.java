@@ -133,7 +133,7 @@ public class VentanaAltaPacientes extends JFrame {
         botonVolver.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 VentanaAltaPacientes.this.dispose();
-                Menu menu = new Menu("Recepcionista");
+                Menu menu = new Menu();
                 menu.setVisible(true);
 
             }
