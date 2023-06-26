@@ -62,6 +62,8 @@ public class Login extends JFrame {
         panel1.add(user);
         panel1.add(passwordLabel);
         panel1.add(pass);
+
+
         panel1.add(loginButton);
         panel1.add(exitButton);
 
@@ -69,6 +71,13 @@ public class Login extends JFrame {
         // panel1.setBounds(0, 0, 700, 500);
         add(panel1);
         panel1.setVisible(true);
+
+        pass.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loginButton.doClick();
+            }
+        });
 
         exitButton.addActionListener(e -> {
             System.exit(0); // Sale de la aplicación

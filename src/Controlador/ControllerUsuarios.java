@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ControllerUsuarios {
     private static ControllerUsuarios SINGLETON = null;
-    private static String rol="Recepcionista";
+    private static String rol;
     private static List<Usuario> listaUsuarios = new ArrayList<>();
 
 
@@ -53,14 +53,20 @@ public class ControllerUsuarios {
 
     }
 
-    public static void bajaUsuarios(String dni){
+    public static boolean bajaUsuarios(String dni) {
         List<UsuarioDTO> lista = getall();
+        System.out.println(dni);
         for (int i = 0; i < lista.size(); i++) {
-            if(lista.get(i).getDNI().equals(dni)){
-                toDTO(listaUsuarios.remove(i));
+            System.out.println(lista.get(i).getDNI());
+            if (lista.get(i).getDNI().equals(dni)) {
+                //  toDTO(listaUsuarios.remove(i));
+                    toDTO(listaUsuarios.remove(i));
+                return true;
             }
         }
+        return false;
     }
+
 
 
 

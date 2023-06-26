@@ -93,13 +93,14 @@ public class TablaUsuarios extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 int seleccion = table.getSelectedRow();
                 if(seleccion != -1){
-                    String columna3 = table.getValueAt(seleccion,0).toString();
-                    int DNIint = Integer.parseInt(columna3);
-             //      ControllerUsuarios.bajaUsuario(DNIint);
-                    JOptionPane.showMessageDialog(null,"usuario eliminado correctamente");
-                    TablaUsuarios tablaUsuarios = new TablaUsuarios("tabla usuarios");
-                    TablaUsuarios.this.setVisible(false);
-                  //  TablaUsuarios.setVisible(true);
+                    String DNIint = table.getValueAt(seleccion,2).toString();
+                    boolean confirmacion = ControllerUsuarios.bajaUsuarios(DNIint);
+                    if (confirmacion==true) {
+                        JOptionPane.showMessageDialog(null, "usuario eliminado correctamente");
+                        TablaUsuarios tablaUsuarios = new TablaUsuarios("tabla usuarios");
+                        TablaUsuarios.this.setVisible(false);
+                        tablaUsuarios.setVisible(true);
+                    }
                 }
                 else{
                     JOptionPane.showMessageDialog(null,"No se pudo eliminar, seleccione el usuario a eliminar");

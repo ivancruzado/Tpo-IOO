@@ -14,6 +14,7 @@ import Controlador.ControllerUsuarios;
 public class AltaUsuario extends JFrame{
 
     private JTextField DNI;
+    private JTextField Usuario;
 
     private JTextField Nombre;
 
@@ -29,12 +30,9 @@ public class AltaUsuario extends JFrame{
 
     private JPanel AltaUsurious;
 
-
     private JComboBox ROLES;
 
     public AltaUsuario() {
-
-
 
 
         setBackground(Color.gray);
@@ -86,8 +84,6 @@ public class AltaUsuario extends JFrame{
 
         JPasswordField Password2 = new JPasswordField();
         Password2.setBounds(250, 230, 200, 30);
-
-
 
         JLabel lblrol = new JLabel("Rol:");
         lblrol.setBounds(20, 260, 200, 30);

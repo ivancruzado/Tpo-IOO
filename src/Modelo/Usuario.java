@@ -1,26 +1,24 @@
 package Modelo;
-enum rol{
-    Administrador,
-    Recepcionista,
-    Laboratorista;
-}
 
 public class Usuario {
     private String DNI;
+    private String Usuario;
     private String Nombre;
     private String Domicilio;
     private String Mail;
+    private String dni;
+
     private int Edad;
     private String Password;
 
     private String Rol;
-    private String dni;
 
 
     // es un enum con tres valores: Administrador, Recepcionista, Laboratorista
 
 
     public Usuario(String DNI, String nombre, String domicilio, String mail, Integer edad, String password, String rol) {
+
 
          dni = DNI;
          Nombre = nombre;
@@ -78,6 +76,8 @@ public class Usuario {
         public String getRol () {
             return Rol;
         }
+
+
 
         public void setPassword (String password){
             this.Password = password;
