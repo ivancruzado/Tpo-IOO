@@ -12,7 +12,6 @@ public class Main {
     {
         ControllerSucursales.getInstance();
         ControllerUsuarios.getInstance();
-
         Login login = new Login();
 
     }

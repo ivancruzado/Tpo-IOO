@@ -75,7 +75,7 @@ public class PracticasPrincipal extends JFrame {
         botonVolver.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 PracticasPrincipal.this.dispose();
-                Menu menu = new Menu();
+                Menu menu = new Menu("Recepcionista");
                 menu.setVisible(true);
             }
         });

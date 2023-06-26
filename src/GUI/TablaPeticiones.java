@@ -86,8 +86,9 @@ public class TablaPeticiones extends JFrame {
 
         volverAtras.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+
                 TablaPeticiones.this.dispose();
-                Menu menu = new Menu();
+                Menu menu = new Menu("Recepcionista");
                 menu.setVisible(true);
             }
         });

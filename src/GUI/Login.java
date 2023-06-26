@@ -76,15 +76,19 @@ public class Login extends JFrame {
         loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String username = user.getText();
-                String password = new String(pass.getText());
+                String password = new String(pass.getPassword());
+                String rol = ControllerUsuarios.autenticar(username, password);
+            //    System.out.println(rol);
 
-                String res = ControllerUsuarios.autenticar(username, password);
-
-                if (res == "null") {
+                if (rol == "null") {
                     JOptionPane.showMessageDialog(panel1, "Credenciales inválidas");
 
                 } else {
-                    Menu menu = new Menu();
+
+
+
+                    Menu menu = new Menu(rol);
+                    dispose();
 
                 }
             }

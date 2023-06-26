@@ -28,22 +28,17 @@ public class ControllerUsuarios {
         listaUsuarios = new ArrayList<>();
         listaUsuarios.add(new Usuario("30895613", "jorge" ,"chassaing 4873","jorge@gmail.com" ,20,"1234567","Administrador"));
         listaUsuarios.add(new Usuario("33895613", "jose"  ,"jose larrea 343"  ,"jose@gmail.com"  ,30,"1234567","Laboratorista"));
-        listaUsuarios.add(new Usuario("34538563", "gaston","ascuenaga 39" ,"gaston@gmail.com",33,"123456" ,"Empleado"));
+        listaUsuarios.add(new Usuario("34538563", "gaston","ascuenaga 39" ,"gaston@gmail.com",33,"123456" ,"Recepcionista"));
     }
 
 
     public static String autenticar(String user, String password){
         for (Usuario usuario : listaUsuarios) {
-            System.out.println(usuario.getPassword());
-            //&& (usuario.getPassword().equals(password)
-            System.out.println(usuario.getPassword());
-            if ((usuario.getNombre().equals(user)  ))
+
+            if (usuario.getNombre().equals(user) && usuario.getPassword().equals(password))
             {
 
-                ControllerUsuarios.rol = usuario.getRol();
-                System.out.println("rol: "+ ControllerUsuarios.getRol());
-
-                   return usuario.getNombre();
+                   return usuario.getRol();
             }
         }
         return "null";
@@ -66,13 +61,13 @@ public class ControllerUsuarios {
 
 
     public static Usuario toModel(UsuarioDTO dto) {
-        Usuario usuario = new Usuario(dto.getDNI(),dto.getNombre(),dto.getDomicilio(),dto.getMail(),dto.getEdad(),dto.getPassword(),dto.getRol());
+        Usuario usuario = new Usuario(dto.getDNI(),dto.getNombre(),dto.getDomicilio(),dto.getMail(),dto.getEdad(), dto.getPassword(),dto.getRol());
         return usuario;
     }
 
 
     public static UsuarioDTO toDTO(Usuario usuario){
-        UsuarioDTO dto = new UsuarioDTO(usuario.getDNI(),usuario.getNombre(),usuario.getDomicilio(),usuario.getMail(),usuario.getEdad(),usuario.getPassword(),usuario.getRol());
+        UsuarioDTO dto = new UsuarioDTO(usuario.getDNI(),usuario.getNombre(),usuario.getDomicilio(),usuario.getMail(),usuario.getEdad(), usuario.getPassword(),usuario.getRol());
         return dto;
     }
 
@@ -84,8 +79,6 @@ public class ControllerUsuarios {
         return listaUsuariosDTO;
     }
 
-    public static String getRol() {
-        return ControllerUsuarios.rol;
-    }
+
 }
 

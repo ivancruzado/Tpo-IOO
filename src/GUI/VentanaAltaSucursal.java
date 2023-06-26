@@ -109,7 +109,7 @@ public class VentanaAltaSucursal extends JFrame {
         botonVolver.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 VentanaAltaSucursal.this.dispose();
-                Menu menu = new Menu();
+                Menu menu = new Menu("Recepcionista");
                 menu.setVisible(true);
             }
         });

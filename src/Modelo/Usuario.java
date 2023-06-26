@@ -11,9 +11,10 @@ public class Usuario {
     private String Domicilio;
     private String Mail;
     private int Edad;
-    private String password;
+    private String Password;
 
-    private String rol;
+    private String Rol;
+    private String dni;
 
 
     // es un enum con tres valores: Administrador, Recepcionista, Laboratorista
@@ -21,65 +22,65 @@ public class Usuario {
 
     public Usuario(String DNI, String nombre, String domicilio, String mail, Integer edad, String password, String rol) {
 
-        DNI = DNI;
-        Nombre = nombre;
-        Domicilio = domicilio;
-        Mail = mail;
-        Edad = edad;
-        password = password;
-        rol = rol;
+         dni = DNI;
+         Nombre = nombre;
+         Domicilio = domicilio;
+         Mail = mail;
+         Edad = edad;
+         Password = password;
+         Rol = rol;
 
     }
+        public String getDNI () {
+            return this.dni;
+        }
 
-    public String getDNI() {
-        return DNI;
-    }
+        public void setDNI (String DNI){
+            this.dni = DNI;
+        }
 
-    public void setDNI(String DNI) {
-        this.DNI = DNI;
-    }
+        public String getNombre () {
+            return Nombre;
+        }
 
-    public String getNombre() {
-        return Nombre;
-    }
+        public void setNombre (String nombre){
+            Nombre = nombre;
+        }
 
-    public void setNombre(String nombre) {
-        Nombre = nombre;
-    }
+        public String getDomicilio () {
+            return Domicilio;
+        }
 
-    public String getDomicilio() {
-        return Domicilio;
-    }
+        public void setDomicilio (String domicilio){
+            Domicilio = domicilio;
+        }
 
-    public void setDomicilio(String domicilio) {
-        Domicilio = domicilio;
-    }
+        public String getMail () {
+            return Mail;
+        }
 
-    public String getMail() {
-        return Mail;
-    }
+        public void setMail (String mail){
+            Mail = mail;
+        }
 
-    public void setMail(String mail) {
-        Mail = mail;
-    }
+        public int getEdad () {
+            return Edad;
+        }
 
-    public int getEdad() {
-        return Edad;
-    }
+        public void setEdad ( int edad){
+            Edad = edad;
+        }
 
-    public void setEdad(int edad) {
-        Edad = edad;
-    }
+        public String getPassword () {
+            return Password;
+        }
 
-    public String getPassword() {
-        return this.password;
-    }
+        public String getRol () {
+            return Rol;
+        }
 
-    public String getRol() {
-        return rol;
-    }
+        public void setPassword (String password){
+            this.Password = password;
+        }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

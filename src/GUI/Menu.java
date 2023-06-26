@@ -18,16 +18,19 @@ public class Menu extends JFrame {
     private ControllerSucursales controller2;
     private ControllerUsuarios controller3;
 
-    private String rol="Administrador";
+    private String rol;
 
 
+    public void setRol(String rol) {
+        this.rol = rol;
+        System.out.println(rol);
+    }
 
-
-    public Menu(){
+    public Menu(String rolset) {
+        this.rol = rolset;
         setSize(600,500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Sistema de Laboratorio");
-        System.out.println(ControllerUsuarios.getRol());
         setLocationRelativeTo(null);
 
         componentes();
@@ -125,7 +128,7 @@ public class Menu extends JFrame {
         menuInformes.add(informePeticiones);
 
 
-        if (this.rol == "recepcionista"){
+        if (this.rol == "Recepcionista"){
             menuInformes.setVisible(false);
             altaPacientes.setVisible(false);
             altaUsuarios.setVisible(false);
@@ -133,7 +136,7 @@ public class Menu extends JFrame {
             altaSucursales.setVisible(false);
 
 
-        } else if (this.rol == "laboratorista") {
+        } else if (this.rol == "Laboratorista") {
             menuInformes.setVisible(false);
             listarPeticiones.setVisible(false);
             altaPeticiones.setVisible(false);

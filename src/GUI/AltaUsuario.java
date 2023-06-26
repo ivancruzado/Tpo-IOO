@@ -95,7 +95,7 @@ public class AltaUsuario extends JFrame{
         JComboBox<String> ROLES = new JComboBox<String>();
         ROLES.addItem("Administrador");
         ROLES.addItem("Laboratorista");
-        ROLES.addItem("Empleado");
+        ROLES.addItem("Recepcionista");
 
         ROLES.setBounds(250, 260, 200, 30);
 
@@ -159,7 +159,7 @@ public class AltaUsuario extends JFrame{
         botonVolver.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 AltaUsuario.this.dispose();
-                Menu menu = new Menu();
+                Menu menu = new Menu("Recepcionista");
                 menu.setVisible(true);
             }
         });

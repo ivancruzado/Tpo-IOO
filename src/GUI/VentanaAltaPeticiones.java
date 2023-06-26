@@ -189,7 +189,7 @@ public class VentanaAltaPeticiones extends JFrame {
         boton2Volver.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 VentanaAltaPeticiones.this.dispose();
-                Menu menu = new Menu();
+                Menu menu = new Menu("Recepcionista");
                 menu.setVisible(true);
             }
         });
