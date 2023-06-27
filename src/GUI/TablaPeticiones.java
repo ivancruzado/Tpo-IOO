@@ -121,4 +121,6 @@ public class TablaPeticiones extends JFrame {
                 sorter4.setRowFilter(RowFilter.regexFilter(id.getText(),0));
         };
     });
-}}
+}
+
+}

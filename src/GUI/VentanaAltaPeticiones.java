@@ -11,7 +11,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import java.util.Calendar;
 import java.util.List;
+
+
 
 
 public class VentanaAltaPeticiones extends JFrame {
@@ -56,6 +59,7 @@ public class VentanaAltaPeticiones extends JFrame {
         etiqueta3.setForeground(Color.WHITE);
         etiqueta3.setBounds(15,150,100,30);
         panel.add(etiqueta3);
+
         JLabel etiqueta4 = new JLabel("Obra Social",SwingConstants.CENTER);
         etiqueta4.setForeground(Color.WHITE);
         etiqueta4.setBounds(15,200,100,30);

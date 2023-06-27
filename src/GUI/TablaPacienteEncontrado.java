@@ -20,7 +20,7 @@ public class TablaPacienteEncontrado extends JFrame {
     public TablaPacienteEncontrado(String title) {
         setTitle(title);
 
-        setBounds(30,20,750,650);
+        setBounds(30,20,850,650);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         controller = ControllerPeticiones.getInstance();
         tableModel = new CustomTableModel(controller.getAll());
@@ -53,13 +53,22 @@ public class TablaPacienteEncontrado extends JFrame {
         buttonPanel.add(botonBuscar);
         buttonPanel.add(EliminarPaciente);
         buttonPanel.add(modificarPaciente);
+        buttonPanel.add(VerPeticiones);
         buttonPanel.add(volverAtras);
+
+
 
         panel.add(buttonPanel);
 
         panel.add(scrollPane);
         add(panel,BorderLayout.CENTER);
 
+        dni.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                botonBuscar.doClick();
+            }
+        });
         volverAtras.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 TablaPacienteEncontrado.this.dispose();

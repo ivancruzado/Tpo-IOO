@@ -20,7 +20,7 @@ public class TablaSucursales extends JFrame {
     TableRowSorter<CustomTableModel3> sorter3;
 
     public TablaSucursales(String title) {
-        setTitle("Alta de Sucursales");
+        setTitle("Listado de sucursales");
 
         setBounds(30,20,750,650);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,6 +44,8 @@ public class TablaSucursales extends JFrame {
         JButton botonBuscar = new JButton("Buscar");
         JButton volverAtras = new JButton("Volver atras");
         JButton eliminarSucursal = new JButton("Eliminar Sucursal");
+        JButton verPeticiones = new JButton("Ver Peticiones ");
+
         JButton modificarSucursal = new JButton("Edit Sucursal");
 
 
@@ -54,7 +56,9 @@ public class TablaSucursales extends JFrame {
         buttonPanel.add(botonBuscar);
         buttonPanel.add(eliminarSucursal);
         buttonPanel.add(modificarSucursal);
+        buttonPanel.add(verPeticiones);
         buttonPanel.add(volverAtras);
+
 
         panel.add(buttonPanel);
 

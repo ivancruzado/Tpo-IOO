@@ -36,9 +36,11 @@ public class AltaUsuario extends JFrame{
 
 
         setBackground(Color.gray);
-        setTitle("Vista de Usuario");
+        setTitle("Alta de Usuarios (Solo administrador)");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(750, 650);
+      //  setSize(750, 650);
+        setSize(600,500);
+
         setLocationRelativeTo(null);
         setLayout(null);
         setVisible(true);

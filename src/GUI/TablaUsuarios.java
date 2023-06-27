@@ -17,7 +17,7 @@ public class TablaUsuarios extends JFrame {
     TableRowSorter<CustomTableUser> sorter3;
 
     public TablaUsuarios(String title) {
-        super(title);
+        setTitle("Nomina de usuarios del sistema (Solo administrador)");
 
         setBounds(30, 20, 750, 650);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,7 +37,7 @@ public class TablaUsuarios extends JFrame {
         JPanel panel = new JPanel();
         JTextField id = new JTextField();
         id.setPreferredSize(new Dimension(200, id.getPreferredSize().height));
-        JLabel etiqueta = new JLabel("Id:");
+        JLabel etiqueta = new JLabel("Nombre:");
         JButton botonBuscar = new JButton("Buscar");
         JButton volverAtras = new JButton("Volver atras");
         JButton EliminarUsuario = new JButton("Eliminar Usuario");
@@ -105,6 +105,18 @@ public class TablaUsuarios extends JFrame {
 
             }
         });
+        id.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                botonBuscar.doClick();
+            }
+        });
 
+        botonBuscar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                sorter3.setRowFilter(RowFilter.regexFilter(id.getText(),0));
+            }
+        });
     }
 }
