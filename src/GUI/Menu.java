@@ -153,15 +153,15 @@ public class Menu extends JFrame {
         altaPacientes.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Menu.this.setVisible(false);
-                //    AltaPacientes altaPacientes = new AltaPacientes();
-              //  altaPacientes.setVisible(true);
+                VentanaAltaPacientes Pacientes = new VentanaAltaPacientes();
+               Pacientes.setVisible(true);
             }
         });
         listarPacientes.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Menu.this.setVisible(false);
-          //      ListarPacientes listarPacientes = new ListarPacientes();
-             //   listarPacientes.setVisible(true);
+                TablaPacienteEncontrado listarPacientes = new TablaPacienteEncontrado("Alta Pacientes");
+                listarPacientes.setVisible(true);
             }
         });
         altaPracticas.addActionListener(new ActionListener() {

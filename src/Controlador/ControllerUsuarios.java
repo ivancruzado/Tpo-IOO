@@ -1,6 +1,8 @@
 package Controlador;
 
+import DTO.PracticasDTO;
 import DTO.UsuarioDTO;
+import Modelo.Practica;
 import Modelo.Usuario;
 
 import java.util.ArrayList;
@@ -90,5 +92,28 @@ public class ControllerUsuarios {
     }
 
 
+    public static int buscarindexusuario(String DNI) {
+
+        for (int i = 0; i < listaUsuarios.size(); i++) {
+            if (listaUsuarios.get(i).getDNI().equals(DNI)) {
+                return i;
+            }
+        }
+        return -1;
+
+    }
+
+    public static void ModificarUsuario(String DNI, String Direccion, String Mail, String nombre){
+        int index = buscarindexusuario(DNI);
+        UsuarioDTO user = toDTO(listaUsuarios.get(index));
+       // user.setDNI(DNI);
+        user.setDomicilio(Direccion);
+        user.setMail(Mail);
+        user.setNombre(nombre);
+
+
+        Usuario usuario = toModel(user);
+        listaUsuarios.set(index,usuario);
+    }
 }
 

@@ -1,7 +1,5 @@
 package GUI;
 
-
-import Controlador.ControllerPeticiones;
 import Controlador.ControllerUsuarios;
 
 import javax.swing.*;
@@ -69,10 +67,9 @@ public class TablaUsuarios extends JFrame {
                     String columna3 = table.getValueAt(seleccion, 2).toString();
                     String columna4 = table.getValueAt(seleccion, 3).toString();
 
-                  //  modificarUsuario modificarUsuario1 = new modificarUsuario(columna1, columna2, columna3, columna4);
-                    //TablaSucursales.this.dispose();
+                    ModificarUsuario GUImodificarusuario = new ModificarUsuario(columna1,columna2,columna3,columna4);
                     TablaUsuarios.this.setVisible(false);
-              //      modificarUsuario1.setVisible(true);
+                    GUImodificarusuario.setVisible(true);
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Seleccione una practica para modificarla");

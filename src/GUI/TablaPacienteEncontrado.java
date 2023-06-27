@@ -34,7 +34,7 @@ public class TablaPacienteEncontrado extends JFrame {
 
 
         JScrollPane scrollPane = new JScrollPane(table);
-        scrollPane.setPreferredSize(new Dimension(700,600));
+        scrollPane.setPreferredSize(new Dimension(800,600));
         JPanel panel = new JPanel();
         JTextField dni = new JTextField();
         dni.setPreferredSize(new Dimension(200, dni.getPreferredSize().height));
@@ -42,6 +42,7 @@ public class TablaPacienteEncontrado extends JFrame {
         JButton botonBuscar = new JButton("Buscar");
         JButton volverAtras = new JButton("Volver al Menú");
         JButton EliminarPaciente = new JButton("Eliminar paciente");
+        JButton VerPeticiones  = new JButton("Ver Peticiones");
         JButton modificarPaciente = new JButton("Editar paciente");
 
 
