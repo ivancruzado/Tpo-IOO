@@ -18,7 +18,7 @@ public class TablaPacienteEncontrado extends JFrame {
     TableRowSorter<CustomTableModel> sorter;
 
     public TablaPacienteEncontrado(String title) {
-        super(title);
+        setTitle(title);
 
         setBounds(30,20,750,650);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -63,8 +63,8 @@ public class TablaPacienteEncontrado extends JFrame {
         volverAtras.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 TablaPacienteEncontrado.this.dispose();
-       //         PacientesPrincipal pacientesPrincipal = new PacientesPrincipal();
-         //       pacientesPrincipal.setVisible(true);
+                Menu menu = new Menu();
+                menu.setVisible(true);
             }
         });
 

@@ -20,7 +20,7 @@ public class TablaSucursales extends JFrame {
     TableRowSorter<CustomTableModel3> sorter3;
 
     public TablaSucursales(String title) {
-        super(title);
+        setTitle("Alta de Sucursales");
 
         setBounds(30,20,750,650);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -12,6 +12,7 @@ public class VentanaAltaPacientes extends JFrame {
     public JPanel panel;
     public ControllerPeticiones controller;
     public VentanaAltaPacientes(){
+        setTitle("Alta de Pacientes");
         setSize(700,600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -117,7 +118,11 @@ public class VentanaAltaPacientes extends JFrame {
                 int bb = Integer.parseInt(b);
                 int cc = Integer.parseInt(c);
 
+
+
                 controller.altaPaciente(new PacientesDTO(bb,a,d,f,e2,cc));
+
+                JOptionPane.showMessageDialog(null, "Se realizo el alta del nuevo paciente");
 
                 nombre.setText("");
                 dni.setText("");

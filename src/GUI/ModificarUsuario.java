@@ -22,9 +22,6 @@ public class ModificarUsuario extends JFrame{
 
     private JTextField Edad;
 
-    private JPasswordField Password;
-
-    private JPasswordField Password2;
 
     private JPanel AltaUsurious;
 
@@ -71,18 +68,6 @@ public class ModificarUsuario extends JFrame{
         JTextField Edad = new JTextField();
         Edad.setBounds(250, 170, 200, 30);
 
-        JLabel lblPassword = new JLabel("Contraseña:");
-        lblPassword.setBounds(20, 200, 200, 30);
-
-        JPasswordField Password = new JPasswordField();
-        Password.setBounds(250, 200, 200, 30);
-
-        JLabel lblPassword2 = new JLabel("Repetir Contraseña:");
-        lblPassword2.setBounds(20, 230, 200, 30);
-
-        JPasswordField Password2 = new JPasswordField();
-        Password2.setBounds(250, 230, 200, 30);
-
         JLabel lblrol = new JLabel("Rol:");
         lblrol.setBounds(20, 260, 200, 30);
 
@@ -110,10 +95,6 @@ public class ModificarUsuario extends JFrame{
         add(Mail);
         add(lblEdad);
         add(Edad);
-        add(lblPassword);
-        add(Password);
-        add(lblPassword2);
-        add(Password2);
         add(lblrol);
         add(ROLES);
         add(Guardar);
