@@ -41,6 +41,7 @@ public class ControllerPeticiones {
 
 
 
+
     public List<PacientesDTO> getAll() {
         List<PacientesDTO> listaPacientesDTO = new ArrayList<>();
         for (Pacientes paciente : lista) {
@@ -274,7 +275,7 @@ public class ControllerPeticiones {
         return index;
     }
 
-    public int buscarindexResulatdos(int id) {
+    public static int buscarindexResulatdos(int id) {
         int index = -1;
         for (int i = 0; i < listResultados.size(); i++) {
             if (listResultados.get(i).getResultadoPracticaID() == id) {
@@ -318,7 +319,7 @@ public class ControllerPeticiones {
 
     }
 
-    public void ModificarResultados(int id, int cod, boolean reservado, boolean criticos,  int valor, int Tiempoestimado){
+    public static void ModificarResultados(int id, int cod, boolean reservado, boolean criticos, int valor, int Tiempoestimado){
         int index = buscarindexResulatdos(id);
         ResultadosDTO resulatdosDTO = toDTOResultado(listResultados.get(index));
         resulatdosDTO.setResultadoPracticaID(id);
@@ -412,8 +413,8 @@ public class ControllerPeticiones {
         }
     }
 
-    public void modificarPeticiones(int id, int SucursalID, String obraSocial, String fechaCarga,String fechaEntrega,String estado){
-        int index = buscarindexPeticiones(id);
+    public static void modificarPeticiones(int id, int SucursalID, String obraSocial, String fechaCarga, String fechaEntrega, String estado){
+        int index = ControllerPeticiones.buscarindexResulatdos(id);
         PeticionesDTO peticionesDTO = toDTO3(lista3.get(index));
         peticionesDTO.setSucursalID(SucursalID);
         peticionesDTO.setObraSocial(obraSocial);

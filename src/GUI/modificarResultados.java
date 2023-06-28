@@ -115,7 +115,7 @@ public class modificarResultados extends JFrame {
         public void actionPerformed(ActionEvent e) {
 
 
-           ControllerPeticiones.modificar (IDResultado.getText(),CodigoPractica.getText(),true,true,TiempoEstimado.getText(),valor.getText());
+           ControllerPeticiones.ModificarResultados(Integer.parseInt(IDResultado.getText()),Integer.parseInt(CodigoPractica.getText()),true,true,Integer.parseInt(valor.getText()),Integer.parseInt(TiempoEstimado.getText()));
 
 
             JOptionPane.showMessageDialog(null, "Usuario modificado correctamente");
