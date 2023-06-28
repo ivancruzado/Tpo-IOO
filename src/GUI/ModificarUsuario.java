@@ -105,7 +105,6 @@ public class ModificarUsuario extends JFrame{
             public void actionPerformed(ActionEvent e) {
 
 
-                  //  UsuarioDTO usuariodto = new UsuarioDTO(DNI.getText(), Nombre.getText(),  ,Integer.parseInt(Edad.getText()), pword, ROLES.getSelectedItem().toString());
                 ControllerUsuarios.ModificarUsuario(DNI.getText(),Domicilio.getText(),Mail.getText(),Nombre.getText());
 
 

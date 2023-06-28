@@ -26,14 +26,6 @@ public class modificarResultados extends JFrame {
         panel.setBackground(new Color(57, 73, 82));
         panel.setLayout(null);
         this.setContentPane(panel);
-
-
-        componentes();
-    }
-
-
-    private void componentes() {
-
         setBackground(Color.gray);
         setTitle("Modificar de resultados");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,14 +36,14 @@ public class modificarResultados extends JFrame {
         setVisible(true);
 
         JLabel lblIDResultado = new JLabel("Id resultado:");
-        JTextField IDResultado = new JTextField();
+        JTextField IDResultado = new JTextField(column1Value);
 
         lblIDResultado.setBounds(20, 50, 200, 30);
         IDResultado.setBounds(250, 50, 200, 30);
 
 
         JLabel lblpractica = new JLabel("Cod Practica:");
-        JTextField CodigoPractica = new JTextField();
+        JTextField CodigoPractica = new JTextField(column2Value);
 
         lblpractica.setBounds(20, 80, 200, 30);
         CodigoPractica.setBounds(250, 80, 200, 30);
@@ -70,14 +62,14 @@ public class modificarResultados extends JFrame {
         Reservado.setBounds(250, 140, 200, 30);
 
         JLabel lblTiempo = new JLabel("Tiempo Estimado");
-        JTextField TiempoEstimado = new JTextField();
+        JTextField TiempoEstimado = new JTextField(column5value);
 
         lblTiempo.setBounds(20, 170, 200, 30);
         TiempoEstimado.setBounds(250, 170, 200, 30);
 
 
         JLabel lblvalor = new JLabel("valor");
-        JTextField valor = new JTextField();
+        JTextField valor = new JTextField(column6value);
 
         valor.setBounds(250, 200, 200, 30);
         lblvalor.setBounds(20, 200, 200, 30);
@@ -111,34 +103,37 @@ public class modificarResultados extends JFrame {
 
 
         Guardar.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
 
-           ControllerPeticiones.ModificarResultados(Integer.parseInt(IDResultado.getText()),Integer.parseInt(CodigoPractica.getText()),true,true,Integer.parseInt(valor.getText()),Integer.parseInt(TiempoEstimado.getText()));
+                ControllerPeticiones.ModificarResultados(Integer.parseInt(IDResultado.getText()),Integer.parseInt(CodigoPractica.getText()),true,true,Integer.parseInt(valor.getText()),Integer.parseInt(TiempoEstimado.getText()));
 
 
-            JOptionPane.showMessageDialog(null, "Usuario modificado correctamente");
-            modificarResultados.this.dispose();
-
-            //      Menu menu = new Menu();
-            //    menu.setVisible(true);
-            TablaResultados listarresultados = new TablaResultados();
-            listarresultados.setVisible(true);
+                JOptionPane.showMessageDialog(null, "Usuario modificado correctamente");
+                modificarResultados.this.dispose();
 
 
-        }
-    });
+                TablaResultados listarresultados = new TablaResultados();
+                listarresultados.setVisible(true);
+
+
+            }
+        });
 
 
 
         botonVolver.addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
-            modificarResultados.this.dispose();
-            Menu menu = new Menu();
-            menu.setVisible(true);
-        }
-    });
+            public void actionPerformed(ActionEvent e) {
+                modificarResultados.this.dispose();
+                Menu menu = new Menu();
+                menu.setVisible(true);
+            }
+        });
+
 
     }
+
+
+
 }

@@ -97,21 +97,17 @@ public class AltaResultados extends JFrame{
         Guardar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                   //
+
                    ResultadosDTO Resultados = new ResultadosDTO(Integer.parseInt(IDResultado.getText()),Integer.parseInt(CodigoPractica.getText()), true,Reservado.isSelected(),Integer.parseInt( TiempoEstimado.getText()),Integer.parseInt(valor.getText()));
                    ControllerPeticiones.altaResultados(Resultados);
 
                     JOptionPane.showMessageDialog(null, "Resultado Cargado");
                     AltaResultados.this.dispose();
 
-              //      Menu menu = new Menu();
-                //    menu.setVisible(true);
+
                     TablaResultados listarresultados = new TablaResultados();
                     listarresultados.setVisible(true);
 
-
-                    // Muestra un mensaje de error
-                    JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
 
             }
         });

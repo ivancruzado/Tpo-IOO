@@ -112,7 +112,7 @@ public class Menu extends JFrame {
         JMenuItem listarResultados = new JMenuItem("Listar Resultados");
         menuPeticiones.add(listarResultados);
 
-        // apartado de informes
+        /* apartado de informes
         JMenu menuInformes = new JMenu("Informes");
         menuBar.add(menuInformes);
         JMenuItem informePacientes = new JMenuItem("Informe Pacientes");
@@ -121,10 +121,9 @@ public class Menu extends JFrame {
         menuInformes.add(informePracticas);
         JMenuItem informePeticiones = new JMenuItem("Informe Peticiones");
         menuInformes.add(informePeticiones);
-
+*/
 
         if (ControllerUsuarios.getROL() == "Recepcionista"){
-            menuInformes.setVisible(false);
             altaPacientes.setVisible(false);
             altaUsuarios.setVisible(false);
             altaPracticas.setVisible(false);
@@ -132,8 +131,7 @@ public class Menu extends JFrame {
 
 
         } else if (ControllerUsuarios.getROL() == "Laboratorista") {
-            menuInformes.setVisible(false);
-            listarPeticiones.setVisible(false);
+         //   listarPeticiones.setVisible(true);
             altaPeticiones.setVisible(false);
             listarResultados.setVisible(true);
             menuPacientes.setVisible(false);
