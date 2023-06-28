@@ -108,6 +108,7 @@ public class Menu extends JFrame {
 
         JMenuItem altaResultados = new JMenuItem("Cargar Resultados");
         menuPeticiones.add(altaResultados);
+
         JMenuItem listarResultados = new JMenuItem("Listar Resultados");
         menuPeticiones.add(listarResultados);
 
@@ -213,6 +214,16 @@ public class Menu extends JFrame {
                 AltaUsuario altaUsuarios = new AltaUsuario();
                 altaUsuarios.setVisible(true);
             }
+        });
+
+
+
+        listarResultados.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            Menu.this.setVisible(false);
+            TablaResultados tablaResultados = new TablaResultados();
+            tablaResultados.setVisible(true);
+        }
         });
 
         listarUsuarios.addActionListener(new ActionListener() {
