@@ -226,6 +226,14 @@ public class Menu extends JFrame {
         }
         });
 
+        altaResultados.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Menu.this.setVisible(false);
+                AltaResultados altaResultados = new AltaResultados();
+                altaResultados.setVisible(true);
+            }
+        });
+
         listarUsuarios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Menu.this.setVisible(false);
