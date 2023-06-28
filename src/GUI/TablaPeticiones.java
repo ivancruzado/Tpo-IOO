@@ -21,7 +21,7 @@ public class TablaPeticiones extends JFrame {
     public TablaPeticiones(String title) {
         super(title);
 
-        setBounds(30,20,750,650);
+        setBounds(30,20,1000,650);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         controller = ControllerPeticiones.getInstance();
         tableModel4 = new CustomTableModel4(controller.getAll3());
@@ -34,15 +34,18 @@ public class TablaPeticiones extends JFrame {
 
 
         JScrollPane scrollPane = new JScrollPane(table);
-        scrollPane.setPreferredSize(new Dimension(700,600));
+        scrollPane.setPreferredSize(new Dimension(900,600));
         JPanel panel = new JPanel();
         JTextField id = new JTextField();
-        id.setPreferredSize(new Dimension(200, id.getPreferredSize().height));
+        id.setPreferredSize(new Dimension(100, id.getPreferredSize().height));
         JLabel etiqueta = new JLabel("Id:");
         JButton botonBuscar = new JButton("Buscar");
         JButton volverAtras = new JButton("Volver atras");
-        JButton eliminarPeticion = new JButton("Eliminar Peticion");
-        JButton modificarPeticion = new JButton("Edit Peticion");
+        JButton eliminarPeticion = new JButton("Eliminar");
+        JButton modificarPeticion = new JButton("Editar");
+        JButton verresultado = new JButton("Ver Resultado");
+        JButton listarCriticos = new JButton("Listar Peticiones Criticas");
+
 
 
         JPanel buttonPanel = new JPanel();
@@ -53,11 +56,21 @@ public class TablaPeticiones extends JFrame {
         buttonPanel.add(eliminarPeticion);
         buttonPanel.add(modificarPeticion);
         buttonPanel.add(volverAtras);
+        buttonPanel.add(verresultado);
+        buttonPanel.add(listarCriticos);
 
         panel.add(buttonPanel);
 
         panel.add(scrollPane);
         add(panel,BorderLayout.CENTER);
+
+
+        verresultado.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
 
         modificarPeticion.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

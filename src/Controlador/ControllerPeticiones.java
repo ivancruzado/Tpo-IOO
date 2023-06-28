@@ -80,6 +80,16 @@ public class ControllerPeticiones {
         return listaResultadosDTO;
     }
 
+
+    public static boolean escritico(int idresultado) {
+        for (ResultadoPractica resultado : listResultados) {
+            if (resultado.getResultadoPracticaID() == idresultado) {
+                return (resultado.isEsCritico());
+            }
+        }
+        return true;  // si no existe el Resulatado para ese id de Peticion
+    }
+
     private static void initRecultados(){
         listResultados = new ArrayList<>();
         listResultados.add(new ResultadoPractica(1,1,true,true,1,10));
