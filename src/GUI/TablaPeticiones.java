@@ -1,8 +1,6 @@
 package GUI;
 
 import Controlador.ControllerPeticiones;
-import Controlador.ControllerSucursales;
-import DTO.PacientesDTO;
 
 import javax.swing.*;
 import javax.swing.table.TableRowSorter;
@@ -70,41 +68,39 @@ public class TablaPeticiones extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 int seleccion = table.getSelectedRow();
                 if (seleccion != -1) {
-                    //sorter4.setRowFilter(RowFilter.regexFilter("true",3));
-                    String columna7 = table.getValueAt(seleccion,7).toString();
-                    if (columna7 == "finalizado") {
-                        TablaResultados tablaResultados = new TablaResultados();
-                        String columna1 = table.getValueAt(seleccion, 0).toString();
-                        tablaResultados.sorter.setRowFilter(RowFilter.regexFilter(columna1, 0));
-                        TablaPeticiones.this.setVisible(false);
-                        tablaResultados.setVisible(true);
-                    }
 
-                    else{
-                        JOptionPane.showMessageDialog(null, "Esta Peticion aun no tiene resultados cargados");
-                    }
                     String Idpeticion = table.getValueAt(seleccion,0).toString();
-                    /*if (ControllerPeticiones.validarCarga(Integer.parseInt(Idpeticion))){
+                    if (ControllerPeticiones.validarCarga(Integer.parseInt(Idpeticion))){
 
                         Boolean reservado = ControllerPeticiones.esresevado(Integer.parseInt(Idpeticion));
 
                         if (reservado==true){
                             JOptionPane.showMessageDialog(null, "Esta Peticion tiene valores reservados, por lo que debe retirlo personalmente");
                         }
-                        else
-                        {
+                        else {
+
+                            String columna7 = table.getValueAt(seleccion, 7).toString();
+                            //   if (columna7 == "finalizado") {
+                            TablaResultados tablaResultados = new TablaResultados();
+                            String columna1 = table.getValueAt(seleccion, 0).toString();
+                            tablaResultados.sorter.setRowFilter(RowFilter.regexFilter(columna1, 0));
+                            TablaPeticiones.this.setVisible(false);
+                            tablaResultados.setVisible(true);
+
+
+                            //  JOptionPane.showMessageDialog(null, "Mostrar los datos");
 
                         }
                     }
                     else {
                         JOptionPane.showMessageDialog(null, "Esta Peticion aun no tiene resultados cargados");
 
-                    }*/
+                    }
 
-            //        modificarPeticion modificarPeticion1 = new modificarPeticion(columna1,columna2,columna3,columna4,columna5,columna6,columna7,columna8);
+                    //        modificarPeticion modificarPeticion1 = new modificarPeticion(columna1,columna2,columna3,columna4,columna5,columna6,columna7,columna8);
                     //TablaPeticiones.this.dispose();
-                 //   TablaPeticiones.this.setVisible(false);
-             //       modificarPeticion1.setVisible(true);
+                    //   TablaPeticiones.this.setVisible(false);
+                    //       modificarPeticion1.setVisible(true);
 
                 }else {
                     JOptionPane.showMessageDialog(null, "Seleccione un peticion");
