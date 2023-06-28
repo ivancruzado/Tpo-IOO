@@ -19,6 +19,7 @@ public class ControllerSucursales {
         if(SINGLETON == null){
             SINGLETON = new ControllerSucursales();
             initSucursales();
+            System.out.println("Se INICIALIZO");
         }
         return SINGLETON;
     }

@@ -18,9 +18,9 @@ public class TablaPacienteEncontrado extends JFrame {
     TableRowSorter<CustomTableModel> sorter;
 
     public TablaPacienteEncontrado(String title) {
-        super(title);
+        setTitle(title);
 
-        setBounds(30,20,750,650);
+        setBounds(30,20,850,650);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         controller = ControllerPeticiones.getInstance();
         tableModel = new CustomTableModel(controller.getAll());
@@ -34,7 +34,7 @@ public class TablaPacienteEncontrado extends JFrame {
 
 
         JScrollPane scrollPane = new JScrollPane(table);
-        scrollPane.setPreferredSize(new Dimension(700,600));
+        scrollPane.setPreferredSize(new Dimension(800,600));
         JPanel panel = new JPanel();
         JTextField dni = new JTextField();
         dni.setPreferredSize(new Dimension(200, dni.getPreferredSize().height));
@@ -42,6 +42,7 @@ public class TablaPacienteEncontrado extends JFrame {
         JButton botonBuscar = new JButton("Buscar");
         JButton volverAtras = new JButton("Volver al Menú");
         JButton EliminarPaciente = new JButton("Eliminar paciente");
+        JButton VerPeticiones  = new JButton("Ver Peticiones");
         JButton modificarPaciente = new JButton("Editar paciente");
 
 
@@ -52,18 +53,27 @@ public class TablaPacienteEncontrado extends JFrame {
         buttonPanel.add(botonBuscar);
         buttonPanel.add(EliminarPaciente);
         buttonPanel.add(modificarPaciente);
+        buttonPanel.add(VerPeticiones);
         buttonPanel.add(volverAtras);
+
+
 
         panel.add(buttonPanel);
 
         panel.add(scrollPane);
         add(panel,BorderLayout.CENTER);
 
+        dni.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                botonBuscar.doClick();
+            }
+        });
         volverAtras.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 TablaPacienteEncontrado.this.dispose();
-                PacientesPrincipal pacientesPrincipal = new PacientesPrincipal();
-                pacientesPrincipal.setVisible(true);
+                Menu menu = new Menu();
+                menu.setVisible(true);
             }
         });
 
@@ -118,6 +128,22 @@ public class TablaPacienteEncontrado extends JFrame {
 
                 }else {
                     JOptionPane.showMessageDialog(null, "Seleccione un paciente para modificarlo");
+                }
+
+            }
+        });
+        VerPeticiones.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int seleccion = table.getSelectedRow();
+                if(seleccion != -1){
+                    TablaPeticiones tablaPeticiones = new TablaPeticiones("tabla peticiones");
+                    String columna1 = table.getValueAt(seleccion,0).toString();
+                    tablaPeticiones.sorter4.setRowFilter(RowFilter.regexFilter(columna1,2));
+                    TablaPacienteEncontrado.this.setVisible(false);
+                    tablaPeticiones.setVisible(true);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"seleccione la sucursal");
                 }
 
             }

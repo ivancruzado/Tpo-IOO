@@ -21,7 +21,7 @@ public class TablaPeticiones extends JFrame {
     public TablaPeticiones(String title) {
         super(title);
 
-        setBounds(30,20,750,650);
+        setBounds(30,20,1000,650);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         controller = ControllerPeticiones.getInstance();
         tableModel4 = new CustomTableModel4(controller.getAll3());
@@ -34,15 +34,18 @@ public class TablaPeticiones extends JFrame {
 
 
         JScrollPane scrollPane = new JScrollPane(table);
-        scrollPane.setPreferredSize(new Dimension(700,600));
+        scrollPane.setPreferredSize(new Dimension(900,600));
         JPanel panel = new JPanel();
         JTextField id = new JTextField();
-        id.setPreferredSize(new Dimension(200, id.getPreferredSize().height));
+        id.setPreferredSize(new Dimension(100, id.getPreferredSize().height));
         JLabel etiqueta = new JLabel("Id:");
         JButton botonBuscar = new JButton("Buscar");
         JButton volverAtras = new JButton("Volver atras");
-        JButton eliminarPeticion = new JButton("Eliminar Peticion");
-        JButton modificarPeticion = new JButton("Edit Peticion");
+        JButton eliminarPeticion = new JButton("Eliminar");
+        JButton modificarPeticion = new JButton("Editar");
+        JButton verresultado = new JButton("Ver Resultado");
+        JButton listarCriticos = new JButton("Listar Peticiones Criticas");
+
 
 
         JPanel buttonPanel = new JPanel();
@@ -53,11 +56,62 @@ public class TablaPeticiones extends JFrame {
         buttonPanel.add(eliminarPeticion);
         buttonPanel.add(modificarPeticion);
         buttonPanel.add(volverAtras);
+        buttonPanel.add(verresultado);
+        buttonPanel.add(listarCriticos);
 
         panel.add(buttonPanel);
 
         panel.add(scrollPane);
         add(panel,BorderLayout.CENTER);
+
+
+        verresultado.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                int seleccion = table.getSelectedRow();
+                if (seleccion != -1) {
+                    //sorter4.setRowFilter(RowFilter.regexFilter("true",3));
+                    String columna7 = table.getValueAt(seleccion,7).toString();
+                    if (columna7 == "finalizado") {
+                        TablaResultados tablaResultados = new TablaResultados();
+                        String columna1 = table.getValueAt(seleccion, 0).toString();
+                        tablaResultados.sorter.setRowFilter(RowFilter.regexFilter(columna1, 0));
+                        TablaPeticiones.this.setVisible(false);
+                        tablaResultados.setVisible(true);
+                    }
+
+                    else{
+                        JOptionPane.showMessageDialog(null, "Esta Peticion aun no tiene resultados cargados");
+                    }
+                    String Idpeticion = table.getValueAt(seleccion,0).toString();
+                    /*if (ControllerPeticiones.validarCarga(Integer.parseInt(Idpeticion))){
+
+                        Boolean reservado = ControllerPeticiones.esresevado(Integer.parseInt(Idpeticion));
+
+                        if (reservado==true){
+                            JOptionPane.showMessageDialog(null, "Esta Peticion tiene valores reservados, por lo que debe retirlo personalmente");
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(null, "Esta Peticion aun no tiene resultados cargados");
+
+                    }*/
+
+            //        modificarPeticion modificarPeticion1 = new modificarPeticion(columna1,columna2,columna3,columna4,columna5,columna6,columna7,columna8);
+                    //TablaPeticiones.this.dispose();
+                 //   TablaPeticiones.this.setVisible(false);
+             //       modificarPeticion1.setVisible(true);
+
+                }else {
+                    JOptionPane.showMessageDialog(null, "Seleccione un peticion");
+                }
+            }
+
+        });
 
         modificarPeticion.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -86,9 +140,10 @@ public class TablaPeticiones extends JFrame {
 
         volverAtras.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+
                 TablaPeticiones.this.dispose();
-                PeticionesPrincipal peticionesPrincipal = new PeticionesPrincipal();
-                peticionesPrincipal.setVisible(true);
+                Menu menu = new Menu();
+                menu.setVisible(true);
             }
         });
 
@@ -119,5 +174,18 @@ public class TablaPeticiones extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 sorter4.setRowFilter(RowFilter.regexFilter(id.getText(),0));
         };
-    });
-}}
+        });
+        listarCriticos.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                //sorter4.setRowFilter(RowFilter.regexFilter("true",3));
+                TablaResultados tablaResultados = new TablaResultados();
+                tablaResultados.sorter.setRowFilter(RowFilter.regexFilter("true",3));
+                TablaPeticiones.this.setVisible(false);
+                tablaResultados.setVisible(true);
+
+            }
+        });
+
+    }
+
+}

@@ -49,7 +49,7 @@ public class TablaPracticas extends JFrame {
         buttonPanel.add(etiqueta);
         buttonPanel.add(id);
         buttonPanel.add(botonBuscar);
-        buttonPanel.add(EliminarPaciente);
+        //buttonPanel.add(EliminarPaciente);
         buttonPanel.add(modificarPaciente);
         buttonPanel.add(volverAtras);
 
@@ -86,8 +86,8 @@ public class TablaPracticas extends JFrame {
         volverAtras.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 TablaPracticas.this.dispose();
-                PracticasPrincipal practicasPrincipal = new PracticasPrincipal();
-                practicasPrincipal.setVisible(true);
+                Menu menu = new Menu();
+                menu.setVisible(true);
             }
         });
 

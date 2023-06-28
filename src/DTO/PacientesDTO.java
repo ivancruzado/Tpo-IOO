@@ -64,5 +64,6 @@ public class PacientesDTO {
     public void setEdad(int edad) {
         this.edad = edad;
     }
+
 }
 

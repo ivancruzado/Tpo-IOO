@@ -1,14 +1,11 @@
 package Controlador;
 
-import DTO.PacientesDTO;
-import DTO.PeticionesDTO;
-import DTO.PracticasDTO;
-import DTO.SucursalesDTO;
-import Modelo.Pacientes;
-import Modelo.Peticiones;
-import Modelo.Practica;
+import DTO.*;
+import Modelo.*;
 
 
+import javax.swing.*;
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -19,6 +16,10 @@ public class ControllerPeticiones {
     private static List<Practica> lista2;
     private static List<Peticiones> lista3;
 
+    private static List<ValoresCriticos> lista4;
+
+    private static List<ResultadoPractica> listResultados;
+
     private ControllerPeticiones() {}
 
     public static synchronized ControllerPeticiones getInstance() {
@@ -27,9 +28,19 @@ public class ControllerPeticiones {
             initClientes();
             initPracticas();
             initPeticiones();
+            initValoresCriticos();
+            initRecultados();
         }
         return SINGLETON;
     }
+
+    public static void altaResultados(ResultadosDTO resultados) {
+
+            ResultadoPractica resultado = toModelResultado(resultados);
+            listResultados.add(resultado);
+        }
+
+
 
 
     public List<PacientesDTO> getAll() {
@@ -56,6 +67,72 @@ public class ControllerPeticiones {
         return listaPeticionesDTO;
     }
 
+    public List<ValoresCriticosDTO> getAll4() {
+        List<ValoresCriticosDTO> listaValoresCriticosDTO = new ArrayList<>();
+        for (ValoresCriticos ValorCritico : lista4){
+            listaValoresCriticosDTO.add(toDTO4(ValorCritico));
+        }
+        return listaValoresCriticosDTO ;
+    }
+
+    public  static List<ResultadosDTO>  getAll5() {
+        List<ResultadosDTO> listaResultadosDTO = new ArrayList<>();
+        for (ResultadoPractica resultado : listResultados) {
+            listaResultadosDTO.add(toDTOResultado(resultado));
+        }
+        return listaResultadosDTO;
+    }
+
+
+    public boolean escritico(int idresultado) {
+        List<ResultadosDTO> listaResultadosDTO = new ArrayList<>();
+        listaResultadosDTO = this.getAll5();
+
+        for (ResultadosDTO resultado : listaResultadosDTO) {
+            if (resultado.getResultadoPracticaID() == idresultado) {
+                return (resultado.isEsCritico());
+            }
+        }
+        return true;  // si no existe el Resulatado para ese id de Peticion
+    }
+
+
+    public static boolean validarCarga(int idresultado) {
+        List<ResultadosDTO> listaResultadosDTO = new ArrayList<>();
+        listaResultadosDTO = ControllerPeticiones.getAll5();
+
+        for (ResultadosDTO resultado : listaResultadosDTO) {
+
+            if(resultado.getValor() == 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    public static boolean esresevado(int idresultado) {
+        List<ResultadosDTO> listaResultadosDTO = new ArrayList<>();
+        listaResultadosDTO = ControllerPeticiones.getAll5();
+
+        for (ResultadosDTO resultado : listaResultadosDTO) {
+            if (resultado.getResultadoPracticaID() == idresultado) {
+                return (resultado.isValoresReservados());
+            }
+        }
+        return true;  // si no existe el Resulatado para ese id de Peticion
+
+    }
+
+    private static void initRecultados(){
+        listResultados = new ArrayList<>();
+        listResultados.add(new ResultadoPractica(123,1,true,false,1,0));
+        listResultados.add(new ResultadoPractica(126,4,true,true,12,120));
+        listResultados.add(new ResultadoPractica(127,3,false,false,1,11));
+
+    }
 
     private static void initClientes(){
         lista = new ArrayList<>();
@@ -87,8 +164,43 @@ public class ControllerPeticiones {
         lista3.add(new Peticiones(124,2,lista.get(1),"Ioma", fechaGregoriana,lista2.get(1),fechaGregoriana2,"en curso"));
         lista3.add(new Peticiones(125,3,lista.get(2),"Pami", fechaGregoriana,lista2.get(2),fechaGregoriana2,"iniciado" ));
         lista3.add(new Peticiones(126,2,lista.get(1),"Ioma", fechaGregoriana,lista2.get(2),fechaGregoriana2,"finalizado" ));
+        lista3.add(new Peticiones(127,3,lista.get(1),"Ioma", fechaGregoriana,lista2.get(2),fechaGregoriana2,"finalizado" ));
     }
 
+    private static void initValoresCriticos(){
+        lista4= new ArrayList<>();
+        lista4.add(new ValoresCriticos("Bilirubina total (neonato)",0      ,20));
+        lista4.add(new ValoresCriticos("Calcio"                    ,6      ,13));
+        lista4.add(new ValoresCriticos("Calcio iónico"             ,0      ,1));
+        lista4.add(new ValoresCriticos("Fibrinógeno"               ,100    ,0));
+        lista4.add(new ValoresCriticos("Glucosa"                   ,40     ,500));
+        lista4.add(new ValoresCriticos("Glucosa LCR"               ,20     ,0));
+        lista4.add(new ValoresCriticos("Hematocrito"               ,20     ,60));
+        lista4.add(new ValoresCriticos("Hemoglobina"               ,7      ,21));
+        lista4.add(new ValoresCriticos("Recuento de plaquetas"     ,20000  ,999000));
+        lista4.add(new ValoresCriticos("Potasio"                   ,2      ,6));
+        lista4.add(new ValoresCriticos("Tiempo de protrombina"     ,11     ,0));
+        lista4.add(new ValoresCriticos("Sodio"                     ,120    ,160));
+        lista4.add(new ValoresCriticos("Glóbulos blancos"          ,1500   ,40000));
+        lista4.add(new ValoresCriticos("ph"                        ,7200   ,7600));
+        lista4.add(new ValoresCriticos("Exceso de base"            ,-18    ,18));
+        lista4.add(new ValoresCriticos("pCO2"                      ,20     ,70));
+        lista4.add(new ValoresCriticos("KPTT"                      ,0      ,80));
+        lista4.add(new ValoresCriticos("Carbamazepina"             ,0      ,12));
+        lista4.add(new ValoresCriticos("Difenilhidantoina"         ,0      ,20));
+        lista4.add(new ValoresCriticos("Fenobarbital"              ,0      ,40));
+        lista4.add(new ValoresCriticos("Litio"                     ,0      ,1));
+        lista4.add(new ValoresCriticos("Fósforo"                   ,1      ,9));
+        lista4.add(new ValoresCriticos("Tiempo de trombina"        ,0      ,180));
+        lista4.add(new ValoresCriticos("Salicilato"                ,0      ,70));
+        lista4.add(new ValoresCriticos("Teofilina"                 ,0      ,20));
+        lista4.add(new ValoresCriticos("Valproico"                 ,0      ,150));
+        lista4.add(new ValoresCriticos("Digoxina"                  ,0      ,4));
+        lista4.add(new ValoresCriticos("Metrotexate"               ,0      ,90));
+        lista4.add(new ValoresCriticos("R.I.N"                     ,0      ,6));
+        lista4.add(new ValoresCriticos("Factor VIII"               ,10     ,0));
+
+    }
 
 
     public void altaPaciente(PacientesDTO dto){
@@ -97,16 +209,29 @@ public class ControllerPeticiones {
     }
 
 
+
     public static Pacientes toModel(PacientesDTO dto) {
 
         Pacientes cliente = new Pacientes(dto.getDni(), dto.getNombre(),dto.getDomicilio(), dto.getMail(), dto.getSexo(), dto.getEdad() );
         return cliente;
     }
 
+    public static ResultadoPractica toModelResultado(ResultadosDTO dto) {
+
+    ResultadoPractica resultado = new ResultadoPractica(dto.getResultadoPracticaID(),dto.getPracticaID(),dto.isEsCritico(),dto.isValoresReservados(),dto.getTiempoEstimado(),dto.getValor());
+    return resultado;
+    }
+
     public static PacientesDTO toDTO(Pacientes pacientes){
         PacientesDTO dto = new PacientesDTO(pacientes.getDNI(),pacientes.getNombre(),pacientes.getDomicilio(), pacientes.getMail(), pacientes.getSexo(), pacientes.getEdad());
         return dto;
     }
+
+    public static ResultadosDTO toDTOResultado(ResultadoPractica resultado){
+        ResultadosDTO dto = new ResultadosDTO(resultado.getResultadoPracticaID(),resultado.getPracticaID(),resultado.isEsCritico(),resultado.isValoresReservados(),resultado.getTiempoEstimado(),resultado.getValor());
+        return dto;
+    }
+
 
     public void bajaPaciente(int DNI) {
         List<PacientesDTO> listaPacientes =getAll();
@@ -152,6 +277,16 @@ public class ControllerPeticiones {
         return index;
     }
 
+    public static int buscarindexResulatdos(int id) {
+        int index = -1;
+        for (int i = 0; i < listResultados.size(); i++) {
+            if (listResultados.get(i).getResultadoPracticaID() == id) {
+                index = i;
+            }
+        }
+        return index;
+    }
+
     public int buscarindexPracticas(int id) {
         int index = -1;
         for (int i = 0; i < lista2.size(); i++) {
@@ -185,6 +320,21 @@ public class ControllerPeticiones {
         lista.set(index,pacientes);
 
     }
+
+    public static void ModificarResultados(int id, int cod, boolean reservado, boolean criticos, int valor, int Tiempoestimado){
+        int index = buscarindexResulatdos(id);
+        ResultadosDTO resulatdosDTO = toDTOResultado(listResultados.get(index));
+        resulatdosDTO.setResultadoPracticaID(id);
+        resulatdosDTO.setPracticaID(cod);
+        resulatdosDTO.setEsCritico(criticos);
+        resulatdosDTO.setValoresReservados(reservado);
+        resulatdosDTO.setValor(valor);
+        resulatdosDTO.setTiempoEstimado(Tiempoestimado);
+        ResultadoPractica res = toModelResultado(resulatdosDTO);
+        listResultados.set(index,res);
+
+    }
+
 
     public void bajaPractica(int id) {
         List<PracticasDTO> listaPracticas =getAll2();
@@ -265,8 +415,8 @@ public class ControllerPeticiones {
         }
     }
 
-    public void modificarPeticiones(int id, int SucursalID, String obraSocial, String fechaCarga,String fechaEntrega,String estado){
-        int index = buscarindexPeticiones(id);
+    public static void modificarPeticiones(int id, int SucursalID, String obraSocial, String fechaCarga, String fechaEntrega, String estado){
+        int index = ControllerPeticiones.buscarindexResulatdos(id);
         PeticionesDTO peticionesDTO = toDTO3(lista3.get(index));
         peticionesDTO.setSucursalID(SucursalID);
         peticionesDTO.setObraSocial(obraSocial);
@@ -290,6 +440,30 @@ public class ControllerPeticiones {
                 peticion.getPracticasAsociadas(),peticion.getFechaEntrega(),peticion.getEstado());
         return dto;
     }
+
+    public static ValoresCriticos toModel4 (ValoresCriticosDTO dto){
+        ValoresCriticos ValorCritico = new ValoresCriticos(dto.getNombre(), dto.getValorMin(), dto.getValorMax());
+        return ValorCritico;
+    }
+
+    public static ValoresCriticosDTO toDTO4 (ValoresCriticos ValorCritico){
+        ValoresCriticosDTO dto = new ValoresCriticosDTO(ValorCritico.getNombre(), ValorCritico.getValorMin(), ValorCritico.getValorMax());
+        return dto;
+    }
+
+
+    public void bajaResultado(int id) {
+        List<ResultadosDTO> listaResultado =getAll5();
+        for (int i = 0; i < listaResultado.size(); i++) {
+            if(listaResultado.get(i).getResultadoPracticaID() == id){
+                toDTOResultado(listResultados.remove(i));
+            }
+        }
+    }
+
+
+
+
 
 }
 

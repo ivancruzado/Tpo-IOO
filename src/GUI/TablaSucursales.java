@@ -20,7 +20,7 @@ public class TablaSucursales extends JFrame {
     TableRowSorter<CustomTableModel3> sorter3;
 
     public TablaSucursales(String title) {
-        super(title);
+        setTitle("Listado de sucursales");
 
         setBounds(30,20,750,650);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,6 +44,8 @@ public class TablaSucursales extends JFrame {
         JButton botonBuscar = new JButton("Buscar");
         JButton volverAtras = new JButton("Volver atras");
         JButton eliminarSucursal = new JButton("Eliminar Sucursal");
+        JButton verPeticiones = new JButton("Ver Peticiones ");
+
         JButton modificarSucursal = new JButton("Edit Sucursal");
 
 
@@ -54,7 +56,9 @@ public class TablaSucursales extends JFrame {
         buttonPanel.add(botonBuscar);
         buttonPanel.add(eliminarSucursal);
         buttonPanel.add(modificarSucursal);
+        buttonPanel.add(verPeticiones);
         buttonPanel.add(volverAtras);
+
 
         panel.add(buttonPanel);
 
@@ -84,8 +88,8 @@ public class TablaSucursales extends JFrame {
         volverAtras.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 TablaSucursales.this.dispose();
-                SucursalesPrincipal sucursalesPrincipal = new SucursalesPrincipal();
-                sucursalesPrincipal.setVisible(true);
+                Menu menu = new Menu();
+                menu.setVisible(true);
             }
         });
 
@@ -121,6 +125,22 @@ public class TablaSucursales extends JFrame {
         botonBuscar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 sorter3.setRowFilter(RowFilter.regexFilter(id.getText(),0));
+            }
+        });
+        verPeticiones.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int seleccion = table.getSelectedRow();
+                if(seleccion != -1){
+                    TablaPeticiones tablaPeticiones = new TablaPeticiones("tabla peticiones");
+                    String columna1 = table.getValueAt(seleccion,0).toString();
+                    tablaPeticiones.sorter4.setRowFilter(RowFilter.regexFilter(columna1,1));
+                    TablaSucursales.this.setVisible(false);
+                    tablaPeticiones.setVisible(true);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"seleccione la sucursal");
+                }
+
             }
         });
     }

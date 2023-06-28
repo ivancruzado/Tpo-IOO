@@ -21,7 +21,7 @@ public class modificarPaciente extends JFrame {
     private ControllerPeticiones controller;
 
     public modificarPaciente(String column1Value, String column2Value, String column3Value, String column4Value, String column5Value, String column6Value,int index){
-        setSize(700,600);
+        setSize(800,600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);

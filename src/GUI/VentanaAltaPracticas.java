@@ -138,8 +138,8 @@ public class VentanaAltaPracticas extends JFrame {
         botonVolver.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 VentanaAltaPracticas.this.dispose();
-                PracticasPrincipal practicasPrincipal = new PracticasPrincipal();
-                practicasPrincipal.setVisible(true);
+                Menu menu = new Menu();
+                menu.setVisible(true);
             }
         });
 
