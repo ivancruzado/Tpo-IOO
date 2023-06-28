@@ -9,7 +9,7 @@ import java.util.List;
 public class CustomTableResultados extends AbstractTableModel {
 
 
-    private String [] columnNames = {"Resultado ID" , "Codigo de practica" , "Nombre de la practica" , "Grupo", "Valores Criticos" ,"Valores Reservados","Tiempo estimado"};
+    private String [] columnNames = {"Resultado ID" , "Codigo de practica" , "Reservado" , "Critico", "Tiempo estimado","valor"};
 
     private List<ResultadosDTO> dtoArrayList;
 
@@ -21,22 +21,22 @@ public class CustomTableResultados extends AbstractTableModel {
     public Object getValueAt(int row, int col) {
         Object temp = null;
         if (col == 0) {
-            temp = dtoArrayList.get(row).getResultadoID();
+            temp = dtoArrayList.get(row).getResultadoPracticaID();
         }
         else if (col == 1) {
-            temp = dtoArrayList.get(row).getCodigoDePractica();
+            temp = dtoArrayList.get(row).getPracticaID();
         }
         else if (col == 2) {
-            temp = dtoArrayList.get(row).getNombreDePractica();
+            temp = dtoArrayList.get(row).isValoresReservados();
         }
         else if (col == 3) {
-            temp = dtoArrayList.get(row).getGrupo();
+            temp = dtoArrayList.get(row).isEsCritico();
         }
         else if (col == 4) {
-            temp = dtoArrayList.get(row).getValoresCriticos();
+            temp = dtoArrayList.get(row).getTiempoEstimado();
         }
         else if (col == 5) {
-            temp = dtoArrayList.get(row).getTiempoEstimado();
+            temp = dtoArrayList.get(row).getValor();
         }
 
 

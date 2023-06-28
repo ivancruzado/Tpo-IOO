@@ -2,62 +2,46 @@ package DTO;
 
 public class ResultadosDTO {
 
-    private int     ResultadoID ;
-    private int     CodigoDePractica ;
-    private String  NombreDePractica ;
-    private String  Grupo ;
-    private int     ValoresCriticos ;
-    private boolean ValoresReservados;
-    private int     TiempoEstimado;
 
-    public ResultadosDTO(int resultadoID, int codigoDePractica, String nombreDePractica, String grupo, int valoresCriticos, boolean valoresReservados, int tiempoEstimado) {
-        ResultadoID = resultadoID;
-        CodigoDePractica = codigoDePractica;
-        NombreDePractica = nombreDePractica;
-        Grupo = grupo;
-        ValoresCriticos = valoresCriticos;
+    private int ResultadoPracticaID;
+    private int practicaID;
+    private boolean EsCritico;
+    private boolean ValoresReservados;
+    private int TiempoEstimado;
+
+    private int valor;
+
+    public ResultadosDTO(int resultadoPracticaID, int practicaID, boolean esCritico, boolean valoresReservados, int tiempoEstimado, int valor) {
+        ResultadoPracticaID = resultadoPracticaID;
+        this.practicaID = practicaID;
+        EsCritico = esCritico;
         ValoresReservados = valoresReservados;
         TiempoEstimado = tiempoEstimado;
+        this.valor = valor;
     }
 
-    public int getResultadoID() {
-        return ResultadoID;
+    public int getResultadoPracticaID() {
+        return ResultadoPracticaID;
     }
 
-    public void setResultadoID(int resultadoID) {
-        ResultadoID = resultadoID;
+    public void setResultadoPracticaID(int resultadoPracticaID) {
+        ResultadoPracticaID = resultadoPracticaID;
     }
 
-    public int getCodigoDePractica() {
-        return CodigoDePractica;
+    public int getPracticaID() {
+        return practicaID;
     }
 
-    public void setCodigoDePractica(int codigoDePractica) {
-        CodigoDePractica = codigoDePractica;
+    public void setPracticaID(int practicaID) {
+        this.practicaID = practicaID;
     }
 
-    public String getNombreDePractica() {
-        return NombreDePractica;
+    public boolean isEsCritico() {
+        return EsCritico;
     }
 
-    public void setNombreDePractica(String nombreDePractica) {
-        NombreDePractica = nombreDePractica;
-    }
-
-    public String getGrupo() {
-        return Grupo;
-    }
-
-    public void setGrupo(String grupo) {
-        Grupo = grupo;
-    }
-
-    public int getValoresCriticos() {
-        return ValoresCriticos;
-    }
-
-    public void setValoresCriticos(int valoresCriticos) {
-        ValoresCriticos = valoresCriticos;
+    public void setEsCritico(boolean esCritico) {
+        EsCritico = esCritico;
     }
 
     public boolean isValoresReservados() {
@@ -76,6 +60,11 @@ public class ResultadosDTO {
         TiempoEstimado = tiempoEstimado;
     }
 
+    public int getValor() {
+        return valor;
+    }
 
-
+    public void setValor(int valor) {
+        this.valor = valor;
+    }
 }

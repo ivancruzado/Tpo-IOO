@@ -29,7 +29,7 @@ public class Peticiones {
     }
 
     public void altaResultadoPractica(){
-        ResultadoPractica resultadoPractica = new ResultadoPractica(idPeticion,PracticasAsociadas.getPracticaID());
+  //      ResultadoPractica resultadoPractica = new ResultadoPractica(idPeticion,PracticasAsociadas.getPracticaID());
     }
 
     /*public Peticiones getPeticiones(Pacientes paciente){

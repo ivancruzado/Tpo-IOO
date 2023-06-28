@@ -1,10 +1,7 @@
 package Controlador;
 
 import DTO.*;
-import Modelo.Pacientes;
-import Modelo.Peticiones;
-import Modelo.Practica;
-import Modelo.ValoresCriticos;
+import Modelo.*;
 
 
 import java.text.SimpleDateFormat;
@@ -19,6 +16,8 @@ public class ControllerPeticiones {
 
     private static List<ValoresCriticos> lista4;
 
+    private static List<ResultadoPractica> listResultados;
+
     private ControllerPeticiones() {}
 
     public static synchronized ControllerPeticiones getInstance() {
@@ -28,9 +27,17 @@ public class ControllerPeticiones {
             initPracticas();
             initPeticiones();
             initValoresCriticos();
+            initRecultados();
         }
         return SINGLETON;
     }
+
+    public static void altaResultados(ResultadosDTO resultados) {
+
+            ResultadoPractica resultado = toModelResultado(resultados);
+            listResultados.add(resultado);
+        }
+
 
 
     public List<PacientesDTO> getAll() {
@@ -65,7 +72,21 @@ public class ControllerPeticiones {
         return listaValoresCriticosDTO ;
     }
 
+    public  List<ResultadosDTO> getAll5() {
+        List<ResultadosDTO> listaResultadosDTO = new ArrayList<>();
+        for (ResultadoPractica resultado : listResultados) {
+            listaResultadosDTO.add(toDTOResultado(resultado));
+        }
+        return listaResultadosDTO;
+    }
 
+    private static void initRecultados(){
+        listResultados = new ArrayList<>();
+        listResultados.add(new ResultadoPractica(1,1,true,true,1,10));
+        listResultados.add(new ResultadoPractica(2,4,true,true,12,120));
+        listResultados.add(new ResultadoPractica(3,3,true,true,1,11));
+
+    }
 
     private static void initClientes(){
         lista = new ArrayList<>();
@@ -141,16 +162,29 @@ public class ControllerPeticiones {
     }
 
 
+
     public static Pacientes toModel(PacientesDTO dto) {
 
         Pacientes cliente = new Pacientes(dto.getDni(), dto.getNombre(),dto.getDomicilio(), dto.getMail(), dto.getSexo(), dto.getEdad() );
         return cliente;
     }
 
+    public static ResultadoPractica toModelResultado(ResultadosDTO dto) {
+
+    ResultadoPractica resultado = new ResultadoPractica(dto.getResultadoPracticaID(),dto.getPracticaID(),dto.isEsCritico(),dto.isValoresReservados(),dto.getTiempoEstimado(),dto.getValor());
+    return resultado;
+    }
+
     public static PacientesDTO toDTO(Pacientes pacientes){
         PacientesDTO dto = new PacientesDTO(pacientes.getDNI(),pacientes.getNombre(),pacientes.getDomicilio(), pacientes.getMail(), pacientes.getSexo(), pacientes.getEdad());
         return dto;
     }
+
+    public static ResultadosDTO toDTOResultado(ResultadoPractica resultado){
+        ResultadosDTO dto = new ResultadosDTO(resultado.getResultadoPracticaID(),resultado.getPracticaID(),resultado.isEsCritico(),resultado.isValoresReservados(),resultado.getTiempoEstimado(),resultado.getValor());
+        return dto;
+    }
+
 
     public void bajaPaciente(int DNI) {
         List<PacientesDTO> listaPacientes =getAll();

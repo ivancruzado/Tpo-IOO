@@ -9,43 +9,20 @@ public class ResultadoPractica {
 
     private int ResultadoPracticaID;
     private int practicaID;
+    private boolean EsCritico;
+    private boolean ValoresReservados;
+    private int TiempoEstimado;
+
+    private int valor;
     private static List<ItemPractica> practicaItem;
 
-    private List <ItemPractica> getPracticaItem ;
-
-    ResultadoPractica Rs = new ResultadoPractica(100,2 );
-
-
-    public void AgregarPracticaItem (){
-        practicaItem.add(new ItemPractica(Rs,"Analisis de Sangre",400,true));
-
-
-    }
-
-
-
-    public ResultadoPractica(int resultadoPracticaID, int practicaID) {
+    public ResultadoPractica(int resultadoPracticaID, int practicaID, boolean esCritico, boolean valoresReservados, int tiempoEstimado, int valor) {
         ResultadoPracticaID = resultadoPracticaID;
         this.practicaID = practicaID;
-    }
-
-    public ItemPractica getItemPractica(int resultadoPracticaID){
-        int index = -1;
-        for (int i = 0; i < practicaItem.size(); i++) {
-            if (practicaItem.get(i).getResultadoPracticaID().equals(resultadoPracticaID)) {
-                index = i;
-            }
-        }
-        ItemPractica itemPractica = new ItemPractica(practicaItem.get(index).resultadoPracticaID,practicaItem.get(index).getNombre(),practicaItem.get(index).getValor(),
-                practicaItem.get(index).getReservado());
-        return itemPractica;
-    }
-
-
-
-    public Boolean esReservado(ItemPractica itemPractica){
-        boolean reservado = itemPractica.getReservado();
-        return reservado;
+        EsCritico = esCritico;
+        ValoresReservados = valoresReservados;
+        TiempoEstimado = tiempoEstimado;
+        this.valor = valor;
     }
 
     public int getResultadoPracticaID() {
@@ -64,8 +41,35 @@ public class ResultadoPractica {
         this.practicaID = practicaID;
     }
 
+    public boolean isEsCritico() {
+        return EsCritico;
+    }
 
+    public void setEsCritico(boolean esCritico) {
+        EsCritico = esCritico;
+    }
 
+    public boolean isValoresReservados() {
+        return ValoresReservados;
+    }
 
+    public void setValoresReservados(boolean valoresReservados) {
+        ValoresReservados = valoresReservados;
+    }
 
+    public int getTiempoEstimado() {
+        return TiempoEstimado;
+    }
+
+    public void setTiempoEstimado(int tiempoEstimado) {
+        TiempoEstimado = tiempoEstimado;
+    }
+
+    public int getValor() {
+        return valor;
+    }
+
+    public void setValor(int valor) {
+        this.valor = valor;
+    }
 }

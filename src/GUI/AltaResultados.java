@@ -1,5 +1,6 @@
 package GUI;
 
+import Controlador.ControllerPeticiones;
 import Controlador.ControllerUsuarios;
 import DTO.ResultadosDTO;
 import DTO.UsuarioDTO;
@@ -8,13 +9,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 
 
 public class AltaResultados extends JFrame{
 
+    public ControllerPeticiones controller;
 
     public AltaResultados() {
 
+        controller = ControllerPeticiones.getInstance();
 
         setBackground(Color.gray);
         setTitle("Alta de resultado");
@@ -52,8 +56,13 @@ public class AltaResultados extends JFrame{
         lblTiempo.setBounds(20, 170, 200, 30);
 
         JTextField TiempoEstimado = new JTextField();
-        TiempoEstimado.setBounds(250,170,200,30);
+        TiempoEstimado.setBounds(20,200,200,30);
 
+        JLabel lblvalor = new JLabel("valor");
+        lblTiempo.setBounds(20, 230, 200, 30);
+
+        JTextField valor = new JTextField();
+        valor.setBounds(250,230,200,30);
 
         JButton botonVolver = new JButton("Volver a Menú");
         botonVolver.setBounds(20, 300, 150, 30);
@@ -62,6 +71,7 @@ public class AltaResultados extends JFrame{
         Guardar.setBounds(200, 300, 150, 30);
 
         add(lblIDResultado);
+        add(CodigoPractica);
         add(lblTiempo);
         add(lblNombre);
         add(lblReservado);
@@ -69,6 +79,8 @@ public class AltaResultados extends JFrame{
         add(Nombre);
         add(Reservado);
         add(TiempoEstimado);
+        add(lblvalor);
+        add(valor);
 
         add(Guardar);
 
@@ -76,19 +88,17 @@ public class AltaResultados extends JFrame{
         Guardar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                   //
+                   ResultadosDTO Resultados = new ResultadosDTO(Integer.parseInt(IDResultado.getText()),Integer.parseInt(CodigoPractica.getText()), true,Reservado.isSelected(),Integer.parseInt( TiempoEstimado.getText()),Integer.parseInt(valor.getText()));
+                   ControllerPeticiones.altaResultados(Resultados);
 
-
-                    usuariodto = new UsuarioDTO(DNI.getText(), Nombre.getText(), Domicilio.getText(), Mail.getText(),Integer.parseInt(Edad.getText()), pword, ROLES.getSelectedItem().toString());
-            //        ControllerUsuarios.altaUsuarios(usuariodto);
-
-
-                    JOptionPane.showMessageDialog(null, "Usuario creado con éxito");
+                    JOptionPane.showMessageDialog(null, "Resultado Cargado");
                     AltaResultados.this.dispose();
 
               //      Menu menu = new Menu();
                 //    menu.setVisible(true);
-                    TablaUsuarios listarUsuarios = new TablaUsuarios("tabla usuarios");
-                    listarUsuarios.setVisible(true);
+                    TablaResultados listarresultados = new TablaResultados();
+                    listarresultados.setVisible(true);
 
 
                     // Muestra un mensaje de error

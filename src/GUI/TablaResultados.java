@@ -24,7 +24,7 @@ public class TablaResultados extends JFrame  {
         setBounds(30,20,750,650);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         controller = ControllerPeticiones.getInstance();
-       // TableResultados = new CustomTableResultados(controller.getAll5());
+        TableResultados = new CustomTableResultados(controller.getAll5());
 
         table = new JTable(TableResultados);
         setLocationRelativeTo(null);
