@@ -101,12 +101,11 @@ public class ControllerPeticiones {
         listaResultadosDTO = ControllerPeticiones.getAll5();
 
         for (ResultadosDTO resultado : listaResultadosDTO) {
-
-            if(resultado.getValor() == 0) {
-                return false;
-            } else {
-                return true;
+            if (resultado.getResultadoPracticaID()==idresultado){
+                if(resultado.getValor() != 0)
+                    return true;
             }
+
         }
         return false;
     }
@@ -130,6 +129,7 @@ public class ControllerPeticiones {
         listResultados.add(new ResultadoPractica(123,1,true,false,1,0));
         listResultados.add(new ResultadoPractica(124,4,true,true,12,120));
         listResultados.add(new ResultadoPractica(125,3,true,false,1,11));
+        listResultados.add(new ResultadoPractica(126,3,false,false,1,11));
 
     }
 
