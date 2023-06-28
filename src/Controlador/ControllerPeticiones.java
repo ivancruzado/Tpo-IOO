@@ -127,9 +127,9 @@ public class ControllerPeticiones {
 
     private static void initRecultados(){
         listResultados = new ArrayList<>();
-        listResultados.add(new ResultadoPractica(1,1,true,true,1,10));
-        listResultados.add(new ResultadoPractica(2,4,true,true,12,120));
-        listResultados.add(new ResultadoPractica(3,3,true,true,1,11));
+        listResultados.add(new ResultadoPractica(123,1,true,false,1,0));
+        listResultados.add(new ResultadoPractica(124,4,true,true,12,120));
+        listResultados.add(new ResultadoPractica(125,3,true,false,1,11));
 
     }
 
