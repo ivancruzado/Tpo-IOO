@@ -23,7 +23,6 @@ public class AltaResultados extends JFrame{
         setBackground(Color.gray);
         setTitle("Alta de resultado");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      //  setSize(750, 650);
         setSize(600,500);
 
         setLocationRelativeTo(null);
@@ -31,56 +30,66 @@ public class AltaResultados extends JFrame{
         setVisible(true);
 
         JLabel lblIDResultado = new JLabel("Id resultado:");
-        lblIDResultado.setBounds(20, 50, 200, 30);
-
         JTextField IDResultado = new JTextField();
+
+        lblIDResultado.setBounds(20, 50, 200, 30);
         IDResultado.setBounds(250, 50, 200, 30);
 
+
+        JLabel lblpractica = new JLabel("Cod Practica:");
         JTextField CodigoPractica = new JTextField();
+
+        lblpractica.setBounds(20, 80, 200, 30);
         CodigoPractica.setBounds(250, 80, 200, 30);
 
-        JLabel lblNombre = new JLabel("Nombre de Pratica:");
-        lblNombre.setBounds(20, 110, 200, 30);
 
         JTextField Nombre = new JTextField();
+        JLabel lblNombre = new JLabel("Nombre de Pratica:");
+
+        lblNombre.setBounds(20, 110, 200, 30);
         Nombre.setBounds(250, 110, 200, 30);
 
 
         JLabel lblReservado = new JLabel("Reservado:");
-        lblReservado.setBounds(20, 140, 200, 30);
-
         JCheckBox Reservado = new JCheckBox();
+        lblReservado.setBounds(20, 140, 200, 30);
         Reservado.setBounds(250, 140, 200, 30);
 
         JLabel lblTiempo = new JLabel("Tiempo Estimado");
-        lblTiempo.setBounds(20, 170, 200, 30);
-
         JTextField TiempoEstimado = new JTextField();
-        TiempoEstimado.setBounds(20,200,200,30);
+
+        lblTiempo.setBounds(20, 170, 200, 30);
+        TiempoEstimado.setBounds(250,170,200,30);
+
 
         JLabel lblvalor = new JLabel("valor");
-        lblTiempo.setBounds(20, 230, 200, 30);
-
         JTextField valor = new JTextField();
-        valor.setBounds(250,230,200,30);
+
+        valor.setBounds(250,200,200,30);
+        lblvalor.setBounds(20,200,200,30);
 
         JButton botonVolver = new JButton("Volver a Menú");
-        botonVolver.setBounds(20, 300, 150, 30);
 
         JButton Guardar = new JButton("Guardar");
+
+        botonVolver.setBounds(20, 300, 150, 30);
         Guardar.setBounds(200, 300, 150, 30);
 
         add(lblIDResultado);
-        add(CodigoPractica);
         add(lblTiempo);
         add(lblNombre);
         add(lblReservado);
+        add(lblvalor);
+        add(lblpractica);
+        add(lblTiempo);
+        add(CodigoPractica);
         add(IDResultado);
         add(Nombre);
         add(Reservado);
         add(TiempoEstimado);
-        add(lblvalor);
+        add(CodigoPractica);
         add(valor);
+
 
         add(Guardar);
 
