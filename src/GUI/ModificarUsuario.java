@@ -103,7 +103,6 @@ public class ModificarUsuario extends JFrame{
         Guardar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Verifica que password y password2 sean iguales
 
 
                   //  UsuarioDTO usuariodto = new UsuarioDTO(DNI.getText(), Nombre.getText(),  ,Integer.parseInt(Edad.getText()), pword, ROLES.getSelectedItem().toString());

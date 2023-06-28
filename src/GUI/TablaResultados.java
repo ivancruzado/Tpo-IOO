@@ -69,12 +69,11 @@ public class TablaResultados extends JFrame  {
                     String columna4 = table.getValueAt(seleccion,3).toString();
                     String columna5 = table.getValueAt(seleccion,4).toString();
                     String columna6 = table.getValueAt(seleccion,5).toString();
-                    String columna7 = table.getValueAt(seleccion,6).toString();
 
-                 //   modificarResultado Resultado = new modificarResultado (columna1,columna2,columna3,columna4,columna5,columna6,columna7);
-                    //TablaCargarResultados.this.dispose();
+                    modificarResultados Resultado = new modificarResultados (Integer.parseInt(columna1),Integer.parseInt(columna2),Boolean.valueOf(columna3),Boolean.valueOf(columna4),Integer.parseInt(columna5),Integer.parseInt(columna6));
+                    TablaResultados.this.dispose();
                     TablaResultados.this.setVisible(false);
-                //    Resultado.setVisible(true);
+                    Resultado.setVisible(true);
 
                 }else {
                     JOptionPane.showMessageDialog(null, "Seleccione un Resultado para modificarlo");

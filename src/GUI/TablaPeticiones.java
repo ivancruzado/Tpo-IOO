@@ -68,8 +68,38 @@ public class TablaPeticiones extends JFrame {
         verresultado.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
+                int seleccion = table.getSelectedRow();
+                if (seleccion != -1) {
 
+                    String Idpeticion = table.getValueAt(seleccion,0).toString();
+                    if (ControllerPeticiones.validarCarga(Integer.parseInt(Idpeticion))){
+
+                        Boolean reservado = ControllerPeticiones.esresevado(Integer.parseInt(Idpeticion));
+
+                        if (reservado==true){
+                            JOptionPane.showMessageDialog(null, "Esta Peticion tiene valores reservados, por lo que debe retirlo personalmente");
+                        }
+                        else
+                        {
+                            JOptionPane.showMessageDialog(null, "Mostrar los datos");
+
+                        }
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(null, "Esta Peticion aun no tiene resultados cargados");
+
+                    }
+
+            //        modificarPeticion modificarPeticion1 = new modificarPeticion(columna1,columna2,columna3,columna4,columna5,columna6,columna7,columna8);
+                    //TablaPeticiones.this.dispose();
+                 //   TablaPeticiones.this.setVisible(false);
+             //       modificarPeticion1.setVisible(true);
+
+                }else {
+                    JOptionPane.showMessageDialog(null, "Seleccione un peticion");
+                }
             }
+
         });
 
         modificarPeticion.addActionListener(new ActionListener() {

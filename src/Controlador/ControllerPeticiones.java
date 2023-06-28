@@ -4,6 +4,7 @@ import DTO.*;
 import Modelo.*;
 
 
+import javax.swing.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -72,7 +73,7 @@ public class ControllerPeticiones {
         return listaValoresCriticosDTO ;
     }
 
-    public  List<ResultadosDTO> getAll5() {
+    public  static List<ResultadosDTO>  getAll5() {
         List<ResultadosDTO> listaResultadosDTO = new ArrayList<>();
         for (ResultadoPractica resultado : listResultados) {
             listaResultadosDTO.add(toDTOResultado(resultado));
@@ -81,13 +82,46 @@ public class ControllerPeticiones {
     }
 
 
-    public static boolean escritico(int idresultado) {
-        for (ResultadoPractica resultado : listResultados) {
+    public boolean escritico(int idresultado) {
+        List<ResultadosDTO> listaResultadosDTO = new ArrayList<>();
+        listaResultadosDTO = this.getAll5();
+
+        for (ResultadosDTO resultado : listaResultadosDTO) {
             if (resultado.getResultadoPracticaID() == idresultado) {
                 return (resultado.isEsCritico());
             }
         }
         return true;  // si no existe el Resulatado para ese id de Peticion
+    }
+
+
+    public static boolean validarCarga(int idresultado) {
+        List<ResultadosDTO> listaResultadosDTO = new ArrayList<>();
+        listaResultadosDTO = ControllerPeticiones.getAll5();
+
+        for (ResultadosDTO resultado : listaResultadosDTO) {
+
+            if(resultado.getValor() == 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    public static boolean esresevado(int idresultado) {
+        List<ResultadosDTO> listaResultadosDTO = new ArrayList<>();
+        listaResultadosDTO = ControllerPeticiones.getAll5();
+
+        for (ResultadosDTO resultado : listaResultadosDTO) {
+            if (resultado.getResultadoPracticaID() == idresultado) {
+                return (resultado.isValoresReservados());
+            }
+        }
+        return true;  // si no existe el Resulatado para ese id de Peticion
+
     }
 
     private static void initRecultados(){
@@ -240,6 +274,16 @@ public class ControllerPeticiones {
         return index;
     }
 
+    public int buscarindexResulatdos(int id) {
+        int index = -1;
+        for (int i = 0; i < listResultados.size(); i++) {
+            if (listResultados.get(i).getResultadoPracticaID() == id) {
+                index = i;
+            }
+        }
+        return index;
+    }
+
     public int buscarindexPracticas(int id) {
         int index = -1;
         for (int i = 0; i < lista2.size(); i++) {
@@ -273,6 +317,21 @@ public class ControllerPeticiones {
         lista.set(index,pacientes);
 
     }
+
+    public void ModificarResultados(int id, int cod, boolean reservado, boolean criticos,  int valor, int Tiempoestimado){
+        int index = buscarindexResulatdos(id);
+        ResultadosDTO resulatdosDTO = toDTOResultado(listResultados.get(index));
+        resulatdosDTO.setResultadoPracticaID(id);
+        resulatdosDTO.setPracticaID(cod);
+        resulatdosDTO.setEsCritico(criticos);
+        resulatdosDTO.setValoresReservados(reservado);
+        resulatdosDTO.setValor(valor);
+        resulatdosDTO.setTiempoEstimado(Tiempoestimado);
+        ResultadoPractica res = toModelResultado(resulatdosDTO);
+        listResultados.set(index,res);
+
+    }
+
 
     public void bajaPractica(int id) {
         List<PracticasDTO> listaPracticas =getAll2();
