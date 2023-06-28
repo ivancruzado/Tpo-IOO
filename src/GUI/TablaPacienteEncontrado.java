@@ -145,12 +145,8 @@ public class TablaPacienteEncontrado extends JFrame {
                 else{
                     JOptionPane.showMessageDialog(null,"seleccione la sucursal");
                 }
-
             }
         });
-
-
-
 
 
     }
